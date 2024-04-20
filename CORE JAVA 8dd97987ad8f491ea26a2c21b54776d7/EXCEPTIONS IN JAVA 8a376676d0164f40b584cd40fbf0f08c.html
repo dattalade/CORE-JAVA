@@ -1,0 +1,1411 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>EXCEPTIONS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8a376676-d016-4f40-b584-cd40fbf0f08c" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">EXCEPTIONS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="f5f402fd-d18a-4a2d-881c-6d9a4103a75b"/><h3 id="abae95fa-97b2-4b55-af12-c34db7bf101b" class=""><span style="border-bottom:0.05em solid"><strong>What is an Exception?</strong></span></h3><ul id="16ea9d4c-c4b2-4ac6-bad5-d13cb4b23141" class="bulleted-list"><li style="list-style-type:disc">In Java, an exception is an event which disrupts or exit from the flow of execution</li></ul><ul id="4aab95d5-41af-43af-b5e4-2d3b1fadb464" class="bulleted-list"><li style="list-style-type:disc">The Exception is an Object which throws at runtime</li></ul><h3 id="54ebc33d-c747-4d9b-91fc-3d87c9c52aed" class=""><span style="border-bottom:0.05em solid"><strong>What is Exception Handling?</strong></span></h3><ul id="cb5a36c4-c38f-4572-8a1c-4b0aa3c4c28e" class="bulleted-list"><li style="list-style-type:disc">Exception Handling is one of the most powerful mechanism in Java</li></ul><ul id="97dd8062-b538-49cd-b97c-5aa87edd12f5" class="bulleted-list"><li style="list-style-type:disc">This mechanism can handle runtime errors in Java, so that normal flow of execution can be maintained which a big adavantage</li></ul><ul id="fcbd08ef-a7fd-4bf3-be94-688d2e21fa5b" class="bulleted-list"><li style="list-style-type:disc">So this feautre refers to robust</li></ul><ul id="3bffbebf-67d3-4d07-8ee8-9110e5e01ea4" class="bulleted-list"><li style="list-style-type:disc">Let us assume →<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3658df31-708c-43ee-9f45-fc965f56d6f7" class="code"><code class="language-Plain Text">statement 1;  
+statement 2;  
+statement 3;  
+statement 4;  
+statement 5;    //exception occurs  
+statement 6;  
+statement 7;  
+statement 8;  
+statement 9;  
+statement 10;</code></pre><ul id="a216746f-86a8-4f3e-9b5d-be2230de5805" class="bulleted-list"><li style="list-style-type:circle">Suppose there are 10 Statements in a program, but if a runtime error occured in <strong>statement 5</strong>, we can handle to run other 5 statements using Exception Handling</li></ul></li></ul><h3 id="0d77149f-0eab-4362-90bf-08c68c2f58ea" class=""><span style="border-bottom:0.05em solid"><strong>Hierarchy of Java Exception classes</strong></span></h3><ul id="e20de9f0-793e-4b77-bad8-e9d2a08c7ae5" class="bulleted-list"><li style="list-style-type:disc"><strong>java.lang</strong> is the package where Exception classes are available, also it is a package which is default imported by Java Intrepreter</li></ul><ul id="f1f1aa03-66d0-4e41-9735-1d88eb784837" class="bulleted-list"><li style="list-style-type:disc"><strong>java.lang.Throwable</strong> is the root of all Exceptions inherited by two subclasses</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16da980a-8624-49b8-bac6-c9a3ab0ccf06" class="code"><code class="language-Mermaid">graph TD
+  A[Throwable] --&gt; B[Exception]
+	A --&gt; C[Error]
+	B --&gt; D[IOException]
+	B --&gt; E[SQLException]
+	B --&gt; G[RunTimeException]
+	B --&gt; F[ClassNotFoundException]
+	C --&gt; H[StackOverFlowError]
+	C --&gt; I[VirtualMachineError]
+	C --&gt; J[OutOfMemoryError]
+	G --&gt; K[ArithmeticException]
+	G --&gt; L[NullPointer Exception]
+	G --&gt; M[NumberFormat Exception]
+	G --&gt; N[IndexOutOfBounds Exception]
+	N --&gt; O[ArrayIndexOutOfBoundsException]
+	N --&gt; P[StringIndexOutOfBoundsException]
+	</code></pre><p id="43d9e491-fe1a-4709-825b-ec208d5a273e" class=""><strong>Example_1 </strong>(Main.java) →  <strong>ArithmeticException</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="42e9ccb2-4ddb-4d8c-9343-cc6f75f7e934" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		System.out.println(10/0);
+	}
+}</code></pre><p id="bbfab7e9-ce9e-4ed1-af16-0289fd46bd93" class=""><strong>Output →</strong></p><p id="29e490c6-5684-40ab-8a21-c323a4bc6341" class="">Exception in thread &quot;main&quot; java.lang.ArithmeticException: / by zero</p></div></p><p id="70b228f1-8f6c-49e2-b70c-5944963156ff" class=""><strong>Example_2 </strong>(Main.java) →  <strong>NullPointerException</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d464a4c0-f758-4213-952e-d327d431153e" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String s = &quot;&quot;;
+    System.out.println(s.length());
+		s = null;
+    System.out.println(s.length());
+	}
+}</code></pre><p id="575e4a26-a84b-4007-a37b-2cdf3d4f7f65" class=""><strong>Output →</strong></p><p id="96ca5a10-dec0-4252-98b6-3e6b24064813" class="">0</p><p id="47356f1f-5dcd-4e4f-acdf-33ec1b5e1dc0" class="">Exception in thread &quot;main&quot; java.lang.NullPointerException</p></div></p><p id="75cefeb9-6a84-4073-a8cb-78742b33d01b" class=""><strong>Example_3 </strong>(Main.java) →  <strong>StringIndexOutOfBoundsException</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afdbe2a3-5803-4393-b7b4-ebac597d9996" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		String str = &quot;abcd&quot;;
+		System.out.println(str.charAt(4));
+	}
+}</code></pre><p id="c72b5d8f-3a6a-4b5f-9794-382462cecef4" class=""><strong>Output →</strong></p><p id="2520d557-9882-442c-9971-8c43936f0af4" class="">Exception in thread &quot;main&quot; java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 1</p></div></p><p id="a6cd669d-bad9-4810-8c22-be44ca4aa786" class=""><strong>Example_4 </strong>(Main.java) →  <strong>ArrayIndexOutOfBoundsException</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b177504b-f2c6-41b9-9e72-1b20727e712d" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[1];
+		arr[0] = 10;
+		System.out.println(arr[2]);
+	}
+}</code></pre><p id="1d5019b9-a9d5-42b7-9f31-6e401b990c92" class=""><strong>Output →</strong></p><p id="e4bd3a3a-cbe4-47e7-a3e8-6e7bdff78062" class="">Exception in thread &quot;main&quot; java.lang.StringIndexOutOfBoundsException: String index out of range: 4</p></div></p><blockquote id="6b1dd5f9-a9bd-4dbb-91b3-b146228f8f6a" class=""><strong>Note :</strong> We will learn other Exceptions later</blockquote><h3 id="7b61fc6a-d0a4-4dca-ae19-fc22c6107406" class=""><span style="border-bottom:0.05em solid"><strong>Types of Exceptions</strong></span></h3><ul id="f0019618-ecaf-454c-b2ef-1db131562abb" class="bulleted-list"><li style="list-style-type:disc"><strong>Checked Exceptions</strong> → The class that directly inherits the Throwable Class except RunTimeExceptions &amp; Errors are known as Checked<p id="d225161d-df0b-48fd-9481-18e62d2e10d7" class="">Exceptions.</p></li></ul><ul id="446573e5-fbf4-45ab-89d8-08e02bb2f0b1" class="bulleted-list"><li style="list-style-type:disc"><strong>UnChecked Exceptions</strong> → The class which inherits the RunTime Exceptions is called UnChecked Exceptions.</li></ul><h3 id="ee717589-b4a1-456b-aa83-e26708eaf3a9" class=""><span style="border-bottom:0.05em solid"><strong>Keyword in Exceptions</strong></span></h3><ul id="57f8e027-9f64-48b9-8779-3ba93c81264a" class="bulleted-list"><li style="list-style-type:disc">try</li></ul><ul id="9aa8455e-d77d-4fdd-9093-e1ef5c9bef8f" class="bulleted-list"><li style="list-style-type:disc">catch</li></ul><ul id="55e81084-274c-44be-a551-04ffe60bef1a" class="bulleted-list"><li style="list-style-type:disc">finally</li></ul><ul id="29ed8236-d25e-4943-92ef-aee7473dcb21" class="bulleted-list"><li style="list-style-type:disc">throw</li></ul><ul id="b75b024c-a71d-41d9-81f3-a8b7e7577eb3" class="bulleted-list"><li style="list-style-type:disc">throws</li></ul><h3 id="4d93cb06-ec60-4fca-ad67-7aa536d3c093" class=""><span style="border-bottom:0.05em solid"><strong>Java try-catch block</strong></span></h3><p id="44bd6931-5a88-4182-bb59-797bc463546c" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7a3771fb-ff67-4e4a-a738-f5f7bb8281c7" class="code"><code class="language-Java">try
+{    
+	//code that may throw an exception    
+}
+catch(Exception_class_Name ref (or) Exception ref)
+{
+	//Handling the Exception Code
+}</code></pre></div></p><p id="6c93a6c5-a2fb-406b-ac80-056d70d4e6ef" class=""><strong>Internal Working →</strong><div class="indented"><figure id="06655c79-4a0b-4af6-a37b-578356de6281" class="image" style="text-align:center"><a href="EXCEPTIONS%20IN%20JAVA%208a376676d0164f40b584cd40fbf0f08c/Untitled.png"><img style="width:528px" src="EXCEPTIONS%20IN%20JAVA%208a376676d0164f40b584cd40fbf0f08c/Untitled.png"/></a></figure><ul id="021b9a17-c458-41f1-93ef-032348f8a056" class="bulleted-list"><li style="list-style-type:disc">The JVM firstly checks whether the exception is handled or not. If exception is not handled, JVM provides a default exception handler that performs the following tasks:<ul id="81d91145-3a9f-43fa-a28d-fb71f299212f" class="bulleted-list"><li style="list-style-type:circle">Prints out exception description.</li></ul><ul id="e7bf926a-38ea-4819-b216-efc31dae4ec5" class="bulleted-list"><li style="list-style-type:circle">Prints the stack trace (Hierarchy of methods where the exception occurred).</li></ul><ul id="606b6631-fece-4254-abba-8b1a54383e97" class="bulleted-list"><li style="list-style-type:circle">Causes the program to terminate.</li></ul></li></ul></div></p><p id="cf83a541-dd7d-4724-a96f-3ff5792092ab" class=""><strong>Example_1 </strong>(Exceptions.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a200c5dc-e23e-44d9-9cab-d75a8e25750d" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Exceptions
+{  
+	public static void main(String[] args)
+	{
+		try  
+    {  
+	    int data=50/0; //It will throw exception   
+    }
+		catch(ArithmeticException e)  
+    {  
+		  System.out.println(&quot;Cannot divide with Zero&quot;);  
+    }  
+    System.out.println(&quot;rest of the code...&quot;);  
+	}
+}</code></pre><p id="24b86ee7-56d8-4814-80f3-df6787ffab6e" class=""><strong>Output →</strong></p><p id="6a6354f5-0ee7-4ca6-9b0a-1e571312a11c" class="">Cannot divide with Zero</p><p id="72404484-0313-4b60-9b03-a55039f6dbd3" class="">rest of the code…</p></div></p><p id="8c87a8c9-17a8-4c4d-89a3-291dae0e001b" class=""><strong>Example_2 </strong>(Exceptions.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="57bf7ea7-25be-43c7-a3bc-a2345969fb46" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Exceptions
+{  
+	public static void main(String[] args)
+	{
+		try  
+    {  
+	    int data=50/0; //It will throw exception   
+    }
+		catch(NullPointerException e)  
+    {  
+		  System.out.println(&quot;Cannot divide with Zero&quot;);  
+    }  
+    System.out.println(&quot;rest of the code...&quot;);  
+	}
+}</code></pre><p id="71841134-55e8-4dd5-b0f7-919b6dc6f1be" class=""><strong>Output →</strong></p><p id="ed37977f-d542-4ffb-b74a-d2e2bea0feda" class="">Exception in thread &quot;main&quot; java.lang.ArithmeticException: / by zero</p><p id="16f76a97-6b79-4a73-8790-4a5b38ea82e1" class=""><strong>Reason →</strong></p><p id="65a3ecc2-8da4-4c64-9a6b-de105dcabe8d" class="">The program handles only NullPointer Exception but the Exception occured is Arithmetic Exception</p></div></p><p id="b43111e4-a55a-4880-8ce8-42dc62745920" class=""><strong>Example_3 </strong>(Exceptions.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1637725b-4b08-4106-863f-c66c3036f6d5" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Exceptions
+{  
+	public static void main(String[] args)
+	{
+		try  
+    {  
+	    int data=50/0; //It will throw exception 
+			System.out.println(&quot;Hello World&quot;);  
+    }
+		catch(NullPointerException e)  
+    {  
+		  System.out.println(&quot;Cannot divide with Zero&quot;);  
+    }  
+    System.out.println(&quot;rest of the code...&quot;);  
+	}
+}</code></pre><p id="5cbda274-a216-46c7-8cb5-53d56277357b" class=""><strong>Output →</strong></p><p id="1f871f74-dd80-4b7a-a033-320f2526454f" class="">Cannot divide with Zero</p><p id="34ba556a-52af-4a45-b2ef-cdb9ad83b6f5" class="">rest of the code…</p></div></p><p id="e4507712-ace5-491e-bc56-7336ca9bca75" class=""><strong>Example_4</strong> (Exceptions.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d63f2f24-514d-4ea0-be9d-fa5a45c0072d" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">package com.exceptions;
+import java.util.*;
+
+public class Exceptions
+{
+	public static void main(String[] args)
+	{
+		try
+    {
+	    String str = null;
+			System.out.println(str.length());
+    }
+		catch(Exception e)
+    {
+		  System.out.println(&quot;String is null&quot;);
+    }
+    System.out.println(&quot;rest of the code...&quot;);
+	}
+}
+</code></pre><p id="a667ad43-1a29-485d-aeb1-db9beaac2ac7" class=""><strong>Output →</strong></p><p id="7bb6b6be-157c-4df3-ae13-8eb1db24e57f" class="">String null</p><p id="dc92d4bd-7ff6-4be0-858b-4db3c4023591" class="">rest of the code…</p></div></p><blockquote id="8af5a7a7-27db-4d15-ae4e-80d4bf6da7ad" class=""><strong>Note </strong>: We can handle every Exception using like before examples</blockquote><blockquote id="d1abef6d-148a-484a-af66-ce505c9ffaab" class=""><strong>Note </strong>: Exception handles every Exception in the Throwable</blockquote><h3 id="19f8339d-f90d-497c-86e1-f57042af8d1f" class=""><span style="border-bottom:0.05em solid"><strong>Java Multiple Catch blocks</strong></span></h3><ul id="bf17d9d9-a8af-44b1-b29d-1ad2b2ea7858" class="bulleted-list"><li style="list-style-type:disc">A try block can have one or more catch blocks. Each catch block will handle a different Exception.</li></ul><ul id="524de432-e4c1-4c82-bc19-15b038edd597" class="bulleted-list"><li style="list-style-type:disc">So, if you want to perform the tasks based on an exceptions we use multiple catch blocks</li></ul><blockquote id="00e9eee7-8c24-4677-b190-1dbf4b8208fc" class=""><strong>Note</strong> : At a time only one exception occurs and at a time only one catch block is executed.</blockquote><blockquote id="eedd4577-367a-4fd6-8ee4-33d467cf92fc" class=""><strong>Note</strong> : • All catch blocks must be ordered from most specific to most general, i.e. catch for ArithmeticException must come before catch for Exception.</blockquote><p id="3c08f61d-369b-4e77-a89d-162c5f912537" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="68f2231e-2cdc-4923-a8f9-14a1e2447f93" class="code"><code class="language-Java">try
+{    
+	//code that may throw an exception    
+}
+catch(Exception_class_Name ref (or) Exception ref)
+{
+	//Handling the Exception Code
+}
+catch(Exception_class_Name ref (or) Exception ref)
+{
+	//Handling the Exception Code
+}
+-------------------
+catch(Exception_class_Name ref (or) Exception ref)
+{
+	//Handling the Exception Code
+}</code></pre></div></p><p id="880569d6-d112-467b-b68f-cedd85fcc3b3" class=""><strong>Example_1</strong> (MultipleCatch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6152ffed-a408-4e53-9324-9a73b1df9f02" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class MultipleCatch
+{
+	public static void main(String[] args)
+	{
+		try
+    {
+	    int a[] = new int[5];    
+      a[5] = 30/0;
+    }
+		catch(ArithmeticException ae)
+    {
+		  System.out.println(&quot;Can&#x27;t Divide with Zero&quot;);
+    }
+		catch(ArrayIndexOutOfBoundsException ae)
+    {
+		  System.out.println(&quot;Length is out of boundary&quot;);
+    }
+		catch(Exception e)
+    {
+		  System.out.println(&quot;Parent Exception&quot;);
+    }
+    System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="3ba8e587-24f5-42f2-871b-7a2f5450117a" class=""><strong>Output →</strong></p><p id="a538fe86-8444-492a-a5ae-7668e59efb0b" class="">Can&#x27;t Divide with Zero</p><p id="c21bc09e-d759-4df9-a7fe-9ab3b36ee572" class="">rest of the code…</p></div></p><p id="7b068e2c-ebbe-48ba-848d-e9eb4ef8e9ef" class=""><strong>Example_2</strong> (MultipleCatch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bddb5531-703f-4a2e-8f17-1008a12fd63b" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class MultipleCatch
+{
+	public static void main(String[] args)
+	{
+		try
+    {
+	    int a[] = new int[5];    
+      System.out.println(a[10]);
+    }
+		catch(ArithmeticException ae)
+    {
+		  System.out.println(&quot;Can&#x27;t Divide with Zero&quot;);
+    }
+		catch(ArrayIndexOutOfBoundsException ae)
+    {
+		  System.out.println(&quot;Length is out of boundary&quot;);
+    }
+		catch(Exception e)
+    {
+		  System.out.println(&quot;Parent Exception&quot;);
+    }
+    System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="b927eddf-37c7-497c-8ac8-216b32ff372a" class=""><strong>Output →</strong></p><p id="2f988939-5960-49d9-9174-566b32fb0b3b" class="">Length is out of boundary</p><p id="1da08348-24c4-4ea2-b9d3-84f9f2b29a25" class="">rest of the code…</p></div></p><p id="3fbd0dd4-2650-4f3d-b29b-8d233752ef2c" class=""><strong>Example_3</strong> (MultipleCatch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bec3da20-527b-4da7-9e51-8612dff8ff9f" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class MultipleCatch
+{
+	public static void main(String[] args)
+	{
+		try
+    {
+	    String s=null;  
+      System.out.println(s.length());
+    }
+		catch(ArithmeticException ae)
+    {
+		  System.out.println(&quot;Can&#x27;t Divide with Zero&quot;);
+    }
+		catch(ArrayIndexOutOfBoundsException ae)
+    {
+		  System.out.println(&quot;Length is out of boundary&quot;);
+    }
+		catch(Exception e)
+    {
+		  System.out.println(&quot;Parent Exception&quot;);
+    }
+    System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="65dfe8cd-7b9a-4375-aa85-a494b320e98e" class=""><strong>Output →</strong></p><p id="c0e58580-08b8-4679-a68d-2e202d9ec270" class="">Parent Exception</p><p id="a6f47328-ae6e-4f98-a20a-a3f84eb45574" class="">rest of the code…</p></div></p><p id="6b575c74-caa9-454b-a191-bcdb13af61ac" class=""><strong>Example_3</strong> (MultipleCatch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12f62175-e2eb-41e1-b5b4-e23a63094707" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class MultipleCatch
+{
+	public static void main(String[] args)
+	{
+		try
+    {
+	    int a[] = new int[5];    
+      System.out.println(a[10]);
+    }
+		catch(Exception e)
+    {
+		  System.out.println(&quot;Parent Exception&quot;);
+    }
+		catch(ArithmeticException ae)
+    {
+		  System.out.println(&quot;Can&#x27;t Divide with Zero&quot;);
+    }
+		catch(ArrayIndexOutOfBoundsException ae)
+    {
+		  System.out.println(&quot;Length is out of boundary&quot;);
+    }
+    System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="c816ef49-9dd1-46ee-8862-6037e5a506cb" class=""><strong>Output →</strong></p><p id="bc51f76a-a9c5-495d-a4f0-501259679dc9" class="">Compile-time occurs (Unreachable Code)</p></div></p><h3 id="6ce1e03d-36c0-4c48-915d-a68ac27146b6" class=""><span style="border-bottom:0.05em solid"><strong>Nested try blocks</strong></span></h3><ul id="ad4fc961-9012-4adf-bb05-87f4018d719c" class="bulleted-list"><li style="list-style-type:disc">In Java, using a try block inside a try block is called as Nested try blocks</li></ul><p id="90913af2-46ee-4d4b-8e44-66e0f8cdb980" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6c9d2a9-1df5-49d3-828d-88ca40bb78f7" class="code"><code class="language-Java">try
+{
+	// First try code
+	try
+	{
+		// Second try code
+		-------------------
+		try
+		{
+			// nth try Code
+		}
+		catch(Exception_class_Name ref (or) Exception ref)
+		{
+			//Handling the Exception Code
+		}
+	}
+	catch(Exception_class_Name ref (or) Exception ref)
+	{
+		//Handling the Exception Code
+	}
+}
+catch(Exception_class_Name ref (or) Exception ref)
+{
+	//Handling the Exception Code
+}</code></pre></div></p><p id="dcaef109-5738-4694-a417-463435540131" class=""><strong>Example_1</strong> (NestedTry.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="89081795-4818-40ee-b9e7-e3aa2f7fc7ba" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class NestedTry
+{
+	public static void main(String[] args)
+	{
+		try
+		{
+			try
+			{
+				try
+				{
+					int d = 10/0;
+				}
+				catch(ArithmeticException ae)
+				{
+					System.out.println(&quot;Can&#x27;t divide with Zero&quot;);
+				}
+				String str = &quot;abcd&quot;;
+				System.out.println(str.length());
+			}
+			catch(StringIndexOutOfBoundsException se)
+			{
+				System.out.println(&quot;String can&#x27;t be null&quot;);
+			}
+			int arr[] = new int[1];
+			arr[10] = 10;
+		}
+		catch(ArrayIndexOutOfBoundsException ae)
+		{
+			System.out.println(&quot;Index was overflow&quot;);
+		}
+		System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="c2d8e8bd-e41a-4b13-82ea-c870b4f0ca62" class=""><strong>Output →</strong></p><p id="fa2e1d4a-908d-41b1-82dd-0fe125852513" class="">Can&#x27;t divide with Zero</p><p id="b6087885-e300-4fc6-9d28-f78c6ab4a6c9" class="">4</p><p id="a93a8e1a-1f95-4b11-8c56-9a90a7c06f2c" class="">Index was overflow</p><p id="0de6ae49-252c-4e20-805c-3925f3a973d5" class="">rest of the code…</p></div></p><p id="70166157-bf08-4868-9627-a32c56fa4b36" class=""><strong>Example_2</strong> (NestedTry.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="064ea662-63cb-4fbd-8dc9-ce40fb589597" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class NestedTry
+{
+	public static void main(String[] args)
+	{
+		try
+		{
+			try
+			{
+				try
+				{
+					int arr[] = new int[1];
+					System.out.println(arr[10]);
+				}
+				catch(ArithmeticException ae)
+				{
+					System.out.println(&quot;Can&#x27;t divide with Zero&quot;);
+				}
+			}
+			catch(StringIndexOutOfBoundsException se)
+			{
+				System.out.println(&quot;String can&#x27;t be null&quot;);
+			}
+			int arr[] = new int[1];
+			arr[10] = 10;
+		}
+		catch(ArrayIndexOutOfBoundsException ae)
+		{
+			System.out.println(&quot;Index was overflow&quot;);
+		}
+		System.out.println(&quot;rest of the code...&quot;);
+	}
+}</code></pre><p id="a0ad3e29-a587-4219-a378-47292baf866a" class=""><strong>Output →</strong></p><p id="466cf1ff-7172-4051-b77e-8a281d012e4e" class="">Index was overflow</p><p id="d9e1df36-4c2e-4272-a290-77f1cef49190" class="">rest of the code…</p><p id="e50e5c5a-e143-4151-9baf-399902242338" class=""><strong>Reason →</strong></p><p id="f92483e8-1ac6-414f-8f75-5c1ca413d15d" class="">If one try block can&#x27;t handle the exception the outer try block tries to handle the exception.</p></div></p><h3 id="d7b435f6-0318-4e90-88da-ca599a2fb509" class=""><span style="border-bottom:0.05em solid"><strong>Java finally Block</strong></span></h3><ul id="b1daa714-26bd-4ba6-a5ae-29a416613a10" class="bulleted-list"><li style="list-style-type:disc">Java finally block is always executed whether an exception is handled or not.</li></ul><p id="8bb2d7aa-1b78-4228-bcd4-75e181329eea" class=""><strong>Flowchart of finally Block →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="72ef15b0-10da-4613-bfd9-37189549a456" class="code"><code class="language-Mermaid">graph TD;
+  A[Program_Code] --&gt; B{Exception_Occured?}
+	B -- NO --&gt; C[Finally_Block_Executed]
+	B -- YES --&gt; D{Exception_Handled?}
+	D -- NO --&gt; C
+	D -- YES --&gt; C
+  </code></pre></div></p><p id="ec3a3299-e611-414b-a2c7-76c4aa6004cc" class=""><strong>Example_1</strong> (FinallyBlock.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c22b92cc-8ad4-4a9c-823a-42319f04f1aa" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class FinallyBlock
+{
+	public static void main(String[] args)
+	{
+		try
+		{    
+		  int data=25/5;    
+			System.out.println(data);    
+	  }    
+	  catch(NullPointerException e)
+		{  
+			System.out.println(&quot;NullPointer Exception&quot;);  
+		}    
+	  finally
+		{  
+			System.out.println(&quot;finally block is always executed&quot;);  
+		}    
+    System.out.println(&quot;rest of code...&quot;);
+	}
+}</code></pre><p id="2bce20f1-fbde-4074-981a-357f6f12045c" class=""><strong>Output →</strong></p><p id="9604c914-14a6-4337-9fef-c3abdce329d7" class="">5</p><p id="7d8778bc-b86c-4384-8209-b5daa75a42cf" class="">finally block is always executed</p><p id="7cb54473-9a2d-4bf0-b825-1876e6ba9ae9" class="">rest of the code…</p></div></p><p id="7893ba9e-3216-4f59-974f-b65af7864d89" class=""><strong>Example_2</strong> (FinallyBlock.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7d27932d-34dd-425d-9f73-05aa8a5143f8" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class FinallyBlock
+{
+	public static void main(String[] args)
+	{
+		try
+		{  
+			System.out.println(&quot;Inside try block&quot;);  
+		  int data=25/0;    
+			System.out.println(data);    
+	  }    
+	  catch(NullPointerException e)
+		{  
+			System.out.println(&quot;NullPointer Exception&quot;);  
+		}    
+	  finally
+		{  
+			System.out.println(&quot;finally block is always executed&quot;);  
+		}    
+    System.out.println(&quot;rest of code...&quot;);
+	}
+}</code></pre><p id="6b7da927-4c7e-4253-88b4-5aff18db3d27" class=""><strong>Output →</strong></p><p id="82d80ba7-5930-4124-8e6d-5f61baf38e73" class="">Inside the try block</p><p id="ee1d0087-a896-4ecd-b0bc-4f7c72dec531" class="">finally block is always executed</p><p id="1d3f605e-e1f6-471d-bf97-a9180321f8e2" class="">Exception in thread &quot;main&quot; java.lang.ArithmeticException: / by zero</p></div></p><p id="30a68b6a-098d-4c6a-a709-2b28e6c68d48" class=""><strong>Example_3</strong> (FinallyBlock.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9e47f638-8405-4816-987c-7efc109152ab" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class FinallyBlock
+{
+	public static void main(String[] args)
+	{
+		try
+		{  
+			System.out.println(&quot;Inside try block&quot;);  
+		  int data=25/0;    
+			System.out.println(data);    
+	  }    
+	  catch(ArithmeticException e)
+		{  
+			System.out.println(&quot;Arithmetic Exception&quot;);  
+		}    
+	  finally
+		{  
+			System.out.println(&quot;finally block is always executed&quot;);  
+		}    
+    System.out.println(&quot;rest of code...&quot;);
+	}
+}</code></pre><p id="74f56790-ffe4-47c1-9b30-b2cd86bcebff" class=""><strong>Output →</strong></p><p id="8dea63db-c61e-465e-a9b8-a7cddbb2fd00" class="">Inside the try block</p><p id="d8e626eb-f658-4e3a-8736-33fdffb38845" class="">Arithmetic Exception</p><p id="9b84385c-a5be-499f-a25a-2f635fa24454" class="">finally block is always executed</p><p id="c21c6bd8-ecbf-4306-af53-3be8e5ef8085" class="">rest of the code…</p></div></p><h3 id="8533cdbf-0274-4b9f-ab13-673b9b466ef6" class=""><span style="border-bottom:0.05em solid"><strong>Java throw keyword</strong></span></h3><ul id="4d4d38bc-469e-4afb-871b-6d1ec658d8ff" class="bulleted-list"><li style="list-style-type:disc">The Java throw keyword is used to throw an exception explicitly.</li></ul><ul id="68d8f420-d2f0-4794-b28a-e578fadad30f" class="bulleted-list"><li style="list-style-type:disc">We can throw either <strong>checked</strong> or<strong> unchecked</strong> exception or <strong>User-Defined</strong> exceptions.</li></ul><p id="56a92ca6-8033-4864-9398-9b3f5bc3faac" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f368ffa8-3124-498f-b628-146cd361f834" class="code"><code class="language-Java">throw Exception_Class(&quot;errorMessage&quot;);</code></pre></div></p><p id="3afcaeb8-ad84-44e8-ae03-db83ad4fc992" class=""><strong>Example_1</strong> (Exceptions.java) → <strong>Throwing Unchecked Exception</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf950ca4-5884-41ea-8c3d-5df10e6a3147" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Exceptions
+{
+	public static void main(String[] args)
+	{
+		int age = 17;
+		if(age &lt; 18)
+		{
+			throw new ArithmeticException(&quot;Person is not eligible to vote&quot;);
+		}
+		else
+		{
+			System.out.println(&quot;Person is eligible to vote&quot;);
+		}
+	}
+}</code></pre><p id="5197bd1c-655a-4533-a071-299136e513ea" class=""><strong>Output →</strong></p><p id="c99beaaa-913c-4c53-ac94-9f8e0fadba4d" class="">Exception in thread &quot;main&quot; java.lang.ArithmeticException:/ Person is not eligible to vote</p></div></p><blockquote id="522180f5-e9cb-4d30-8f1a-8705986e247f" class=""><strong>Note</strong> : throw keyword works only for UnChecked Exceptions (under our control, we can correct our code) and error like StackOverFlowError</blockquote><h3 id="43150c9b-59a1-4034-b9c3-93e9a7defcf5" class=""><span style="border-bottom:0.05em solid"><strong>Exception Propagation</strong></span></h3><ul id="8c10c5d3-9b3b-4a81-ae99-0f24daa2fe6f" class="bulleted-list"><li style="list-style-type:disc">If a method cannot handle an exception, then caller method tries to handle the exception, and so on is called Exception Propogation.</li></ul><p id="0544409b-416a-4671-b33e-271ccf4980bd" class=""><strong>Example_1</strong> (ExceptionPropagation.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b145a6dc-84f9-4b14-b7b7-0db12a6de3e6" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class ExceptionPropagation
+{
+	void m()
+	{  
+    int data=50/0;  
+  }  
+
+  void n()
+	{  
+    m();  
+  }  
+
+  void p()
+	{  
+		try
+		{  
+	    n();  
+	  }
+		catch(Exception e)
+		{
+			System.out.println(&quot;Propogation Performed&quot;);
+		}  
+  }
+
+	public static void main(String[] args)
+	{
+		ExceptionPropagation ep = new ExceptionPropagation();
+		ep.p();
+	}
+}</code></pre><p id="1cedc67b-9988-4276-92ef-0a6708d11bb5" class=""><strong>Output →</strong></p><p id="7cd86263-594b-4fb7-818c-6df6ba98066d" class="">Propogation Performed</p></div></p><p id="5f9e279f-6c45-4120-bfa5-0db04d2588f7" class=""><strong>Example_2</strong> (ExceptionPropagation.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="919fdb09-8383-4063-9d79-04b5e3020e1c" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class ExceptionPropagation
+{
+	void m()
+	{  
+    throw new SQLException(&quot;No DatBase Found&quot;);  // Checked Exception  
+  }  
+
+  void n()
+	{  
+    m();  
+  }  
+
+  void p()
+	{  
+		try
+		{  
+	    n();  
+	  }
+		catch(Exception e)
+		{
+			System.out.println(&quot;Propogation Performed&quot;);
+		}  
+  }
+
+	public static void main(String[] args)
+	{
+		ExceptionPropagation ep = new ExceptionPropagation();
+		ep.p();
+	}
+}</code></pre><p id="e211114e-1248-4ddf-bc1c-0a3d0d113dcb" class=""><strong>Output →</strong></p><p id="78547c8d-9987-483d-b150-8ec53c07eeb2" class=""><mark class="highlight-red">error: unreported exception SQLException; must be caught or declared to be thrown</mark></p></div></p><h3 id="22472449-6493-45f6-baee-ab2ac58ab147" class=""><span style="border-bottom:0.05em solid"><strong>throws Keyword</strong></span></h3><ul id="e74bb929-b430-4629-a9dd-5b2747f1eb6e" class="bulleted-list"><li style="list-style-type:disc">To propogate the checked exceptions or to throw a checked exception we must use throws</li></ul><p id="44b85c88-597d-492c-b604-62b739691231" class=""><strong>Example_1</strong> (ExceptionPropagation.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ba5ea4ba-1e6a-4642-99b4-29ea691893e8" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class ExceptionPropagation
+{
+	void m() throws SQLException
+	{  
+    throw new SQLException(&quot;No DatBase Found&quot;);  // Checked Exception  
+  }  
+
+  void n() throws SQLException
+	{  
+    m();  
+  }  
+
+  void p() throws SQLException
+	{  
+		try
+		{  
+	    n();  
+	  }
+		catch(Exception e)
+		{
+			System.out.println(&quot;Propogation Performed&quot;);
+		}  
+  }
+
+	public static void main(String[] args)
+	{
+		ExceptionPropagation ep = new ExceptionPropagation();
+		ep.p();
+	}
+}</code></pre><p id="bbf00b81-7ea7-4eb1-83b0-b908394b74fa" class=""><strong>Output →</strong></p><p id="34082ed3-486c-45e4-823b-d0631d74e972" class="">Propogation Performed</p></div></p><p id="c3371cb1-4a10-4bb0-a1fc-e8db62926d3c" class=""><strong>Example_2</strong> (Exceptionthrow.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5815ad63-e20f-45d9-a9a6-b58c711fdd1e" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+public class Exceptionthrow
+{
+  void p() throws SQLException
+	{  
+		throw new SQLException(&quot;No DataBase Found&quot;);
+  }
+
+	public static void main(String[] args)
+	{
+		Exceptionthrow ep = new Exceptionthrow();
+		ep.p();
+	}
+}</code></pre><p id="812dd082-c1bf-4242-a906-5e7c737ead60" class=""><strong>Output →</strong></p><p id="29e8a101-9c0f-42c7-91f6-8aeff53e3062" class="">Exception in thread &quot;main&quot; java.lang.SQLException: / No DataBase Found</p></div></p><h3 id="e6c35886-6963-4dc7-8fe6-a9289367e9a2" class=""><span style="border-bottom:0.05em solid"><strong>Exception Handling with Method Overriding</strong></span></h3><ul id="694bfa05-e015-4f6b-b62b-1b11303c7b6a" class="bulleted-list"><li style="list-style-type:disc">There are many rules while handling exception in Inheritance</li></ul><p id="18d09f39-b172-4b30-8ca0-cbb8a2bc536c" class=""><strong>Rule_1 : </strong>If the superclass method does not declare an exception, subclass overriding method cannot declare the checked exception.</p><p id="5e792eb9-bafe-45a6-a435-a3c569300dc2" class=""><strong>Example_1 </strong>(Rule1.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8d5317d9-baa8-4edd-949d-724e8a19326d" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+import java.io.*;
+
+class Rules
+{
+	public void addRule()
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule1 extends Rules
+{
+	public void addRule() throws IOException
+	{
+		System.out.println(&quot;Added Rule1&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule1 r1 = new Rule1();
+		r1.addRule();
+	}
+}</code></pre><p id="7b3cdc9b-2748-4f26-9bb5-593479f0b2a5" class=""><strong>Output →</strong></p><p id="1e908393-bf3f-4303-a104-b035e9e11229" class=""><mark class="highlight-red">error: addRu1e() in Main cannot override addRu1e() in Rules<br/>        <br/></mark>public void addRu1e() throws java . io.IOException</p><p id="1dfe68a0-c4f5-44c9-aac2-ff84fed1e271" class="">                                 ^<br/>                       overridden method does not throw IOException<br/></p></div></p><p id="687e3aa9-e425-404e-a21e-9a762c173fbb" class=""><strong><strong>Rule_2 : </strong></strong>If the superclass method does not declare an exception, subclass overriding method can declare only UnChecked Exceptions</p><p id="b00a6e11-41ce-44c7-8b84-e2112cd6e5ab" class=""><strong>Example_2 </strong>(Rule2.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="62d85269-2eee-4acc-b34d-512f988c9351" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class Rules
+{
+	public void addRule()
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule2 extends Rules
+{
+	public void addRule() throws ArithmeticException
+	{
+		super.addRule();
+		System.out.println(&quot;Added Rule2&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule2 r2 = new Rule2();
+		r2.addRule();
+	}
+}</code></pre><p id="408eb01c-89ff-47d8-a954-e060b86e21df" class=""><strong>Output →</strong></p><p id="a9e9813e-667d-4abc-a2dc-d61e643fe066" class="">Added Rules</p><p id="ec2b9ab3-f977-437c-804a-ac40166dd274" class="">Added Rule 2</p></div></p><p id="c1c3c388-7677-468f-a352-205c2604e773" class=""><strong><strong>Rule_3 : </strong></strong>If the superclass method declares an exception, subclass overriding method can declare the same subclass exception or no exception but cannot declare parent exception.</p><p id="6e2da776-8922-4f84-9b68-e0557c1f3e82" class=""><strong>Example_3 </strong>(Rule3.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9fd73863-b641-4b1e-b8b7-6744b83dda9b" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class Rules
+{
+	public void addRule() throws ArithmeticException
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule3 extends Rules
+{
+	public void addRule() throws Exception
+	{
+		super.addRule();
+		System.out.println(&quot;Added Rule3&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule3 r3 = new Rule3();
+		r3.addRule();
+	}
+}</code></pre><p id="4ddae9a7-fd1a-4742-8fd4-1ffd91c455f3" class=""><strong>Output →</strong></p><p id="77fdcb26-ab8b-48f7-8273-19d24979112a" class=""><mark class="highlight-red">error: addRu1e() in Main cannot override addRu1e() in Rules</mark></p><p id="ec20d694-7576-4d48-b01c-1850e7ebcfe1" class="">        public void addRu1e() throws Exception</p><p id="0f039884-e86c-4bd8-9159-ae64ffd8e33d" class="">                                 ^<br/>                       overridden method does not throw Exception<br/></p></div></p><p id="7daefeb4-c206-4168-9cc9-95837fae3a5b" class=""><strong>Example_4 </strong>(Rule3.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf1bf655-26c6-4734-ac22-f7a874b4051d" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class Rules
+{
+	public void addRule() throws Exception
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule3 extends Rules
+{
+	public void addRule() throws Exception
+	{
+		super.addRule();
+		System.out.println(&quot;Added Rule3&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule3 r3 = new Rule3();
+		r3.addRule();
+	}
+}</code></pre><p id="ffc47ba7-08e7-4c47-8392-592ecd8831aa" class=""><strong>Output →</strong></p><p id="4f7bff8d-bec7-48a3-859e-82a5015d69dd" class="">Added Rules</p><p id="28a2a54f-9e60-4287-bd6f-ac8789262d3a" class="">Added Rule3</p></div></p><p id="c11a2b9f-d8fb-443b-a7cb-7104ffe85dcd" class=""><strong>Example_5 </strong>(Rule3.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ce17350e-c075-468d-beed-477b7f4a5156" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class Rules
+{
+	public void addRule() throws Exception
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule3 extends Rules
+{
+	public void addRule() throws ArithmeticException
+	{
+		super.addRule();
+		System.out.println(&quot;Added Rule3&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule3 r3 = new Rule3();
+		r3.addRule();
+	}
+}</code></pre><p id="ee081583-279f-4b63-b3e3-37a3f2b04cf9" class=""><strong>Output →</strong></p><p id="41a511d3-a1d4-4a4c-ada3-91f352d27ee8" class="">Added Rules</p><p id="9a2ab317-4c2a-409d-8dff-c9ac111a50c5" class="">Added Rule3</p></div></p><p id="573be447-d0b4-420c-a664-998f688fddb2" class=""><strong>Example_6 </strong>(Rule3.java) → <strong>SubClass overriding method has no Exception</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f2175d77-02fe-491e-87ae-2f14149518e5" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class Rules
+{
+	public void addRule() throws Exception
+	{
+		System.out.println(&quot;Added Rules&quot;);
+	}
+}
+
+public class Rule3 extends Rules
+{
+	public void addRule()
+	{
+		super.addRule();
+		System.out.println(&quot;Added Rule3&quot;);
+	}
+
+	public static void main(String[] args)
+	{
+		Rule3 r3 = new Rule3();
+		r3.addRule();
+	}
+}</code></pre><p id="ba378888-0821-4631-913e-2c5025c0c0d1" class=""><strong>Output →</strong></p><p id="297a6bb5-a650-4859-95d4-94151644ef85" class="">Added Rules</p><p id="a5515b35-4f80-47f2-8c1e-4f7917fc3849" class="">Added Rule3</p></div></p><h3 id="152f745d-82d1-4698-8d6d-1536126b64a7" class=""><span style="border-bottom:0.05em solid"><strong>Custom Exception</strong></span></h3><ul id="cb0f3a4a-c21f-4fb1-8277-e112682d3c2a" class="bulleted-list"><li style="list-style-type:disc">We can create our exceptions with our own class, this phenomenon is called as <strong>Custom Exception</strong> or <strong>User-Defined Exception</strong></li></ul><ul id="654086a9-721d-4798-89c3-d6fe1cb94581" class="bulleted-list"><li style="list-style-type:disc">The need of this exception is o customize the exception according to requirements</li></ul><p id="a67bedb6-911e-47b8-a305-8e6cb33fa97f" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e8e7f650-a99f-4626-b009-b48bdadb35a4" class="code"><code class="language-Java">public class &lt;class_Name&gt; extends Exception
+{
+	&lt;class_Name&gt;(String str)
+	{
+		super(str);
+	}
+}</code></pre></div></p><p id="8a7aff0c-1fa7-4073-be51-dab6448e1532" class=""><strong>Example_1</strong> (CustomException.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3934fe1f-a1aa-4c65-8159-8bd85c138396" class="code"><code class="language-Java">package com.exceptions;
+import java.util.*;
+
+class InvalidAgeException extends Exception
+{
+	InvalidAgeException(String str)
+	{
+		super(str);
+	}
+}
+
+public class CustomException
+{
+	public void ageValid(int age) throws InvalidAgeException
+	{
+		if(age &lt; 18)
+			throw new InvalidAgeException(&quot;Your age is : &quot; + age + &quot;, where you are not eligible to vote&quot;);
+	}
+
+	public static void main(String[] args) throws InvalidAgeException
+	{
+		CustomException ce = new CustomException();
+		ce.ageValid(17);
+	}
+}</code></pre><p id="966dba74-986f-451c-8e09-0e4bbfd0983b" class=""><strong>Output →</strong></p><p id="3b7dcb68-fa48-4f13-8ba7-5a7ff35ecb97" class="">Exception in thread &quot;main&quot; InvalidAgeException: Your age is : 17, where you are not eligible to vote</p></div></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

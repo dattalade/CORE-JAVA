@@ -1,0 +1,913 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>POLYMORPHISM IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="234cb0e4-4747-46c9-988d-f4ed4496aee4" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">POLYMORPHISM IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="0f341c8d-6490-4423-8f33-ece8c4f45c81"/><h3 id="d876dac2-60ac-4046-bf6c-1396e82f40c4" class=""><span style="border-bottom:0.05em solid"><strong>Polymorphism in Java</strong></span></h3><ul id="16a8bfcb-21b7-4ce5-968a-f2553841ab30" class="bulleted-list"><li style="list-style-type:disc">Poly means <strong>multiple</strong>, morphism means <strong>forms</strong>, so it is called as <strong>Multiple Forms</strong></li></ul><ul id="17a2f54c-6344-4f17-bf02-9e6b48ea470f" class="bulleted-list"><li style="list-style-type:disc">We can perform polymorphism in two ways :<ol type="1" id="210056a3-cf5e-4211-8563-964a14677cd4" class="numbered-list" start="1"><li>Method Overloading</li></ol><ol type="1" id="d90e4df9-d328-4a21-b2e6-381af77066ce" class="numbered-list" start="2"><li>Method Overriding<p id="aa97b08e-fc5c-4460-8a35-c73be80d56c0" class=""><span style="border-bottom:0.05em solid"><strong>Method Overloading</strong></span></p><ul id="9810ff7c-6bba-497e-aa2f-0aa11712f0e9" class="bulleted-list"><li style="list-style-type:disc">If a class contains multiple methods of symmetric name, but vary either in parameter size or parameter datatypes is known as <p id="6d586c9f-558f-46c6-88fd-214cee20102e" class=""><strong>Method Overloading</strong></p></li></ul><ul id="1d68e537-5db7-49b6-abc0-b154319033f1" class="bulleted-list"><li style="list-style-type:disc">It is also known as <strong>Compile Time Polymorphism</strong></li></ul><p id="442eb926-ed7e-460e-8bc9-37b6ee21f076" class=""><strong>Example_1</strong> (OverLoad.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b970a50-fdda-48cd-90fd-55120162bf7a" class="code"><code class="language-Java">package com.overloading;
+import java.util.*;
+
+class Addition
+{
+	public int add(int a,int b)
+	{
+		return a+b;
+	}
+
+	public int add(int a,int b, int c)
+	{
+		return a+b;
+	}
+}
+
+public class Overload
+{
+	public static void main(String[] args)
+	{
+		Addition a = new Addition();
+		System.out.print(a.add(1,2) + &quot; &quot;);
+		System.out.print(a.add(1,2,3));
+	}
+}
+</code></pre><p id="ab48587f-9024-4bde-ad82-166a9a084358" class=""><strong>Output →</strong></p><p id="05512172-04d0-4168-ba05-e0c98f66d394" class="">3 6</p></div></p><p id="85c28c0e-709c-4d58-b477-de28e20eb094" class=""><strong>Example_2</strong> (OverLoad.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6e4f2fe0-e5cb-4d45-a4be-8e303d463d60" class="code"><code class="language-Java">package com.overloading;
+import java.util.*;
+
+class Addition
+{
+	public int add(int a,int b)
+	{
+		return a+b;
+	}
+
+	public int add(int a,int c)
+	{
+		return a+c;
+	}
+}
+
+public class Overload1
+{
+	public static void main(String[] args)
+	{
+		Addition a = new Addition();
+		System.out.print(a.add(1,2) + &quot; &quot;);
+		System.out.print(a.add(1,3));
+	}
+}
+</code></pre><p id="f99a1a7d-20ac-4a10-b4ba-0f0cc2a068d8" class=""><strong>Output →</strong></p><p id="14b32a21-31e1-41c9-abdd-1fbfb118e479" class="block-color-red">error: method add(int,int) is already defined in class Addition</p></div></p><p id="df03a58c-d2a7-46e0-99ea-64e1003a0c93" class=""><strong>Example_3</strong> (OverLoad.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="255ceee7-7e7f-497d-bd18-d9fc78f61097" class="code"><code class="language-Java">package com.overloading;
+import java.util.*;
+
+class Addition
+{
+	public int add(int a,int b)
+	{
+		return a+b;
+	}
+
+	public int add(double a, double b)
+	{
+		return a+b;
+	}
+}
+
+public class Overload
+{
+	public static void main(String[] args)
+	{
+		Addition a = new Addition();
+		System.out.print(a.add(1,2) + &quot; &quot;);
+		System.out.print(a.add(2.7, 3.4));
+	}
+}
+</code></pre><p id="441650a7-5044-4285-857d-10822199fea3" class=""><strong>Output →</strong></p><p id="46cb09b4-e5ae-442b-a333-a9a6cf187a37" class="">3 6</p></div></p><p id="494ad3ec-6c1b-43f8-912a-8b6ce82ca2b5" class=""><strong>Example_4</strong> (OverLoad.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aedf186d-5295-4f37-9e23-8e9a240230d0" class="code"><code class="language-Java">package com.overloading;
+import java.util.*;
+
+class Addition
+{
+	public long add(long a,int b)
+	{
+		return a+b;
+	}
+
+	public int add(int a, int b, int c)
+	{
+		return a+b;
+	}
+}
+
+public class Overload
+{
+	public static void main(String[] args)
+	{
+		Addition a = new Addition();
+		System.out.print(a.add(1,2) + &quot; &quot;);    // 2 is converted to int
+		System.out.print(a.add(1, 2, 3));
+	}
+}
+</code></pre><p id="c11a7a90-3545-4a8e-aac6-24a905aa1938" class=""><strong>Output →</strong></p><p id="07d2faa7-6976-4b97-8a9b-a6f025087536" class="">3 6</p></div></p><p id="ec75f404-3966-46b0-8351-514b623869e1" class=""><strong>Example_5</strong> (OverLoad.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22240b19-8f21-43ba-b98a-063b11227c7f" class="code"><code class="language-Java">package com.overloading;
+import java.util.*;
+
+class Addition
+{
+	public long add(long a,int b)
+	{
+		return a+b;
+	}
+
+	public long add(int a, long b)
+	{
+		return a+b;
+	}
+}
+
+public class Overload
+{
+	public static void main(String[] args)
+	{
+		Addition a = new Addition();
+		System.out.print(a.add(1,2) + &quot; &quot;);
+		System.out.print(a.add(5, 6));
+	}
+}
+</code></pre><p id="0c5451fb-7c24-4211-958c-8c5ac27093e0" class=""><strong>Output →</strong></p><p id="5c01a683-01f8-42e9-9012-8d0dbc73dc03" class=""><mark class="highlight-red">error: reference to add is ambiguous</mark></p><p id="3f8f038d-d5f8-454f-b4a5-feac276f2a13" class="">both method add(int,long) in Addition and method add(long,int) in Addition match</p></div></p><p id="75128607-edca-4ff8-9013-e805445083fb" class=""><span style="border-bottom:0.05em solid"><strong>Method Overriding </strong></span></p><ul id="8f5ac068-d9c7-4dec-8246-926a754539c6" class="bulleted-list"><li style="list-style-type:disc">Having same methods in both subclass &amp; superclass is called Method Over-riding<ul id="86c8a488-a532-4603-b85c-a0254d5df638" class="bulleted-list"><li style="list-style-type:circle">we already discussed in super() keyword</li></ul></li></ul><ul id="3ba7b8ca-b814-4c33-b6d6-206f2ffd50b3" class="bulleted-list"><li style="list-style-type:disc">Method overriding is used for runtime polymorphism<p id="b05b7794-d639-43c4-8da7-1db332e9d983" class=""><strong><span style="border-bottom:0.05em solid">Rules for Java Method Overriding</span></strong></p><ol type="1" id="d16cc0c3-3384-4ed0-974a-8a6a7ec5caa7" class="numbered-list" start="1"><li>The method must have the same name as in the parent class</li></ol><ol type="1" id="2fc9b8a8-cc83-4ab0-8c17-6b2b79f80e24" class="numbered-list" start="2"><li>The method must have the same parameter as in the parent class.</li></ol><ol type="1" id="2599c2f8-b467-462f-8e9a-3fff792c913a" class="numbered-list" start="3"><li>There must be an IS-A relationship (inheritance).</li></ol></li></ul><p id="e56252d4-dbd8-4eeb-a001-4f70094adce5" class=""><strong>Diagram →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="641a370b-8194-4cf9-8460-5eeda6792de3" class="code"><code class="language-Mermaid">flowchart LR
+    subgraph DERIVED_CLASS
+        Method2(move_method)
+    end
+		subgraph BASE_CLASS
+        Method1(move_method)
+				eat
+    end
+    Method1 --&gt; Overridden_Method
+		Method2 --&gt; Overriding_Method
+		eat --&gt; Inherited_Method</code></pre></div></p></li></ol></li></ul><ul id="18a8ee0b-aba3-4d6c-a584-8b02e1354779" class="bulleted-list"><li style="list-style-type:disc">There are two types of Polymorphism :<ol type="1" id="4b162b31-2b8d-4e06-a80d-1f7def7e6155" class="numbered-list" start="1"><li>Compile-time Polymorphism → Overloading the static methods methods are called as Compile-time ploymorphism</li></ol><ol type="1" id="54feeecf-fa0e-4a67-bae2-859d34540a2d" class="numbered-list" start="2"><li>Run-time Polymorphism<p id="0cd87748-7106-45f0-8dc6-2c1b98510d66" class=""><span style="border-bottom:0.05em solid"><strong>Run-time Polymorphism</strong></span></p><ul id="6ef6e731-d38e-4fcd-b2b4-c68af57c5d82" class="bulleted-list"><li style="list-style-type:disc">It is a process in which a call to an overridden method is resolved at runtime rather than compile-time.</li></ul><ul id="4e2f389a-31d3-4b55-a030-818cc53b2f60" class="bulleted-list"><li style="list-style-type:disc"><strong>Runtime polymorphism </strong>is also known as<strong> Dynamic Method Dispatch</strong></li></ul><ul id="58d61abc-73b0-4aa0-b5ca-baa9f137dc47" class="bulleted-list"><li style="list-style-type:disc">In this process, an overriding method is called through the reference variable of a superclass / parent class / base class</li></ul><blockquote id="d10b2e1f-1239-4dd0-814a-7ffcea76f2da" class=""><strong>Note</strong> : If the reference variable of Parent class refers to the object of Child class, it is known as upcasting.</blockquote><p id="fcb596c3-f344-42ed-a032-831d5cea0782" class=""><strong>Example_1</strong> (Main.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9dfae6db-1a29-4c73-bd18-072de51298c4" class="code"><code class="language-Java">package com.runtime_polymorphism;
+import java.util.*;
+
+class Bike
+{  
+	void run()
+	{
+		System.out.println(&quot;running&quot;);
+	}  
+}  
+
+class Splendor extends Bike
+{  
+	void run()
+	{
+		System.out.println(&quot;Splendor running safely with 60km&quot;);
+	} 
+}
+
+class Yamaha extends Bike
+{  
+	void run()
+	{
+		System.out.println(&quot;Yamaha running safely with 40km&quot;);
+	} 
+}
+
+public class Main
+{
+	public static void main(String args[])
+	{  
+    Bike b1 = new Splendor();    //upcasting  
+    b1.run();  
+		Bike b2 = new Yamaha();    //upcasting  
+    b2.run();  
+  }  
+}</code></pre><p id="f634070f-61db-497a-8398-f3c72a773f9a" class=""><strong>Output →</strong></p><p id="829f7965-2dcd-4d21-9c17-f8ddbdc076ef" class="">Splendor running safely with 60km</p><p id="8146ef2f-e760-4ec8-abef-56c4d5d6b31e" class="">Yamaha running safely with 40km</p></div></p><p id="322baf9e-4ea9-478e-9614-c4da9ac08a73" class=""><strong>Example_2</strong> (Main.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b52d90d-e306-4a43-9453-df7c5596ab67" class="code"><code class="language-Java">package com.runtime_polymorphism;
+import java.util.*;
+
+class Bike
+{  
+	String name;
+}  
+
+class Honda extends Bike
+{  
+	String name = &quot;Splendor&quot;;
+}
+
+class Yamaha extends Bike
+{  
+	String name = &quot;FZ-S&quot;;
+}
+
+public class Main
+{
+	public static void main(String args[])
+	{  
+    Bike b1 = new Honda();    //upcasting  
+    System.out.println(&quot;Honda : &quot; + b1.name);
+		Bike b2 = new Yamaha();    //upcasting  
+    System.out.println(&quot;Yamaha : &quot; + b2.name);
+  }  
+}</code></pre><p id="2dbc80e8-9ff2-4f0f-9fd8-0758aee0f2fa" class=""><strong>Output →</strong></p><p id="7d775189-818c-40f6-bd69-fb5ea36f0301" class="">Honda : Splendor</p><p id="afaf061e-5e20-4970-a90a-84486e8dd7f7" class="">Yamaha : FZ-S</p></div></p></li></ol></li></ul><h3 id="5415b793-ea30-4192-9637-f16ef0707d65" class=""><span style="border-bottom:0.05em solid"><strong>Static Binding</strong></span></h3><ul id="ab375b38-9160-4395-848e-4026ca95698c" class="bulleted-list"><li style="list-style-type:disc">When type of the object is determined at compiled time(by the compiler), it is known as static binding.</li></ul><ul id="7cdae1c9-7b43-4004-aafc-99df08fb457f" class="bulleted-list"><li style="list-style-type:disc">If there is any private, final or static method in a class, there is static binding.</li></ul><p id="79a6396f-6bc8-4e96-bce3-3cde6e45412d" class=""><strong>Example_1</strong> (Dog.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a10399f1-ed4a-463a-83a4-26e8c47003d8" class="code"><code class="language-Java">package com.staticbinding;
+import java.util.*;
+
+public class Dog
+{  
+	private void eat()
+	{
+		System.out.println(&quot;dog is eating...&quot;);
+	}  
+  
+	public static void main(String args[])
+	{  
+		Dog d1=new Dog();  
+		d1.eat();  
+	}
+}</code></pre><p id="c7694fa5-617e-4d8d-9e8d-b5692c905618" class=""><strong>Output →</strong></p><p id="d858f03b-ad0c-41c9-bb22-6203400ce32d" class="">dog is eating. . .</p></div></p><h3 id="a48174ce-d4f3-4961-b2f2-95555a6567ef" class=""><span style="border-bottom:0.05em solid"><strong>Dynamic Binding</strong></span></h3><ul id="1425531a-a7fb-4244-8132-63f481c325a3" class="bulleted-list"><li style="list-style-type:disc">When type of the object is determined at run-time, it is known as dynamic binding.</li></ul><p id="76a78936-791a-4fe5-9504-746eaab55dbd" class=""><strong>Example_1</strong> (Dog.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1559abc9-93a2-4969-90e9-33f4dd47a9b8" class="code"><code class="language-Java">package com.staticbinding;
+import java.util.*;
+
+class Animal
+{
+	public void eat()
+	{
+		System.out.println(&quot;animal is eating...&quot;);
+	}
+}
+		
+public class Dog
+{  
+	void eat()
+	{
+		System.out.println(&quot;dog is eating...&quot;);
+	}  
+  
+	public static void main(String args[])
+	{  
+		Animal d1=new Dog();  
+		d1.eat();  
+	}
+}</code></pre><p id="2c0f0171-ec0d-4114-9627-d5f6cdf0d1a4" class=""><strong>Output →</strong></p><p id="d2462a4e-f2a5-43e0-977f-600388bc19eb" class="">dog is eating. . .</p></div></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

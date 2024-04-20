@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DATATYPES AND VARIABLES IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d75ec225-1ff4-48d1-bed9-75343d218093" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">DATATYPES AND VARIABLES IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="716200e6-5c1c-417d-92c7-77b0b98161f8"/><p id="5cf47a65-07be-4183-b597-f19d3e9ef1d7" class="">
+</p><h3 id="8533aaca-2620-4fe1-86d3-fe2e6b8a73a1" class=""><span style="border-bottom:0.05em solid"><strong>Datatypes</strong></span></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3a7138f8-bc3b-4e42-97d3-a3f8ad8ce36d" class="code"><code class="language-Mermaid">graph TD
+  A[Data_Type] --&gt; B[Primitive]
+	A --&gt; C[Non-Primitive]
+	B --&gt; D[Boolean]
+	B --&gt; E[Numeric]
+	C --&gt; String
+	C --&gt; Array
+	C --&gt; etc...
+	D --&gt; boolean
+	E --&gt; F[Character]
+	E --&gt; G[Integral]
+	F --&gt; char
+	G --&gt; H[Integer]
+	G --&gt; I[Floating_Point]
+	H --&gt; byte
+	H --&gt; short
+	H --&gt; int
+	H --&gt; long
+	I --&gt; float
+	I --&gt; double</code></pre><p id="9eb535be-c654-45ce-b519-77d235106e5c" class="">
+</p><ol type="1" id="c44aeef4-0d22-4688-8293-1eb87048f7c1" class="numbered-list" start="1"><li>int/short/byte/long : It stores only integer values	(5, 10, 54, 23, etc....)</li></ol><ol type="1" id="078417f2-d707-44d0-9294-abee832cc63e" class="numbered-list" start="2"><li>double/float : It stores only decimal point values	(2.33, 7.64, 9.89, 32.558, etc...)</li></ol><ol type="1" id="e362a8eb-6a3c-4ecc-85a5-731d236a28fa" class="numbered-list" start="3"><li>char : It stores only single character	(&#x27;A&#x27;, &#x27;B&#x27;, &#x27;d&#x27;, &#x27;/&#x27;, &#x27;&gt;&#x27;, &#x27;+&#x27;, &#x27;$&#x27;, &#x27;1&#x27;, etc...)<br/>Note - It must be declared inside single quotes only.<br/></li></ol><ol type="1" id="728c09b8-33c7-41e1-98d4-4bb9cefed688" class="numbered-list" start="4"><li>String : It stores group of characters or single characters (&quot;Apple&quot;, &quot;123@123as&quot;, &quot;A&quot;, etc...)<br/>Note - It must be declared inside double quotes only.<br/></li></ol><ol type="1" id="756bc71b-b525-41bd-a243-28cdaa0a6faf" class="numbered-list" start="5"><li>boolean : It stores either &#x27;true&#x27; or &#x27;false&#x27;.</li></ol><blockquote id="7067a22d-d7b4-4646-9d08-adc1bc518e02" class=""><strong>Note</strong> : All the datatypes above are primitive datatypes except String</blockquote><blockquote id="9f6bbe54-1a0a-4894-ba96-566cdc8fdb26" class="">Note : String is non-primitive datatype, it is a Class</blockquote><h3 id="ffb3ad46-c737-4eef-a693-50c4daf98b9f" class=""><strong><span style="border-bottom:0.05em solid">Variables</span></strong></h3><ul id="fe30c28d-8fa2-469f-bdda-23fe1f2ab070" class="bulleted-list"><li style="list-style-type:disc">Variables are used to store any value of any type for future purpose or use.</li></ul><ul id="73754e94-11cb-4797-ba68-0ece61f40f94" class="bulleted-list"><li style="list-style-type:disc">We can declare a variable by giving a name to it.</li></ul><ul id="b10e928b-28db-459a-ae3b-545e9774824f" class="bulleted-list"><li style="list-style-type:disc">We can variables as <strong>Identifiers</strong> because it has it’s own identifiaction.</li></ul><ul id="2e4b74df-0e73-418d-9d0f-a3f9f21da98b" class="bulleted-list"><li style="list-style-type:disc">Variables are called as <strong>Data Members</strong> or <strong>Data Attributes</strong></li></ul><ul id="abf9b25d-16d0-46e0-abd7-ce724a54dc41" class="bulleted-list"><li style="list-style-type:disc">There are three types of variables in <a href="https://www.javatpoint.com/java-tutorial">Java</a>:<ol type="1" id="3de737bf-7858-4a24-8df2-f00ed06b911b" class="numbered-list" start="1"><li>Local variable </li></ol><ol type="1" id="7f96468a-26d6-41a6-83bc-984dae784d23" class="numbered-list" start="2"><li>Instance variable</li></ol><ol type="1" id="d5738558-a152-45fa-acdb-d6da39ce96cb" class="numbered-list" start="3"><li>Static variable</li></ol></li></ul><blockquote id="ec6af4e7-80b6-4fd7-9c06-95935e70a80b" class=""><strong>Note</strong> : For now, we will see only about local Variables</blockquote><p id="c19ac64e-87f3-4fc9-8f96-def9ac010d32" class=""><strong>Syntax</strong> → dataType variable_Name;    (or)    dataType variable_Name = value;</p><p id="065a9ddb-106a-4e52-900a-3ea706ef3975" class=""><strong>Example</strong> → int a;    (or)    int a = 10;<div class="indented"><h3 id="80ffc929-ac12-4595-972e-46e1508557de" class=""><strong><span style="border-bottom:0.05em solid">Local variable</span></strong></h3><ul id="31fd696e-ac04-4c8c-9ec7-ab11e1db3abd" class="bulleted-list"><li style="list-style-type:disc">A Variable declared inside the body of the method is called local variable</li></ul><ul id="9b204df6-f966-48d0-9c11-2104a5b197a7" class="bulleted-list"><li style="list-style-type:disc">You can use this variable only within that method and the other methods in the class aren&#x27;t even aware that the variable exists.</li></ul><h3 id="26323e7f-4225-4f78-a0ee-e70cd013782b" class=""><span style="border-bottom:0.05em solid"><strong>Restrictions</strong></span></h3><ul id="ff34b1d0-f48d-481d-aadb-58bce4ddb3db" class="bulleted-list"><li style="list-style-type:disc">A variable name must not be a keyword.</li></ul><ul id="56c87b9e-5ec3-4c14-87b9-80ca730b0149" class="bulleted-list"><li style="list-style-type:disc">A variable name must start with alphabets (either uppercase or lowercase) or with an underscore symbol &#x27;_&#x27;.</li></ul><ul id="9bc54e76-e083-401f-88e3-a6fd87ff4910" class="bulleted-list"><li style="list-style-type:disc">A variable name must not start with any other characters (symbols or numbers).</li></ul><h3 id="cd29f239-4bdb-45bd-950b-b4b797ae6cb3" class=""><strong><span style="border-bottom:0.05em solid">Declaring Multiple variables of same DataType</span></strong></h3><p id="ef8d3c15-78b5-485c-a640-c0890a8bfedc" class=""><strong>Syntax</strong> → dataType variable_Name1, variable_Name2    (or)    dataType variable_Name1 = value1, variable_Name2 = value2;</p><p id="a9ccff5c-9ef5-4df4-a83f-3619ac548eb9" class=""><strong>Example</strong> → int a, b;    (or)    int a = 10, b = 20;</p><p id="b6fb9c41-fbab-44f3-be0c-7a84de4744d3" class="">
+</p></div></p><p id="588b6410-9ec1-4da0-b0b4-eb7101606094" class=""><strong>Example_1</strong> (Variables.java) <strong>→ </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e94b3fcc-58c8-447d-9619-b38ffac1589a" class="code"><code class="language-Java">package com.variables;
+import java.util.*;
+
+public class Variables
+{
+	public static void main(String[] args)
+	{
+		int a, b;
+		a = 10;
+		b = 20;
+		System.out.println(a + &quot; &quot; + b);
+	}
+}</code></pre><p id="7353f140-6722-4e54-8daa-e6b50e2c23f3" class=""><strong>Output </strong>→</p><p id="42cb92f2-fa6e-4a33-bbf6-7cdf26862fa7" class="">10 20</p></div></p><p id="de26cbcd-7258-4007-89bd-2fb38e27d55d" class=""><strong>Example_2</strong> (Variables.java) <strong>→ </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5acfa311-a0b4-4383-901e-d817dedb8712" class="code"><code class="language-Java">package com.variables;
+import java.util.*;
+
+public class Variables
+{
+	public static void main(String[] args)
+	{
+		int a;
+		System.out.println(a);
+	}
+}</code></pre><p id="d0958762-637a-4f88-9be2-3f844ae2698f" class=""><strong>Output </strong>→</p><p id="a9eec670-d722-4225-8bef-5663b2f1b60d" class=""><mark class="highlight-red">error: variable a might not have been initialized</mark></p></div></p><p id="b98e1c19-3cc3-44e7-90fd-e902a9e938b2" class=""><strong>Example_3</strong> (Variables.java) <strong>→ </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="319e555c-4d67-43ca-a3ad-67f2c320fbeb" class="code"><code class="language-Java">package com.variables;
+import java.util.*;
+
+public class Variables
+{
+
+	public static void main(String[] args)
+	{
+		int enum = 10;
+		System.out.println(enum);
+	}
+}</code></pre><p id="0cafb7bd-898b-4cee-9d66-8a72c9dfbb9a" class=""><strong>Output </strong>→</p><p id="896cf0ff-3a79-4a0d-b8a1-515de079af15" class=""><mark class="highlight-red">error: &#x27;enum&#x27; is a keyword, and may not be used as an identifier</mark></p></div></p><p id="b6fc53de-b898-4358-b78b-4d376e2c9c05" class=""><strong>Example_4</strong> (Variables.java) <strong>→ </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5f891402-6755-4ce0-91cd-4b3f5c9882a0" class="code"><code class="language-Java">package com.variables;
+import java.util.*;
+
+public class Variables
+{
+	public static void main(String[] args)
+	{
+		int var = 10;
+		var = 20;
+		System.out.println(var);
+	}
+}</code></pre><p id="a3864606-3e3f-4800-b9bb-86439f142f59" class=""><strong>Output </strong>→</p><p id="a5c10562-2a4e-46c8-9b58-c3ccee100d4d" class="">20</p></div></p><blockquote id="2fb47622-70c0-49f6-b819-7d52875979b9" class=""><strong>Note</strong> : The variables which we declared in static methods called as local variables and might not have initialized.</blockquote><h3 id="b1e9a710-ff6f-4d6b-b224-3e085655c253" class=""><span style="border-bottom:0.05em solid"><strong>Size and Ranges of datatypes</strong></span></h3><table id="2723fad3-7eeb-4430-aa5d-7cbdfc9e2385" class="simple-table"><thead class="simple-table-header"><tr id="ad378ccf-012f-43cb-9235-26443e6d738c"><th id="K~EV" class="simple-table-header-color simple-table-header" style="width:356.3349609375px"><span style="border-bottom:0.05em solid"><strong>Type</strong></span></th><th id="uOsH" class="simple-table-header-color simple-table-header" style="width:356.3349609375px"><span style="border-bottom:0.05em solid"><strong>Size</strong></span></th><th id="qYJ&lt;" class="simple-table-header-color simple-table-header" style="width:356.3349609375px"><span style="border-bottom:0.05em solid"><strong>Range</strong></span></th></tr></thead><tbody><tr id="db99d61a-f0c9-4133-8a58-4b6da24522eb"><td id="K~EV" class="" style="width:356.3349609375px">byte</td><td id="uOsH" class="" style="width:356.3349609375px">1 Byte</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">-128 to 127</td></tr><tr id="5abfb12c-7cbc-4376-af03-3b13321b4fdb"><td id="K~EV" class="" style="width:356.3349609375px">short</td><td id="uOsH" class="" style="width:356.3349609375px">2 Bytes</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">-32,768 to 32,767</td></tr><tr id="8d4913cd-35bc-44dc-8a60-6f8cf2f904a7"><td id="K~EV" class="" style="width:356.3349609375px">int</td><td id="uOsH" class="" style="width:356.3349609375px">4 Bytes</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">2,147,483,648 to 2,147,483,647</td></tr><tr id="77d94810-ee96-423c-a730-544ec7cf48b1"><td id="K~EV" class="" style="width:356.3349609375px">long</td><td id="uOsH" class="" style="width:356.3349609375px">8 Bytes</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td></tr><tr id="8f13f736-e6f0-4245-bca2-884d2226c031"><td id="K~EV" class="" style="width:356.3349609375px">float</td><td id="uOsH" class="" style="width:356.3349609375px">4 Bytes</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">stores up to 6 decimal digits</td></tr><tr id="3b248245-3174-4baa-b204-5188ab1a83c3"><td id="K~EV" class="" style="width:356.3349609375px">double</td><td id="uOsH" class="" style="width:356.3349609375px">8 Bytes</td><td id="qYJ&lt;" class="" style="width:356.3349609375px">stores up to 15 decimal digits</td></tr></tbody></table></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

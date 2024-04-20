@@ -1,0 +1,814 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MATH CLASS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="babc05a4-4404-48e4-bc01-982d38a8b0e2" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">MATH CLASS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="ba8cf5e0-659c-47d4-8833-e10fc8e77bf8"/><h3 id="6a3a936c-e65b-4373-b294-2608e322aa66" class=""><strong><span style="border-bottom:0.05em solid">Math Class</span></strong></h3><ul id="ddb36194-1fd5-4a19-8a18-0bc577587c4f" class="bulleted-list"><li style="list-style-type:disc">Math class methods are used to perform various mathematical operations</li></ul><ul id="65034d10-203c-4f07-93ca-0fb60c806632" class="bulleted-list"><li style="list-style-type:disc">Math class ia available in <strong>java.lang</strong> package</li></ul><ul id="8b3b3cd1-b9d0-4fec-a1b0-63cbbf82db08" class="bulleted-list"><li style="list-style-type:disc">Math class has only static methods and static data members<p id="a8ea77c5-173a-4723-a40b-2db1e06e1886" class=""><span style="border-bottom:0.05em solid"><strong>Static Data Members</strong></span></p><ul id="57d5084a-2358-4107-b044-1d06b6eba8e8" class="bulleted-list"><li style="list-style-type:circle">There are only data members in Math class<p id="cbae803c-098c-4035-a35f-6210b91213f9" class="">→ <strong>Math.E</strong> : 2.718281828459045</p><p id="0057a5e0-cd24-4011-a8d9-3be7f60d7b0f" class="">→ <strong>Math.PI</strong> : 3.141592653589793</p></li></ul><p id="96df5c05-0271-46c0-addd-19556c6ea162" class=""><span style="border-bottom:0.05em solid"><strong>Static Methods</strong></span></p><table id="6b8028ce-cd5d-4121-9549-c5c43abb22f7" class="simple-table"><thead class="simple-table-header"><tr id="8d0f4c3d-b2dd-4410-bb29-b84a3c0eef25"><th id="D;BG" class="simple-table-header-color simple-table-header" style="width:303.4752197265625px"><strong><span style="border-bottom:0.05em solid">Name</span></strong></th><th id="n:Gw" class="simple-table-header-color simple-table-header" style="width:746.4677734375px"><strong><span style="border-bottom:0.05em solid">Description</span></strong></th></tr></thead><tbody><tr id="1a29f09a-696d-40bc-aab8-12e6a49357ed"><td id="D;BG" class="" style="width:303.4752197265625px">Math.abs(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns absolute number alias positive number of the given dataType value<br/>→ It works for int , long , float , double<br/></td></tr><tr id="7b93f50b-de07-486a-b309-7c7126afc3e9"><td id="D;BG" class="" style="width:303.4752197265625px">Math.max(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the maximum of given dataType values<br/>→ It works for int , long , float , double<br/></td></tr><tr id="8c04846b-c4c1-434f-be00-15efdf335b51"><td id="D;BG" class="" style="width:303.4752197265625px">Math.min(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the minimum of given dataType values<br/>→ It works for int , long , float , double<br/></td></tr><tr id="835d6f3d-294f-47e3-9f5f-81d7d2920c19"><td id="D;BG" class="" style="width:303.4752197265625px">Math.round(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the nearest long or integer for the given number<br/>→ It works for int , long , float , double<br/></td></tr><tr id="22bca290-5555-4c36-8caa-e2a782fe73a8"><td id="D;BG" class="" style="width:303.4752197265625px">addExact(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the sum of its arguments, throwing an exception if the result overflows dataType range<br/>→ It works for int , long<br/></td></tr><tr id="6403e6b2-7223-4ce7-89e1-e23702b82b3b"><td id="D;BG" class="" style="width:303.4752197265625px">cbrt(double value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the cuberoot of a double value</td></tr><tr id="dc66e812-9433-479d-9bd2-cd3d78aecb68"><td id="D;BG" class="" style="width:303.4752197265625px">copySign(dataType magnitude, dataType sign)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the first floating-point argument with the sign of the second floating-point argument<br/>→ It works for int , long , float , double<br/></td></tr><tr id="ecf56799-50f0-410c-9853-8632194542cb"><td id="D;BG" class="" style="width:303.4752197265625px">ceil(double value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the largest double value (closest to positive infinity) that is less than or equal to the argument</td></tr><tr id="da2ce117-16ce-45f5-937d-a6e3bb3acca4"><td id="D;BG" class="" style="width:303.4752197265625px">decrementExact(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the argument decremented by one, throwing an exception if the result overflows dataType range<br/>→ It works for int , long<br/></td></tr><tr id="075bfe53-70a7-4910-ad58-2a27d26d3b35"><td id="D;BG" class="" style="width:303.4752197265625px">incrementExact(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the argument incremented by one, throwing an exception if the result overflows dataType range<br/>→ It works for int , long<br/></td></tr><tr id="1b0010e9-7a7b-4d2c-8939-f8f276a0af4c"><td id="D;BG" class="" style="width:303.4752197265625px">floor(double value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the smallest double value (closest to negative infinity) that is greater than or equal to the argument</td></tr><tr id="724e2b06-1cbc-4120-87fb-419c1b79aa6c"><td id="D;BG" class="" style="width:303.4752197265625px">floorDiv(dataType x, dataType y)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the quotient of both values (either int or long)<br/>→ It works for int , long<br/></td></tr><tr id="372e25ca-f67b-4358-aac6-09669424eb22"><td id="D;BG" class="" style="width:303.4752197265625px">floorMod(dataType x, dataType y)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the remainder of both values (either int or long)<br/>→ It works for int , long<br/></td></tr><tr id="66d7b789-735f-4416-974e-b4645aa397df"><td id="D;BG" class="" style="width:303.4752197265625px">multiplyExact(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the product of its arguments, throwing an exception if the result overflows dataType range<br/>→ It works for int , long<br/></td></tr><tr id="9c039dbf-7278-4d5a-8b30-e274d5b595ba"><td id="D;BG" class="" style="width:303.4752197265625px">random()</td><td id="n:Gw" class="" style="width:746.4677734375px">returns a double value with a positive sign, greater than or equal to 0.0 and less than 1.0</td></tr><tr id="dcd82e68-e86d-400d-a127-36b5685781cb"><td id="D;BG" class="" style="width:303.4752197265625px">subtractExact(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the difference of its arguments, throwing an exception if the result overflows dataType range<br/>→ It works for int , long<br/></td></tr><tr id="ab53c124-d316-4705-966c-a4793c3bcd51"><td id="D;BG" class="" style="width:303.4752197265625px">pow(dataType v1, dataType v2)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns double value after performing power of these two values<br/>→ It works for int , long , float , double<br/></td></tr><tr id="9545a99d-d70c-4785-a164-636bcae6c754"><td id="D;BG" class="" style="width:303.4752197265625px">sqrt(dataType v1)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns double value which gives square root<br/>→ It works for int , long , float , double<br/></td></tr><tr id="eb069dd9-b143-43ef-868a-9e88115cba5c"><td id="D;BG" class="" style="width:303.4752197265625px">log(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the natural logarithm which is base e of a double value<br/>→ It works for int , long , float , double<br/></td></tr><tr id="c9dae221-394d-4cba-a74b-feda74ad8e23"><td id="D;BG" class="" style="width:303.4752197265625px">log10(dataType value)</td><td id="n:Gw" class="" style="width:746.4677734375px">returns the base 10 logarithm of a double value<br/>→ It works for int , long , float , double<br/></td></tr></tbody></table><p id="3f38c687-ed00-4438-aff4-2af4fbd0cc16" class=""><strong>Example_1</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cacbeb42-ec51-4062-ab5f-4fb53a455d2b" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{  
+	public static void main(String args[])
+	{  
+	  int a = 10, b = 8;
+		System.out.println(&quot;The maximum value of &quot; + a + &quot; and &quot; + b + &quot; : &quot; + Math.max(a, b));
+		
+		double c = 7.89, d = 9.69;
+		System.out.println(&quot;The maximum value of &quot; + c + &quot; and &quot; + d + &quot; : &quot; + Math.max(c, d));
+
+		long e = 10000000000, f = 10000080000;
+		System.out.println(&quot;The maximum value of &quot; + e + &quot; and &quot; + f + &quot; : &quot; + Math.max(e, f));
+
+		float g = 8.66, h = 11.55;
+		System.out.println(&quot;The maximum value of &quot; + g + &quot; and &quot; + h + &quot; : &quot; + Math.max(g, h));
+  }
+}</code></pre><p id="07cc6033-700e-4dfa-a833-bc5c426c48c3" class=""><strong>Output →</strong></p><p id="5dab8c84-50b2-4f9f-ab37-bdd75c91e17d" class="">The maximum value of 10 and 8 : 10</p><p id="990128c8-f0ff-472b-b357-9775626164b4" class="">The maximum value of 7.89 and 9.69 : 9.69</p><p id="8e348634-9d0a-4cf9-b2e1-20ed93ea0b27" class="">The maximum value of 10000000000 and 10000080000 : 10000080000</p><p id="1082b472-e7e4-4525-a4c9-52f8fb8d4e92" class="">The maximum value of 8.66 and 11.55 : 11.55</p></div></p><p id="bebbc2c4-b041-4b44-9650-2001aa1df9c8" class=""><strong>Example_2</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7deed7e-b632-4453-9951-15bc8bc8c309" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{  
+	public static void main(String args[])
+	{  
+	  int a = -10;
+		System.out.println(&quot;The absolute value of &quot; + a + &quot; : &quot; + Math.abs(a));
+		
+		double b = -10.675;
+		System.out.println(&quot;The absolute value of &quot; + b + &quot; : &quot; + Math.abs(b));
+
+		long c = -10000000000;
+		System.out.println(&quot;The absolute value of &quot; + c + &quot; : &quot; + Math.abs(c));
+
+		float d = -9.8;
+		System.out.println(&quot;The absolute value of &quot; + d + &quot; : &quot; + Math.abs(d));
+  }
+}</code></pre><p id="e09b0b05-9542-4eda-adcd-07f1ef1eb16f" class=""><strong>Output →</strong></p><p id="0a3e2cbb-f9c7-4638-a933-b05fcd3ec1a4" class="">The absolute value of -10 is 10</p><p id="2706b370-695d-450c-b5ff-aa2f6af4ab4d" class="">The absolute value of -10.675 is 10.675 </p><p id="a1fbc8aa-6ba0-43a7-bbf2-1ceac6082255" class="">The absolute value of -10000000000 is 10000000000</p><p id="43d07c4b-1ef0-4b13-af62-1063c6070b61" class="">The absolute value of -9.8 is 9.8</p></div></p><p id="a10d8082-6d9e-41a2-8e6b-84a72dfc8b42" class=""><strong>Example_3</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ec8e4e33-466d-4658-8dd0-cf1e936b9f2c" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{  
+	public static void main(String args[])
+	{  
+	  int a = 10, b = 8;
+		System.out.println(&quot;The minimum value of &quot; + a + &quot; and &quot; + b + &quot; : &quot; + Math.min(a, b));
+		
+		double c = 7.89, d = 9.69;
+		System.out.println(&quot;The minimum value of &quot; + c + &quot; and &quot; + d + &quot; : &quot; + Math.min(c, d));
+
+		long e = 10000000000, f = 10000080000;
+		System.out.println(&quot;The minimum value of &quot; + e + &quot; and &quot; + f + &quot; : &quot; + Math.min(e, f));
+
+		float g = 8.66, h = 11.55;
+		System.out.println(&quot;The minimum value of &quot; + g + &quot; and &quot; + h + &quot; : &quot; + Math.min(g, h));
+  }
+}</code></pre><p id="ba633e3b-a4e2-4543-95da-d437ec2bfbf1" class=""><strong>Output →</strong></p><p id="918405d5-04c6-4147-a892-9aac65071774" class="">The minimum value of 10 and 8 : 8</p><p id="5179d5d4-2e62-43fb-a83e-6660c34fa1dc" class="">The minimum value of 7.89 and 9.69 : 7.89</p><p id="d63cbedb-3d4a-4bbe-8d91-fccac1f86fa4" class="">The minimum value of 10000000000 and 10000080000 : 10000000000</p><p id="eab03f21-01fa-441c-9d76-16c99cf26416" class="">The minimum value of 8.66 and 11.55 : 8.66</p></div></p><p id="f0108660-3bff-456e-9423-cfd1fad9b358" class=""><strong>Example_4</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a8fb1ff6-132e-4bb9-a71e-b7badbad8944" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+	  double a = 10.89;
+		System.out.println(&quot;Round value of &quot; + a + &quot; : &quot; + Math.round(a));
+
+		a = 10.19;
+		System.out.println(&quot;Round value of &quot; + a + &quot; : &quot; + Math.round(a));
+  }
+}
+</code></pre><p id="677e3083-6d07-4708-8a91-ead217eb6e72" class=""><strong>Output →</strong></p><p id="e2f67cb0-74af-49f5-b76b-709b4e7c6e24" class="">Round value of 10.89 : 11</p><p id="adcda4f5-b9c3-441e-983f-d9ad5c05e3a7" class="">Round value of 10.89 : 10</p></div></p><p id="25225a25-1dd7-4ea5-a313-f5d638e94c6d" class=""><strong>Example_5</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ffa9000f-d697-48ac-8ff9-18f82f19738c" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+	  int a = 10, b = 20;
+		System.out.println(&quot;Addition of &quot; + a + &quot; and &quot; + b + &quot; : &quot; + Math.addExact(a, b));
+		System.out.println(&quot;Multiplication of &quot; + a + &quot; and &quot; + b + &quot; : &quot; + Math.multiplyExact(a, b));
+		System.out.println(&quot;Difference of &quot; + a + &quot; and &quot; + b + &quot; : &quot; + Math.subtractExact(a, b));
+		System.out.println(&quot;Increment of &quot; + a + &quot; : &quot; + Math.incrementExact(a));
+		System.out.println(&quot;Decrement of &quot; + b + &quot; : &quot; + Math.decrementExact(b));
+  }
+}
+</code></pre><p id="b589cd87-49d3-4f62-9d87-a2df9904cf71" class=""><strong>Output →</strong></p><p id="33957ac1-e9b1-4932-9204-77aa0140bc15" class="">Addition of 10 and 20 : 30</p><p id="713d9072-2d96-4b8d-b876-cf772d6f3754" class="">Multiplication of 10 and 20 : 200</p><p id="77546071-9ee5-4015-a721-b55a63dac575" class="">Difference of 10 and 20 : -10</p><p id="b9272c56-7e9f-4791-addd-5ee2ec0303ea" class="">Increment of 10 : 11</p><p id="890de125-3e81-4af4-9ab6-d07a14859a09" class="">Decrement of 20 : 19</p></div></p><p id="08020594-a761-4df1-abde-07128ba90720" class=""><strong>Example_6</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fcc46d3d-2643-4578-b765-746427e0102a" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+		System.out.println(&quot;2 to the power of 4 : &quot; + Math.pow(a, b));
+		System.out.println(&quot;Square root of 16 : &quot; + Math.sqrt(16));
+		System.out.println(&quot;Cube root of 27 : &quot; + Math.sqrt(27));
+  }
+}
+</code></pre><p id="c5270414-1f48-46ed-955a-aa55c401609d" class=""><strong>Output →</strong></p><p id="2321ce94-5244-4bb2-b381-7cc8e8545349" class="">2 to the power of 4 : 16.0</p><p id="b41624b9-68b9-4c5c-9c40-236fc685e8de" class="">Square root of 16 : 4.0</p><p id="ddfbae00-2c15-4921-98d0-54c2287371d7" class="">Cube root of 27 : 3.0</p></div></p><p id="728507f5-0f3f-499c-b489-c59859a59f58" class=""><strong>Example_7</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5aacacea-a3c1-42b0-bd66-0f23b2d37773" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+		System.out.println(&quot;Floor value of 10.6 : &quot; + Math.floor(10.6));
+		System.out.println(&quot;Ceil value of 10.4 : &quot; + Math.ceil(10.4));
+		System.out.println(&quot;Division of 10 and 2 : &quot; + Math.floorDiv(10, 2));
+		System.out.println(&quot;Remainder of 7 and 4 : &quot; + Math.floorMod(7, 4));
+  }
+}
+</code></pre><p id="12a7d98e-ccd8-4a1d-8bd4-7c5457238b90" class=""><strong>Output →</strong></p><p id="8295ac57-4fc3-497d-9569-6f88ffa30a82" class="">Floor value of 10.6 : 10</p><p id="012e50d0-f1b5-4ed9-8b4a-22f42632069a" class="">Ceil value of 10.4 : 11</p><p id="1fd2d76e-a9a9-44d9-9b99-84eb7a8e3458" class="">Division of 10 and 2 : 5</p><p id="d1f29bfe-915c-4302-a47a-4eade5324d6f" class="">Remainder of 7 and 4 : 3</p></div></p><p id="3dbe6f80-f26c-4664-a418-e541bd0a68dc" class=""><strong>Example_8</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a61f9736-9704-4104-ac7d-6ae286bf96e6" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+		System.out.println(Math.copySign(10, -2345));
+		System.out.println(Math.copySign(10.45, -2345));
+		System.out.println(Math.copySign(-10, 2345));
+		System.out.println(Math.copySign(-10, -2345));
+
+		System.out.println(&quot;Random value : &quot; + Math.random());
+  }
+}
+</code></pre><p id="72637af9-7aa4-41f0-8d52-f47ce0c9a264" class=""><strong>Output →</strong></p><p id="6b7c0fe7-058b-49a1-97fb-d050b967b610" class="">-10</p><p id="f5e034a2-5cc4-4def-9157-1776b6c589b6" class="">-10.45</p><p id="d9b8d5da-e7c9-462e-9a6e-dba54a0a0437" class="">10</p><p id="3c20e3cf-424a-4ce3-99cc-89cd7b3eccc9" class="">-10</p><p id="11b5f71e-a81b-42cf-ad1d-8b610b2f88f6" class="">Random value : 0.4855392164362987</p></div></p><p id="0d8dd8eb-257d-464b-9106-7fabd3a0f2fc" class=""><strong>Example_9</strong> (StaticMath.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4068a092-57ac-4dd2-9442-1eefb9e23740" class="code"><code class="language-Java">package com.maths;
+import java.util.*;
+
+public class StaticMath
+{
+	public static void main(String args[])
+	{
+		System.out.println(&quot;Log value of 10 with base e : &quot; + Math.log(10) );
+		System.out.println(&quot;Log value of 100 with base 10 : &quot; + Math.log10(100));
+  }
+}
+</code></pre><p id="a46a06b0-f04a-44ab-8ff5-8e7ab03f495c" class=""><strong>Output →</strong></p><p id="286f42b5-14aa-41f7-9824-dbbb9c577c98" class="">Log value of 10 with base e : 2.302585092994046</p><p id="c316f40d-983f-4319-9d49-ebd630177d29" class="">Log value of 100 with base 10 : 2</p></div></p></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

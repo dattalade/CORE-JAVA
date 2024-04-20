@@ -1,0 +1,802 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>METHODS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="156ba089-6eaa-485b-b874-48f2376bfc81" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">METHODS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="484f7332-6638-4969-b3b8-86239cc3c455"/><h3 id="fc76f872-36b8-43b0-8fc2-210a4b597bae" class=""><span style="border-bottom:0.05em solid"><strong>Methods in Java</strong></span></h3><ul id="190b0b41-ff9a-448a-8622-f7f665c292a9" class="bulleted-list"><li style="list-style-type:disc">It is the block of code or collection of instructions which performs specific task</li></ul><ul id="80e1ec4e-a31f-47d3-ab9b-53ae03334f91" class="bulleted-list"><li style="list-style-type:disc">It provides code reusability (write method once &amp; and use it multiple times)</li></ul><ul id="8a398d62-c873-4834-a411-f3ac056141d8" class="bulleted-list"><li style="list-style-type:disc">It also provides the <strong>easy modification</strong> and <strong>readability</strong> of code, just by adding or removing a chunk of code.</li></ul><ul id="e80b223e-6408-44f5-b9ad-0cb51062754b" class="bulleted-list"><li style="list-style-type:disc">The method is executed only when we call or invoke it.</li></ul><ul id="a18b059f-c993-4971-a973-42455525d6a7" class="bulleted-list"><li style="list-style-type:disc">There are two ways to create methods :<ol type="1" id="b10d8a6c-a513-42dc-8f80-f03191e37f68" class="numbered-list" start="1"><li>Object Methods</li></ol><ol type="1" id="8a464a2b-6468-4875-8231-84e182d7c755" class="numbered-list" start="2"><li>Static Methods</li></ol><p id="a5c728a1-85d6-470e-8842-ebd447aab158" class=""><span style="border-bottom:0.05em solid"><strong>Object Methods</strong></span></p><p id="bab0c6eb-07d9-4fcb-aa87-1988dda2e19a" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e399691-5350-499b-949d-8401b7bef8de" class="code"><code class="language-Java">accessSpecifier returnType methodName(parameterList (optional))
+{
+	//code	
+}</code></pre></div></p><ul id="de3aea42-cbd2-4dbb-b62f-e84dc1694413" class="bulleted-list"><li style="list-style-type:circle"><strong>Access specifier</strong> or <strong>Access modifier</strong> →<ul id="403b964c-67b1-45d6-a3bd-a914df47d645" class="bulleted-list"><li style="list-style-type:square">It is the access type of the method. It specifies the visibility of the method.</li></ul><ul id="375373bf-a73f-4b9b-9062-dcf078856c44" class="bulleted-list"><li style="list-style-type:square">Java provides four types of access specifier:<ol type="1" id="d32ecf75-c7bd-4385-acdf-6e28e7088bad" class="numbered-list" start="1"><li>public → The method is accessible by all classes when we use public specifier in our application.</li></ol><ol type="1" id="764753ec-0c4c-4ae2-9cfc-59bb09fb9fa9" class="numbered-list" start="2"><li>private → When we use a private access specifier, the method is accessible only in the classes in which it is defined.</li></ol><ol type="1" id="8e0fd98c-abc4-41a6-ab22-2638160a70ba" class="numbered-list" start="3"><li>protected → When we use this access specifier, the method is accessible within the same package or subclasses in a different package.</li></ol><ol type="1" id="3c31a8d6-31e0-404d-b7ce-29eddeaadc4d" class="numbered-list" start="4"><li>default → When we do not use any access specifier in the method declaration, Java uses default access specifier by default. It is visible only from the same package only.</li></ol><table id="846661e9-6e61-4eb3-acdd-82b34b955051" class="simple-table"><thead class="simple-table-header"><tr id="0b1068b1-1284-429e-b10b-5a9ba8ff8066"><th id="z[Zt" class="simple-table-header-color simple-table-header" style="width:201.00889892578124px"><span style="border-bottom:0.05em solid"><strong>Access Modifier</strong></span></th><th id="sQcT" class="simple-table-header-color simple-table-header" style="width:201.00889892578124px"><span style="border-bottom:0.05em solid"><strong>within class</strong></span></th><th id="tTQm" class="simple-table-header-color simple-table-header" style="width:157.00245666503906px"><span style="border-bottom:0.05em solid"><strong>within package</strong></span></th><th id="d`OM" class="simple-table-header-color simple-table-header" style="width:235.00245666503906px"><span style="border-bottom:0.05em solid"><strong>outside package by subclass only</strong></span></th><th id="x=aN" class="simple-table-header-color simple-table-header" style="width:201.00889892578124px"><span style="border-bottom:0.05em solid"><strong>outside package</strong></span></th></tr></thead><tbody><tr id="d610712e-e320-41e0-8c09-f099197748da"><td id="z[Zt" class="" style="width:201.00889892578124px">Private</td><td id="sQcT" class="" style="width:201.00889892578124px">YES</td><td id="tTQm" class="" style="width:157.00245666503906px">NO</td><td id="d`OM" class="" style="width:235.00245666503906px">NO</td><td id="x=aN" class="" style="width:201.00889892578124px">NO</td></tr><tr id="716165f1-373a-497c-92c8-b74955693120"><td id="z[Zt" class="" style="width:201.00889892578124px">Public</td><td id="sQcT" class="" style="width:201.00889892578124px">YES</td><td id="tTQm" class="" style="width:157.00245666503906px">YES</td><td id="d`OM" class="" style="width:235.00245666503906px">YES</td><td id="x=aN" class="" style="width:201.00889892578124px">YES</td></tr><tr id="1ba639c6-45d7-4967-b9fc-7e4c46e19a02"><td id="z[Zt" class="" style="width:201.00889892578124px">Protected</td><td id="sQcT" class="" style="width:201.00889892578124px">YES</td><td id="tTQm" class="" style="width:157.00245666503906px">YES</td><td id="d`OM" class="" style="width:235.00245666503906px">YES</td><td id="x=aN" class="" style="width:201.00889892578124px">NO</td></tr><tr id="13401ef6-baf1-427f-b70b-89c3f3a7bcfc"><td id="z[Zt" class="" style="width:201.00889892578124px">Default</td><td id="sQcT" class="" style="width:201.00889892578124px">YES</td><td id="tTQm" class="" style="width:157.00245666503906px">YES</td><td id="d`OM" class="" style="width:235.00245666503906px">NO</td><td id="x=aN" class="" style="width:201.00889892578124px">NO</td></tr></tbody></table></li></ul></li></ul><ul id="45d22253-7ec1-45c2-ada4-5c76289e3f54" class="bulleted-list"><li style="list-style-type:circle"><strong>Return Type →</strong><ul id="8dc46140-57f1-43a7-926e-f45bf2ac5f10" class="bulleted-list"><li style="list-style-type:square">Return type is a data type that the method return a value.</li></ul><ul id="da8c2ccf-65d8-43dc-a3ee-07e3fe6b230c" class="bulleted-list"><li style="list-style-type:square">The return type maybe primitive data type, object, collection, void, etc.</li></ul><ul id="005e0977-4d53-4d0c-86a4-446b60eaaa33" class="bulleted-list"><li style="list-style-type:square">If the method does not return anything, we use void keyword.</li></ul></li></ul><ul id="d9d327e0-e192-4785-9b96-8e08b72723aa" class="bulleted-list"><li style="list-style-type:circle"><strong>Method Name →</strong><ul id="979452f9-8d4b-40fe-818e-edb759acecda" class="bulleted-list"><li style="list-style-type:square">It is a unique name that is used to define the name of a method.</li></ul><ul id="02935909-6d70-42da-9b69-1841ddebacf1" class="bulleted-list"><li style="list-style-type:square">It must be corresponding to the functionality of the method.</li></ul></li></ul><ul id="8f4765e4-84fb-4522-a3bc-691e0827483e" class="bulleted-list"><li style="list-style-type:circle"><strong>Parameter List →</strong><ul id="49737700-3aab-4cc5-a751-e198d871fb3a" class="bulleted-list"><li style="list-style-type:square">It is the list of parameters separated by a comma and enclosed in the pair of parentheses. </li></ul><ul id="fef56155-dc57-4f95-bb1e-966dd7cc4471" class="bulleted-list"><li style="list-style-type:square">It contains the data type and variable name. If the method has no parameter, left the parentheses blank.</li></ul></li></ul><p id="44c92177-6f72-49d1-bb28-7721bbc61604" class=""><strong>Example_1</strong> (Hello.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="15b44d7a-738a-45d3-9681-c4f914ca1a1d" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+public class Hello
+{
+	String value;
+
+	public void printValue(int name)
+	{
+		value = name;
+		System.out.println(value);
+	}
+	public static void main(String[] args)
+	{
+		Hello h1 = new Hello();
+		String name = &quot;Hello&quot;;
+		h1.printValue(name);
+	}
+}</code></pre><p id="4fc70ce8-7555-4c3d-9dee-852648c23f3d" class=""><strong>Output →</strong></p><p id="e46bfab8-7ae8-45f6-9b5f-819332c11ed6" class="">Hello</p></div></p><blockquote id="88b69cd4-9fe5-4c77-a62c-7203a6f6d1c5" class=""><strong>Note</strong> : We are in object class, So th access data members there is no need to use refernce variable</blockquote><p id="ffb9799c-9a1c-4709-8e4f-83568071e3f2" class=""><strong>Example_2</strong> (Addition.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b3d9c80-2c7f-4822-9a07-97b1f24a84a2" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+public class Addition
+{
+	int a, b;
+
+	public int addValues(int p, int q)
+	{
+		a = p;
+		b = q;
+		return a+b;
+	}
+	public static void main(String[] args)
+	{
+		Addition a1 = new Addition();
+		int sum = h1.addValues(10,20);
+		System.out.println(sum);
+	}
+}</code></pre><p id="1457f6fc-7f2a-4949-930e-210ba46f3e63" class=""><strong>Output →</strong></p><p id="416c45ed-271c-4007-9483-cb697e270574" class="">30</p></div></p><p id="f3da08a8-55e4-47bb-ad93-1e9bdd7d273e" class=""><strong>Example_2</strong> (Main.java) → Calling a method from one Class to Another Class in &#x27;Object- way&#x27;<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d310b760-7c58-45f9-a9b9-8c47aedb0225" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+class Factorial
+{
+	int number;
+	public int factorial()
+	{
+		int mul = 1;
+		for(int i=number;i&gt;=2;i--)
+			mul*=i;
+		return mul;
+	}
+}
+public class Main
+{
+	public static void main(String[] args)
+	{
+		Factorial f1 = new Factorial();
+		Factorial f2 = new Factorial();
+		f1.number = 4; f2.number = 5;
+		System.out.println(f1.factorial() + &quot; &quot; + f2.factorial());
+	}
+}</code></pre><p id="a79db31c-2214-4ca1-97ef-1fac6a0ff886" class=""><strong>Output →</strong></p><p id="18be30f4-4c96-40b2-ba57-d9c2ee1265c7" class="">24 120</p></div></p><p id="f2d429ca-8346-4966-9e12-d2279c844114" class=""><span style="border-bottom:0.05em solid"><strong>Static Methods</strong></span></p><ul id="6569a530-566f-456c-8377-87168b30d8b6" class="bulleted-list"><li style="list-style-type:circle">A method that has static keyword is known as static method.</li></ul><ul id="66a6bf09-e300-4cae-947d-0303505112f5" class="bulleted-list"><li style="list-style-type:circle">A method that belongs to a class rather than an instance of a class is known as a static method.<ul id="a4bd3956-0d11-4bfe-a00d-565dd8df5c37" class="bulleted-list"><li style="list-style-type:square">In Object methods, the method is belong to each object</li></ul></li></ul><p id="522365bd-f444-4d8a-8f8e-397d2fd376d1" class=""><strong>Advantages of Static Methods →</strong></p><ol type="1" id="e252ddb4-a94f-4733-ba71-d6dc8843e203" class="numbered-list" start="1"><li>We can call the method without creating an object. It can access static data members and also change the value of it.</li></ol><ol type="1" id="662905de-4eab-449f-a1be-b4fb7f0c911b" class="numbered-list" start="2"><li>Let us assume a Students Database of same University<ul id="a9f7b6eb-82a9-483e-9b8c-e62245255bb1" class="bulleted-list"><li style="list-style-type:disc">Then, Every Student belongs to same university so we can use university variable as static</li></ul></li></ol><p id="4fffe30c-e886-4565-9320-a41c30b8463a" class=""><strong>Syntax</strong> →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b7352eb0-6290-4b8b-aac8-6dce77a2b7c6" class="code"><code class="language-Java">accessSpecifier static returnType methodName(parameterList (optional))
+{
+	//code	
+}
+								(or)
+static accessSpecifier returnType methodName(parameterList (optional))
+{
+	//code	
+}</code></pre></div></p><p id="44f65ee0-1d17-49a8-a638-73c6b0dbedb7" class=""><strong>Example_1</strong> (Addition.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12dd421d-6f04-450b-ada0-006a0faa4775" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+public class Addition
+{
+	public static int addValues(int p, int q)
+	{
+		return p+q;
+	}
+	public static void main(String[] args)
+	{
+		int sum = Addition.addValues(10,20);
+		System.out.println(sum);
+	}
+}</code></pre><p id="82068f45-58fb-48e1-93d5-e3e6b119dd4a" class=""><strong>Output →</strong></p><p id="ec0eb3fc-33bf-4a42-b4e7-a3fa2eb35f16" class="">30</p></div></p><p id="b3a05149-2ccd-4f47-828e-b7a2304518a7" class=""><strong>Example_2</strong> (Main.java) → Calling a method from one Class to Another Class in &#x27;Static way&#x27;<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="59abd596-807e-4804-852a-54672b563464" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+class Factorial
+{
+	public static int factorial(int number)
+	{
+		int mul = 1;
+		for(int i=number;i&gt;=2;i--)
+			mul*=i;
+		return mul;
+	}
+}
+public class Main
+{
+	public static void main(String[] args)
+	{
+		int a = 3, b = 4, c = 5;
+		int ta = Factorial.factorial(a);
+		int tb = Factorial.factorial(b);
+		int tc = Factorial.factorial(c);
+		System.out.println(ta + &quot; &quot; + tb + &quot; &quot; + tc);
+	}
+}</code></pre><p id="1f9dc72c-f173-46b3-a29f-805ad19ccd4b" class=""><strong>Output →</strong></p><p id="51670d7b-a1a1-4213-ae0b-d0ca1c81a834" class="">6 24 120</p></div></p></li></ul><ul id="6249b063-e318-470c-bd30-6280afb0f1e6" class="bulleted-list"><li style="list-style-type:disc">There are two types types of Methods →<ol type="1" id="984fc08f-5b1d-4668-813b-437ae860d614" class="numbered-list" start="1"><li>User-Defined Methods (The above examples are user Defined Methods)</li></ol><ol type="1" id="ee738e9f-a299-44ad-9a93-dc0107120fbc" class="numbered-list" start="2"><li>Pre-Defined Methods (The method which we invoke without writing the block of code</li></ol></li></ul><h3 id="39cca69a-aa38-40f9-b93d-a1070e7defe3" class=""><strong><span style="border-bottom:0.05em solid">this Keyword</span></strong></h3><ul id="6e5abc98-f80d-4577-99e0-c95d2a1258a8" class="bulleted-list"><li style="list-style-type:disc">While we call a method, to address the current object we use &#x27;this&#x27; keyword<p id="83a6c8bf-0b09-40a2-b842-f5b1b3a7fc0f" class="">                                                           (or)</p></li></ul><ul id="992c279e-24e8-47e1-82a2-b0c2ad06e937" class="bulleted-list"><li style="list-style-type:disc">When we have the Data Member &amp; Parameter Variable name as same then we use <strong>this</strong> keyword</li></ul><p id="8b21caf0-104a-48ef-bdde-4662170d9160" class=""><strong>Example </strong>(Hello.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="876047fa-e012-4686-9c34-9d560e9bf520" class="code"><code class="language-Java">package com.methods;
+import java.util.*;
+
+public class Hello
+{
+	int a;
+	public void printIt(int a)
+	{
+		this.a = a;
+	}
+
+  public static void main(String[] args)
+  {
+  	Hello h1 = new Hello();
+  	h1.printIt(3);
+  	System.out.println(h1.a);
+  }
+}</code></pre><p id="32ea904a-8d86-4f7e-b8cf-7f3af3b27188" class=""><strong>Output →</strong></p><p id="5138977c-d322-43a1-aa2a-b2acd7bb81bd" class="">3</p></div></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

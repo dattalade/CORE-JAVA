@@ -1,0 +1,841 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ARRAYS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5bf7c985-8437-464a-8262-cb7e1aa0c19a" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">ARRAYS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="9f9bb1aa-4254-4a77-855a-cd71c57c9699"/><h3 id="45e0cd14-fce3-4b21-a2c5-9436c40e1620" class=""><span style="border-bottom:0.05em solid"><strong>Arrays in Java</strong></span></h3><ul id="4197c9a1-6337-490f-a664-2cc5e6731744" class="bulleted-list"><li style="list-style-type:disc">Till now, we used to store only one value in a single variable, but to store multiple values (of same datatype) in one variable we use Arrays.</li></ul><ul id="8ce8917c-a7e7-44c2-91f2-4fc644c35040" class="bulleted-list"><li style="list-style-type:disc">Every element is stored in single variable with it&#x27;s sequential indexes (0 to length-1), i.e If the array size is n, Index lasts at n-1</li></ul><ul id="bf8da77b-e449-4d10-8cef-9e54f6c5a394" class="bulleted-list"><li style="list-style-type:disc">Array is an derived datatype</li></ul><ul id="c1d2269f-c504-404b-8830-fb6403985c00" class="bulleted-list"><li style="list-style-type:disc">Memory will allocate continously</li></ul><ul id="0d5171c9-e5cb-4509-81ba-2fd52aa59782" class="bulleted-list"><li style="list-style-type:disc">In java, array is treated  as Object. So, memory is allocated in heap.</li></ul><h3 id="83d77ece-5521-4a3c-a87e-94ac9cdbcebd" class=""><span style="border-bottom:0.05em solid"><strong>Advantages of Arrays</strong></span></h3><ul id="aa1b8953-d5e4-45dd-9754-e54085b11637" class="bulleted-list"><li style="list-style-type:disc">Optimization of Code</li></ul><ul id="ab236832-bbb6-49d4-bd15-567c49016c58" class="bulleted-list"><li style="list-style-type:disc">We can get data(value) located at an index position</li></ul><h3 id="f472991a-1afd-4bfb-957f-ffe16351f7f8" class=""><span style="border-bottom:0.05em solid"><strong>Dis-Advantages of Arrays</strong></span></h3><ul id="b873a936-9436-4e7c-a0b9-e087e2f350e1" class="bulleted-list"><li style="list-style-type:disc">We can&#x27;t resize the array, the size of an array variable is fixed</li></ul><p id="29ee4109-e2ec-4d3c-a2bd-edbab1662e4d" class="">There are two types of arrays :</p><ol type="1" id="4849bfd8-1307-4bcd-b696-c8e615fceb5b" class="numbered-list" start="1"><li>Single Dimensional Arrays	</li></ol><ol type="1" id="09fc457f-75f4-40a5-8586-76694cb7a293" class="numbered-list" start="2"><li>Multi Dimensional Arrays<p id="61ee8317-ad20-468e-a73f-91360fd9c0ea" class=""><span style="border-bottom:0.05em solid"><strong>Single Dimensional Array</strong></span></p><p id="604cec86-1900-4e5f-8ccc-41104866698d" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16522438-39d0-4936-9d11-128819796e9f" class="code"><code class="language-Java">dataType[] array_Variable = new dataType[size];
+										(or)
+dataType array_Variable[] = new dataType[size];</code></pre></div></p><p id="a55c1213-71af-43f2-8b6a-a88a727d8c67" class=""><strong>Example_1 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5487ef9d-7879-4e07-aee1-6aff32d1e461" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[4];
+		arr[0] = 1;
+		arr[1] = 2;
+		arr[2] = 3;
+		arr[3] = 4;
+		System.out.print(arr[0] + &quot; &quot; + arr[1] + &quot; &quot; + arr[2] + &quot; &quot; + arr[3]);
+	}
+}</code></pre><p id="ae3719f5-a912-4316-ab71-edc5d70f4f62" class=""><strong>Output →</strong></p><p id="3b7d2a86-7e07-4fb5-b8e9-37cb668233c4" class="">1 2 3 4</p></div></p><p id="514daa2a-7806-4b8b-b928-2463df9d1530" class=""><strong>Example_2 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a8806575-dea6-4d7d-a734-21094deac1b9" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[4];
+		for(int i=0;i&lt;4;i++)
+		{
+			arr[i] = i+1;
+		}
+		for(int i=0;i&lt;4;i++)
+		{
+			System.out.print(arr[i] + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="fb422eea-a37d-484f-9b88-df2e633ad6fe" class=""><strong>Output →</strong></p><p id="e2afd08d-f76b-4136-a739-f5de463e3f7c" class="">1 2 3 4</p></div></p><p id="0cf9b4bb-69b9-4794-a173-991e66e81c63" class=""><strong>Example_3 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="552e1f5f-582e-4194-ad58-2d677dec3694" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[]{10, 20, 30};
+		System.out.print(arr[0] + &quot; &quot; + arr[1] + &quot; &quot; + arr[2]);
+	}
+}</code></pre><blockquote id="a10314a1-0258-498a-8baf-0c1ee556b0ff" class=""><strong>Note</strong> : If we directly give numbers to the array, it automatically initializes the size.</blockquote><p id="90822bbd-63c5-4ffa-8a9a-58eabe1f62f7" class=""><strong>Output →</strong></p><p id="e2e40639-59d4-4375-bda8-cca2e77c880e" class="">10 20 30</p></div></p><blockquote id="c79f4590-a68d-46a6-826e-be269650c613" class=""><strong>Note</strong> : To find length of an Array → array_Name.length</blockquote><p id="2e76e9bd-3c05-49a8-9602-7ab5ac9ba979" class=""><strong>Example_4 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9eb74c1-23fa-4d26-a8aa-e6111487f6ea" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[]{10, 20, 30};
+		System.out.print(arr.length*100);
+	}
+}</code></pre><p id="1fa90c6d-8a65-4f9a-b2bf-381ceef92d6d" class=""><strong>Output →</strong></p><p id="95d8ff66-aaed-4d1d-83f9-7d797c27ece3" class="">300</p></div></p><p id="3649d515-9f6e-4fe2-ad9b-9a3211f291d9" class=""><strong>Example_5 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a40d063c-640b-4f37-acaa-790c586e5407" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[] = new int[]{10, 20, 30};
+		System.out.print(arr[0]);
+		System.out.print(arr[3]);
+		System.out.print(arr[3]);
+	}
+}</code></pre><p id="b0253213-871e-4911-9ee1-ce2022873c42" class=""><strong>Output →</strong></p><p id="3040cf73-b352-4cf2-866c-b0ec9add3fbe" class="">10</p><p id="258e6f53-76a8-46af-bfe3-7d2c82c2794a" class="">Exception in thread &quot;main&quot; <strong>java.lang.ArrayIndexOutOfBoundsException</strong>: Index 3 out of bounds for length 3<div class="indented"><p id="262e68c7-974d-4923-b006-6deaa33c59e9" class="">at Arrays.main(Arrays.java:9)</p></div></p><p id="bec47869-bfb0-4b82-bf4c-4a51baeb8b30" class=""><strong>Reason →</strong></p><ul id="e4ceaf44-7e27-4d22-b15d-a8fb25817cbc" class="bulleted-list"><li style="list-style-type:disc">Array has the last index of <strong>length-1</strong>, I am accessing index of <strong>length</strong>, so the error occured</li></ul></div></p><blockquote id="3332b4b4-a403-4695-8dc6-a1e8544fc94d" class=""><strong>Note</strong> : If any Exception occurs the further lines of program code will not run</blockquote><p id="4ae7568b-471c-4022-a64a-960eda1ea484" class=""><span style="border-bottom:0.05em solid"><strong>Multi-Dimensional Array</strong></span></p><ul id="a8f877dd-aaa5-4cdc-8637-92da614c2234" class="bulleted-list"><li style="list-style-type:disc">It is also known as matrix</li></ul><p id="1e2332ff-e1a4-4997-a6e5-3644fb9de5e7" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d931db94-4e5e-4779-b2fd-af1e1961e322" class="code"><code class="language-Java">dataType[][] array_Variable = new dataType[row_size][column_size];
+										(or)
+dataType array_Variable[][] = new dataType[row_size][column_size];</code></pre></div></p><p id="a27292ab-ce6f-477b-b7e2-086ea838ea04" class=""><strong>Example_1 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3013a2f2-9f6c-40a8-8695-e9a733dccca2" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[][] = new int[3][3];
+		arr[0][0] = 10;
+		arr[0][1] = 20;
+		arr[0][2] = 30;
+		arr[1][0] = 40;
+		arr[1][1] = 50;
+		arr[1][2] = 60;
+		arr[2][0] = 70;
+		arr[2][1] = 80;
+		arr[2][2] = 90;
+		System.out.println(arr[0][0] + &quot; &quot; + arr[0][1] + &quot; &quot; + arr[0][2]);
+		System.out.println(arr[1][0] + &quot; &quot; + arr[1][1] + &quot; &quot; + arr[1][2]);
+		System.out.println(arr[2][0] + &quot; &quot; + arr[2][1] + &quot; &quot; + arr[2][2]);
+	}
+}</code></pre><p id="5628b8fb-a360-4dbd-b485-39490794a8fe" class=""><strong>Output →</strong></p><p id="b6f88d22-8d78-43c6-9485-55189b37b944" class="">10 20 30</p><p id="6676b5b4-8235-430b-99dd-e4614184c380" class="">40 50 60</p><p id="43d66bc6-a3ed-4e8d-8e4b-6faff8141d84" class="">70 80 90</p></div></p><p id="9dbe2db1-f527-466f-9cac-173c1b58b552" class=""><strong>Example_2 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="36bff11c-d407-45d1-8b4d-4e15e0fde642" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[][] = new int[3][3];
+		for(int i=0;i&lt;3;i++)
+		{
+			for(int j=0;j&lt;3;j++)
+			{
+				arr[i][j] = i+j;
+			}
+		}
+		for(int i=0;i&lt;3;i++)
+		{
+			for(int j=0;j&lt;3;j++)
+			{
+				System.out.print(arr[i][j] + &quot; &quot;);
+			}
+			System.out.println();
+		}
+	}
+}</code></pre><p id="233b75ee-1c0f-4d29-9c37-b6eeb1a34e85" class=""><strong>Output →</strong></p><p id="734155b1-13eb-42ec-bded-f24c8789217c" class="">0 1 2</p><p id="49f3e6fd-3839-4919-a559-64a443e4916e" class="">1 2 3</p><p id="5c72600a-de4a-4143-a88e-ae046d627df5" class="">2 3 4</p></div></p><p id="31d33a69-a449-4f28-affb-cb73484512c0" class=""><strong>Example_3 </strong>(Arrays.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f883ea67-91d8-4e54-b197-dcf60cfdd8b4" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class Arrays
+{
+	public static void main(String[] args)
+	{
+		int arr[][] =new int[][]{{10, 20, 23}, {11, 12, 13}};
+		System.out.println(arr[0][0] + &quot; &quot; + arr[0][1] + &quot; &quot; + arr[0][2]);
+		System.out.println(arr[1][0] + &quot; &quot; + arr[1][1] + &quot; &quot; + arr[1][2]);
+	}
+}</code></pre><p id="f594a11d-c2a0-4ecc-940d-a0ca5f470083" class=""><strong>Output →</strong></p><p id="4f073b48-bcfe-4708-8b61-ba83be1e45f4" class="">10 20 23</p><p id="7d7f2a11-b978-42ca-83ba-a073e5da8ac3" class="">11 12 13</p></div></p><blockquote id="823ecfc1-85ed-4912-89fa-35c0d67ca0dc" class=""><strong>Note</strong> : To find row_size → arrayName.length</blockquote><blockquote id="b85aa348-6a11-48cf-a6b6-8059123852db" class=""><strong>Note</strong> : To find column_size → arrayName[index].length</blockquote></li></ol><h3 id="2027cf32-58c8-49af-92ec-8b892efc20b2" class=""><span style="border-bottom:0.05em solid"><strong>Default Values in any Array</strong></span></h3><ul id="ae20e6bd-cba4-4081-90dc-b750a59f5b31" class="bulleted-list"><li style="list-style-type:disc">Default values for any array is &#x27;0&#x27;.</li></ul><p id="5358e5af-f91e-4f0a-b5bd-bddb9411727b" class=""><strong>Example_1</strong> (DefaultArray.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8be70ce1-a2dd-4e55-9a28-74d2a7afb52c" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class DefaultArray
+{
+	public static void main(String[] args)
+	{
+		int arr[] =new int[4];
+		System.out.println(arr[0] + &quot; &quot; + arr[1] + &quot; &quot; + arr[2] + &quot; &quot; + arr[3]);
+	}
+}</code></pre><p id="5fe4107e-e37c-4003-9333-ad9b0668fd03" class=""><strong>Output →</strong></p><p id="d55502c0-710f-4250-b55d-0ca5870430c6" class="">0 0 0 0</p></div></p><p id="c7ee598a-ce07-4110-8129-5facf62aea00" class=""><strong>Example_2</strong> (DefaultArray.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cdc19ca7-d077-43c6-9001-d439a1b2d6d4" class="code"><code class="language-Java">package com.arrays;
+import java.util.*;
+
+public class DefaultArray
+{
+	public static void main(String[] args)
+	{
+		int arr[][] =new int[2][2];
+		System.out.println(arr[0][0] + &quot; &quot; + arr[0][1]);
+		System.out.println(arr[1][0] + &quot; &quot; + arr[1][1]);
+	}
+}</code></pre><p id="1ee66263-cf89-459d-9c6a-0844a1580271" class=""><strong>Output →</strong></p><p id="b49f568b-6b81-480b-8761-7fa5bf74f69f" class="">0 0</p><p id="55ed4476-e57d-4076-ab0b-0e754624bbfc" class="">0 0</p></div></p><h3 id="3b468715-ce6a-4a1a-89d1-631e10d3ec97" class=""><span style="border-bottom:0.05em solid"><strong>For-Each Loop in Java</strong></span></h3><p id="a109cf77-cbe7-4a7f-a88e-ab4bd7960d5f" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd259de7-5759-4241-b888-b04eb7c53c16" class="code"><code class="language-Java">for(datatype var_Name : array)
+{
+	//code
+}</code></pre></div></p><p id="0e977786-f8a7-446f-96f7-90d82894e6ae" class=""><strong>Example</strong> (ForEach.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4e7d37cb-65d5-4732-b9cf-64e5a11884f4" class="code"><code class="language-Java">package com.foreach;
+import java.util.*;
+
+public class ForEach
+{
+	public static void main(String[] args)
+	{
+		int arr[] =new int[4];
+		for(int i=0;i&lt;arr.length;i++)
+		{
+			arr[i] = i+1;
+		}
+		for(int i:arr)
+		{
+			System.out.print(i + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="4a76d13f-c0cf-4e49-8741-a44571a03640" class=""><strong>Output →</strong></p><p id="dd74dce1-cde1-44e2-b45f-0b1090b7fc9e" class="">1 2 3 4</p></div></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

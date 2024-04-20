@@ -1,0 +1,913 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>STRING CLASS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b9ffcd3f-1982-486b-ac79-d5ece082bb5c" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">STRING CLASS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="805fbb82-8851-4e6a-b46a-54a8396bc562"/><h3 id="e50401c6-59e3-4c30-b41c-dd8f58882170" class=""><strong><span style="border-bottom:0.05em solid">String Class</span></strong></h3><ul id="b8fff2d8-2051-4aff-9667-3f6c773860af" class="bulleted-list"><li style="list-style-type:disc">String is a class where we can create an object to store sequence of characters</li></ul><ul id="a29e5449-e682-40ea-a248-7e867d801d42" class="bulleted-list"><li style="list-style-type:disc">String are immutable. i.e, where strings cannot be manipulated</li></ul><ul id="e98c474d-abd4-4e95-a92c-60849d7dd6c3" class="bulleted-list"><li style="list-style-type:disc">String is available in <strong>java.lang</strong> package</li></ul><ul id="92eef277-df28-4559-b8ea-7997994c9a27" class="bulleted-list"><li style="list-style-type:disc">String class extends Object and implements Serializable, CharSequence, Comparable&lt;String&gt; and String is final.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d4f9d47d-f35f-44d9-9a13-8937fcc96fd4" class="code"><code class="language-Java">public final class String extends Object implements Serializable, CharSequence, Comparable&lt;String&gt;</code></pre></li></ul><h3 id="711260de-6cc3-4926-b08b-38649b86167a" class=""><strong><span style="border-bottom:0.05em solid">String Constructors</span></strong></h3><table id="3806ecc8-a2dc-457e-972f-1f473a81d288" class="simple-table"><thead class="simple-table-header"><tr id="d243731f-4c39-421a-87f8-c64c880665cf"><th id="ZVf;" class="simple-table-header-color simple-table-header" style="width:320.4925537109375px"><span style="border-bottom:0.05em solid"><strong>Constructor</strong></span></th><th id="LUJD" class="simple-table-header-color simple-table-header" style="width:774.4826049804688px"><span style="border-bottom:0.05em solid"><strong>Description</strong></span></th></tr></thead><tbody><tr id="6baaab25-c83f-48f0-8324-5426fb9e1de1"><td id="ZVf;" class="" style="width:320.4925537109375px">String()</td><td id="LUJD" class="" style="width:774.4826049804688px">Initializes a newly created String object so that it represents an empty character sequence.</td></tr><tr id="fbeea581-338a-4b72-9bbd-7be62bf1b054"><td id="ZVf;" class="" style="width:320.4925537109375px">String(byte[] arr)</td><td id="LUJD" class="" style="width:774.4826049804688px">Constructs a new String by decoding the byte array</td></tr><tr id="eef9fb8a-b6d5-42c1-91ff-90aa3f26fda6"><td id="ZVf;" class="" style="width:320.4925537109375px">String(byte[] arr, int start_index, int length)</td><td id="LUJD" class="" style="width:774.4826049804688px">Constructs a new String for a given byte array, from specified index to index+length</td></tr><tr id="86551c92-7c1d-4e84-b391-7d82dcfb8f8a"><td id="ZVf;" class="" style="width:320.4925537109375px">String[char[] arr)</td><td id="LUJD" class="" style="width:774.4826049804688px">Constructs a new String for given sequence of characters</td></tr><tr id="d303ccf5-ea5e-4359-9e61-c69b6d2cbff5"><td id="ZVf;" class="" style="width:320.4925537109375px">String(char[] arr, int start_index, int length)</td><td id="LUJD" class="" style="width:774.4826049804688px">Constructs a new String for a given char array, from specified index to index+length</td></tr><tr id="fca1ce6d-09eb-44b4-a4be-42c5de5090f0"><td id="ZVf;" class="" style="width:320.4925537109375px">String(int[] arr, int start_index, int length)</td><td id="LUJD" class="" style="width:774.4826049804688px">Constructs a new String for a given integer array if and only if we specify start_index and length</td></tr><tr id="e8351008-01ce-4f8e-97bb-7d50957e40c0"><td id="ZVf;" class="" style="width:320.4925537109375px">String(StringBuilder sb)</td><td id="LUJD" class="" style="width:774.4826049804688px">Allocates a new String</td></tr><tr id="364d59c8-9234-43b5-82df-8070fe57fffb"><td id="ZVf;" class="" style="width:320.4925537109375px">String(StringBuffer sb)</td><td id="LUJD" class="" style="width:774.4826049804688px">Allocates a new String</td></tr></tbody></table><blockquote id="229f9809-a60b-48db-8879-c71e3384994c" class=""><strong>Note :</strong> The default encoding charset is <strong>UTF-8</strong></blockquote><p id="e5e7b2e9-ac81-4226-9b25-00bd9900087e" class=""><strong>Example_1</strong> (StringConstructors.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="20fcab5e-1eb1-4f73-a758-43a5931cfa56" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class StringConstructors
+{  
+	public static void main(String args[])
+	{  
+	  String s1 = new String();
+		System.out.println(&quot;First Constructor Response : &quot; +s1);
+
+		byte[] arr = new byte[]{65, 66, 67, 68};
+		String s2 = new String(arr);
+		System.out.println(&quot;Second Constructor Response : &quot; +s2);
+
+		byte[] arr1 = new byte[]{65, 66, 67, 68};
+		String s3 = new String(arr1, 1, 3);
+		System.out.println(&quot;Third Constructor Response : &quot; +s3);
+
+		char[] ch = new char[]{&#x27;d&#x27;, &#x27;a&#x27;, &#x27;t&#x27;, &#x27;t&#x27;, &#x27;a&#x27;};
+		String s4 = new String(ch);
+		System.out.println(&quot;Fourth Constructor Response : &quot; +s4);
+
+		char[] ch1 = new char[]{&#x27;d&#x27;, &#x27;a&#x27;, &#x27;t&#x27;, &#x27;t&#x27;, &#x27;a&#x27;};
+		String s5 = new String(ch1, 1, 3);
+		System.out.println(&quot;Fifth Constructor Response : &quot; +s5);
+
+		int[] arr4 = new byte[]{65, 66, 67, 68};
+		String s6 = new String(arr4, 1, 3);
+		System.out.println(&quot;Sixth Constructor Response : &quot; +s6);
+  }
+}</code></pre><p id="1ea84d75-9b03-4094-91a0-aad54bf5bd38" class=""><strong>Output →</strong></p><p id="77f0f1ce-8fe0-46ca-b5be-a26adce61ceb" class="">First Constructor Response : </p><p id="e2b13963-ac0e-4c60-b0c2-b1761de88354" class="">Second Constructor Response : ABCD</p><p id="0382a598-97c9-40e6-9ce9-2f007690b5d3" class="">Third Constructor Response : BCD</p><p id="07503912-a5c3-4f4c-8025-d6135ea00201" class="">Fourth Constructor Response : datta</p><p id="894ff5c9-ca67-43d1-bae5-b96d300f50a2" class="">Fifth Constructor Response : att</p><p id="256473c2-9f25-4ee9-8c2a-e2596286ebb9" class="">Sixth Constructor Response : BCD</p><p id="294f30af-d7f1-46d6-913d-f4fa25e5db63" class=""><span style="border-bottom:0.05em solid"><strong>Restrictions in above Constructors</strong></span></p><ul id="59b608fc-3bb2-4ed9-ac4e-6ef91a25e94a" class="bulleted-list"><li style="list-style-type:disc">start_index value must be greater than or equals to <strong>Zero</strong> &amp; less than or equals to<strong> length(start_index)-1.</strong></li></ul><ul id="10819e37-1a03-496f-b94d-ac1f577a8651" class="bulleted-list"><li style="list-style-type:disc">length must be greater than or equals to <strong>Zero </strong>&amp; less than or equals to<strong> length(start_index)-start_index.</strong></li></ul></div></p><blockquote id="91dd6794-66b0-41cd-a5ba-0e2c629aa292" class=""><strong>Note </strong>: We will learn about seventh &amp; eight Constructor in StringBuffer and StringBuilder</blockquote><h3 id="a8cc07ab-507a-4e3c-aaee-74f5a3eda8a5" class=""><span style="border-bottom:0.05em solid"><strong>String Methods</strong></span></h3><ul id="0fecb9e7-d4ba-4b9c-b33b-34474ee4b2fa" class="bulleted-list"><li style="list-style-type:disc">There are availabilty of static methods and instance methods<p id="9f4459c3-c237-45ce-8d5c-02fe38105981" class=""><span style="border-bottom:0.05em solid"><strong>Instance methods</strong></span></p><table id="3f5a1d6e-589a-4362-9770-2b8fe9f626da" class="simple-table"><thead class="simple-table-header"><tr id="91ea68ff-32d8-41b3-8304-89ff000e3874"><th id="bPI}" class="simple-table-header-color simple-table-header" style="width:357.4925537109375px"><span style="border-bottom:0.05em solid"><strong>Method</strong></span></th><th id="ZCG;" class="simple-table-header-color simple-table-header" style="width:687.4874877929688px"><span style="border-bottom:0.05em solid"><strong>Description</strong></span></th></tr></thead><tbody><tr id="e9b03808-518b-46ef-bf0a-87f9d421202c"><td id="bPI}" class="" style="width:357.4925537109375px">charAt(int index)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns character at the specified index</td></tr><tr id="ff5df35d-9a47-4ffc-a9fe-cc748cb0e6e0"><td id="bPI}" class="" style="width:357.4925537109375px">length()</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the length of the string</td></tr><tr id="2aca2ccc-6b6a-46c4-bb5c-fe9bdc788ba5"><td id="bPI}" class="" style="width:357.4925537109375px">compareTo(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns integer by comparing two string lexicographically</td></tr><tr id="0ac5ce10-c2b9-4b77-8d91-d1978febb057"><td id="bPI}" class="" style="width:357.4925537109375px">compareToIgnoreCase(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns integer by comparing two string lexicographically, ignoring case differences</td></tr><tr id="d54f9b61-9d9c-47bd-86ed-2d46ac01b343"><td id="bPI}" class="" style="width:357.4925537109375px">concat(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">concatenates the specified string to the end of this string.</td></tr><tr id="223558ad-8a11-4448-8567-9a00ac14dee3"><td id="bPI}" class="" style="width:357.4925537109375px">endsWith(String suffix)</td><td id="ZCG;" class="" style="width:687.4874877929688px">tests the string ends with specified suffix</td></tr><tr id="a4d1465e-80fe-4320-a944-11a08c8aa117"><td id="bPI}" class="" style="width:357.4925537109375px">equals(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">compares the string with specified Object</td></tr><tr id="b73d20dc-8102-45c0-823b-2ffffe3eff68"><td id="bPI}" class="" style="width:357.4925537109375px">equalsIgnoreCase(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">compares the string with specifies object which can be case insensitive</td></tr><tr id="458d22ab-9c9d-4008-a0cf-1f6f9a26ae21"><td id="bPI}" class="" style="width:357.4925537109375px">hashCode()</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the hashcode of a string</td></tr><tr id="e2751a32-716c-499a-9ffd-62305e5d0608"><td id="bPI}" class="" style="width:357.4925537109375px">indexOf(char ch)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the first index of the specified character</td></tr><tr id="5b62bf9e-cb4d-4e65-949d-dbe111574b22"><td id="bPI}" class="" style="width:357.4925537109375px">indexOf(char ch, int start_index)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the first index of the specified character, checks starting from given start_index </td></tr><tr id="164758ea-9af0-450c-903f-870aa3f03005"><td id="bPI}" class="" style="width:357.4925537109375px">indexOf(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the index within this string of the first occurrence of the specified substring</td></tr><tr id="03a4c561-32c4-43d1-a834-e1fc5d5d3407"><td id="bPI}" class="" style="width:357.4925537109375px">indexOf(String str, int start_index)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the index within this string of the first occurrence of the specified substring, starting from given index</td></tr><tr id="9e2bf0f6-28ce-4fc7-aa0b-c5556e900207"><td id="bPI}" class="" style="width:357.4925537109375px">isEmpty()</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns true if length is 0</td></tr><tr id="661a832c-e3fb-4f32-8f3c-972159d883e0"><td id="bPI}" class="" style="width:357.4925537109375px">lastIndexOf(char ch)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the last index of the specified character</td></tr><tr id="8b5eebcf-be37-41b3-a3c0-9d2b931e6cd7"><td id="bPI}" class="" style="width:357.4925537109375px">lastIndexOf(String str)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the index within this string of the last occurrence of the specified substring</td></tr><tr id="84dfeac1-6fed-4efa-904f-b2cbebf8332f"><td id="bPI}" class="" style="width:357.4925537109375px">replace(char oldChar, char newChar)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the string by replacing the old character with new character</td></tr><tr id="1f27548d-cfaa-40f2-9b88-11f467203afe"><td id="bPI}" class="" style="width:357.4925537109375px">replace(String oldString, String new String)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the string by replacing the old string with new string</td></tr><tr id="53ebf7f5-07cb-474a-890c-60b31c1a2b80"><td id="bPI}" class="" style="width:357.4925537109375px">replaceFirst(String oldString, String new String)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the string by replacing the old string with new string for only first occurence</td></tr><tr id="5fcbebe5-9b87-4164-8127-d13197e8990e"><td id="bPI}" class="" style="width:357.4925537109375px">split(String pattern)</td><td id="ZCG;" class="" style="width:687.4874877929688px">return the string array where it breaks when the pattern arrives</td></tr><tr id="dda1ad3d-8043-4ac3-b0cc-026ce7f95eb1"><td id="bPI}" class="" style="width:357.4925537109375px">startsWith(String prefix)</td><td id="ZCG;" class="" style="width:687.4874877929688px">tests the string starts with specified prefix</td></tr><tr id="1a347a83-8d29-4028-a7d0-7a384a300d35"><td id="bPI}" class="" style="width:357.4925537109375px">startsWith(String prefix, int startIndex)</td><td id="ZCG;" class="" style="width:687.4874877929688px">tests the string starts with specified prefix, searching from startIndex</td></tr><tr id="0e499809-87ab-4c9a-a9dc-457e9663bab8"><td id="bPI}" class="" style="width:357.4925537109375px">substring(int startIndex)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the string from given start index to length-1</td></tr><tr id="badc8b3b-574e-4967-b25a-436ec8181701"><td id="bPI}" class="" style="width:357.4925537109375px">substring(int startIndex, int lastIndex)</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the string from given start index to lastIndex</td></tr><tr id="6f12f87a-951d-41e3-88ba-855a83c7ba57"><td id="bPI}" class="" style="width:357.4925537109375px">toCharArray()</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns the char array for the given string</td></tr><tr id="10c22128-e788-4788-b033-eaed68215a46"><td id="bPI}" class="" style="width:357.4925537109375px">toString()</td><td id="ZCG;" class="" style="width:687.4874877929688px">string itself is returned</td></tr><tr id="f5dedcc4-354e-46b7-a88e-300193659dd4"><td id="bPI}" class="" style="width:357.4925537109375px">toUpperCase()</td><td id="ZCG;" class="" style="width:687.4874877929688px">converts the string into uppercase</td></tr><tr id="32a44c4f-b00d-4f5c-874c-036cf9962ebd"><td id="bPI}" class="" style="width:357.4925537109375px">toLowerCase()</td><td id="ZCG;" class="" style="width:687.4874877929688px">converts the string into lowercase</td></tr><tr id="53b8c072-b60d-4f7d-acbe-4b0aac65890c"><td id="bPI}" class="" style="width:357.4925537109375px">trim()</td><td id="ZCG;" class="" style="width:687.4874877929688px">returns a string which removes leading and trailing whitespaces</td></tr></tbody></table></li></ul><p id="87339407-457e-456a-9dc0-ac3853fa94bf" class=""><strong>Example_1 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="728c098a-b70b-4d14-aaa7-953521634d9d" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = &quot;abcd&quot;;
+		System.out.println(&quot;Character at index 3 is : &quot; + str.charAt(3));
+		System.out.println(str + &quot; length is : &quot; + str.length());
+
+		String upper = str.toUpperCase();
+		System.out.println(&quot;Upper case of &quot; + str + &quot;is :&quot; + upper); // str doesn&#x27;t changes because String is immutable
+		String lower = upper.lowerCase();
+		System.out.println(&quot;Lower case of &quot; + upper + &quot;is :&quot; + lower); // str doesn&#x27;t changes because String is immutable
+  }
+}</code></pre><p id="bd396267-be2e-4625-b8d7-731e3e08d9e9" class=""><strong>Output →</strong></p><p id="f1a2773c-d4f3-4478-ae51-185a48ed6373" class="">Character at index 3 is : d</p><p id="b31ec3e7-8273-4adb-9dd9-9b5eff8c754b" class="">abcd length is : 4</p><p id="3c7fe4f7-977d-4f8e-a36b-b66a6014e2e2" class="">Upper case of abcd is ABCD</p><p id="0182e2a4-37ae-46b0-93f0-5c155b566c82" class="">Lower case of ABCD is abcd</p></div></p><p id="8c54708e-0458-46af-8e7f-31341581959b" class=""><strong>Example_2 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9f0f5e9d-f434-4609-adc0-f22ee54065c8" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String atr = &quot;&quot;;
+		System.out.println(&quot;Is the string &quot; + atr + &quot; is Empty? &quot; + atr.isEmpty()); 
+
+		char arr[] = upper.toCharArray();
+		System.out.print(upper + &quot; is converted to Character array : &quot;);
+		for(char c:arr)
+			System.out.print(c + &quot;, &quot;);
+		System.out.println();
+  }
+}</code></pre><p id="3632f041-eafd-4797-a922-481b6429fd52" class=""><strong>Output →</strong></p><p id="d4cff382-9842-445a-9116-99d781a43c6e" class="">Is the string    is empty? true</p><p id="29a19e55-721c-4614-bdaa-bbf3d4d62428" class="">ABCD is converted to Character array : A, B, C, D</p></div></p><p id="08510ca9-8d28-4a01-94a3-be07a5f82811" class=""><strong>Example_3 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="262656e5-88c1-4edf-9387-9aeeca3f9bb3" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String mtr = &quot;             datta       &quot;;
+		String ntr = mtr.trim();
+		System.out.println(&quot;Trimming the whitespaces from the front and back of the string &#x27;&quot; + mtr + &quot;&#x27; is : &quot; + ntr);
+
+		String btr = str.toString();
+		System.out.println(&quot;String itself of &quot; + str + &quot; is : &quot; + btr);
+
+		String ctr = &quot;abcdefgh&quot;;
+		String dtr = ctr.substring(1);
+		System.out.println(&quot;String of &quot; + ctr + &quot; from index 1 is : &quot; + dtr);
+		dtr = ctr.substring(1, 4);
+		System.out.println(&quot;String of &quot; + ctr + &quot; from index 1 to 3 is : &quot; + dtr);
+  }
+}</code></pre><p id="051c43a4-dd19-4bd6-b9ec-d15d0913d8cf" class=""><strong>Output →</strong></p><p id="880c6c0c-4be6-413d-bc3e-8e3262b3cda7" class="">Trimming the whitespaces from the front and back of the string &#x27;             datta        &#x27; is datta</p><p id="7a8eda9b-2b10-4acb-97b5-3d9e56a2f941" class="">String itself of abcd is abcd</p><p id="0e05c809-2bb1-403f-af76-425e2e6c82b2" class="">String of abcdefgh from index 1 is : bcdefgh</p><p id="cc6c0f67-7c8b-4b7d-9a0b-428eb5289893" class="">String of abcdefgh from index 1 to 3is : bcd</p></div></p><p id="994e0278-a511-46da-b6ea-6ef8f81326c0" class="">
+</p><p id="f39c5cbc-af2f-453e-85bb-43b7f6e48937" class=""><strong>Example_4 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7fd2db95-a0e6-416f-8dc6-5177507edbf6" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;datta&quot;);
+	  String atr = new String(&quot;datta&quot;);
+		System.out.println(&quot;Is string &quot; + str + &quot; and &quot; + atr + &quot; are equal? &quot; + str.equals(atr));
+
+		str = new String(&quot;DATTA&quot;);
+		atr = new String(&quot;datta&quot;);
+		System.out.println(&quot;Is string &quot; + str + &quot; and &quot; + atr + &quot; are equal? &quot; + str.equals(atr));
+		System.out.println(&quot;Is string &quot; + str + &quot; and &quot; + atr + &quot; are equal, ignoring case? &quot; + str.equalsIgnoreCase(atr));
+  }
+}</code></pre><p id="91bda774-9398-41d2-9f45-2ba917627c16" class=""><strong>Output →</strong></p><p id="b788635d-0b2e-492f-8d3f-95d230bbaaac" class="">Is the string datta and datta are equal? true</p><p id="eff1df94-fd04-4e74-8af5-0dc022348d50" class="">Is the string DATTA and datta are equal? false</p><p id="2e981a97-b33f-4cd6-ac64-569c56636ea6" class="">Is the string DATTA and datta are equal, ignoring cases? true</p></div></p><p id="794cadea-60e4-4da9-95b4-9746c85b503b" class=""><strong>Example_5 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d115efec-84d4-4e85-a9a8-85b0ff01cef4" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;datta&quot;);
+
+	  System.out.println(&quot;Index of first occurence of character &#x27;a&#x27; is : &quot; + str.indexOf(&#x27;a&#x27;));
+		System.out.println(&quot;Index of first occurence of character &#x27;a&#x27; is (searching from index 2) : &quot; + str.indexOf(&#x27;a&#x27;, 2));
+		System.out.println(&quot;Index of first occurence of character &#x27;a&#x27; is (searching from exceeding length) : &quot; + str.indexOf(&#x27;a&#x27;, 200));
+		System.out.println(&quot;Index of first occurence of character &#x27;z&#x27; is : &quot; + str.indexOf(&#x27;z&#x27;));
+  }
+}</code></pre><p id="f33f0c22-cda0-42ba-b27c-a051445eee64" class=""><strong>Output →</strong></p><p id="2d7f3481-4cad-40df-a900-ac9d9a521bc6" class="">Index of first occurence of character &#x27;a&#x27; is : 1</p><p id="dce52400-808b-491a-95ae-b523cb05f70e" class="">Index of first occurence of character &#x27;a&#x27; is (searching from index 2) : 4</p><p id="6e463d9a-6bd4-48cf-8ddf-8e442bd435bc" class="">Index of first occurence of character &#x27;a&#x27; is (searching from exceeding length) : -1</p><p id="9b27a220-ceec-4515-81a1-f7c23e6587c2" class="">Index of first occurence of character &#x27;z&#x27; is : -1</p></div></p><p id="4bb53249-de19-42d6-81a1-7fbcfc2e4ae6" class=""><strong>Example_6 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cd254bd5-6da9-4669-9fad-778bd6c86755" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;datta wants to become a singer.... what&quot;);
+
+	  System.out.println(&quot;Index of first occurence of string &#x27;singer&#x27; is : &quot; + str.indexOf(&quot;singer&quot;));
+		System.out.println(&quot;Index of first occurence of string &#x27;at&#x27; is (searching from index 10) : &quot; + str.indexOf(&quot;at&quot;, 10));
+		System.out.println(&quot;Index of first occurence of string &#x27;singer&#x27; is (searching from exceeding length) : &quot; + str.indexOf(&quot;singer&quot;, 200));
+		System.out.println(&quot;Index of first occurence of string &#x27;wanna&#x27; is : &quot; + str.indexOf(&quot;wanna&quot;));
+  }
+}</code></pre><p id="aa6238e4-1665-4439-9f10-8d5bf5246f9c" class=""><strong>Output →</strong></p><p id="10a8f015-2fd6-4f51-8e8c-d6c0bf2b5050" class="">Index of first occurence of string &#x27;singer&#x27; is : 24</p><p id="343beccb-d0fa-4215-a523-a678934b6edc" class="">Index of first occurence of string &#x27;at&#x27; is (searching from index 10) : 36</p><p id="1b968de8-a339-4ab4-8a57-448ac046446b" class="">Index of first occurence of string &#x27;singer&#x27; is (searching from exceeding length) : -1</p><p id="98495ff6-8ee8-48b8-8e6a-99c34c342f96" class="">Index of first occurence of string &#x27;wanna&#x27; is : -1</p></div></p><p id="4d4de4b4-5b94-41ef-9c4b-874162bad5eb" class=""><strong>Example_7 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a47f8be8-0688-4c35-9e42-7dc1f77c4617" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = &quot;aaa&quot;;
+		String atr = &quot;aaa&quot;;
+		System.out.println(&quot;Comparing &#x27;aaa&#x27; and &#x27;aaa&#x27; value : &quot; + str.compareTo(atr));  // (97-97) + (97-97) + (97-97)
+
+		str = &quot;aab&quot;;
+		atr = &quot;aaa&quot;;
+		System.out.println(&quot;Comparing &#x27;aab&#x27; and &#x27;aaa&#x27; value : &quot; + str.compareTo(atr));  // (97-97) + (97-97) + (98-97)
+
+		str = &quot;AAA&quot;;
+		atr = &quot;aaa&quot;;
+		System.out.println(&quot;Comparing &#x27;AAA&#x27; and &#x27;aaa&#x27; value (ignoring cases) : &quot; + str.compareToIgnoreCase(atr));  // (97-97) + (97-97) + (98-97)
+
+  }
+}</code></pre><p id="cd71ce8d-2725-484e-9148-6a7b601ed8d4" class=""><strong>Output →</strong></p><p id="9c58ce90-139b-47d5-bbbf-07a6cd050cfb" class="">Comparing &#x27;aaa&#x27; and &#x27;aaa&#x27; value : 0</p><p id="aedc1b9f-68f6-4b00-bc56-c49ecda09060" class="">Comparing &#x27;aab&#x27; and &#x27;aaa&#x27; value : 1</p><p id="802734fe-a898-4fb7-8f3a-f2161b68fcc9" class="">Comparing &#x27;AAA&#x27; and &#x27;aaa&#x27; value (ignoring cases) : 0</p></div></p><p id="c911331e-cfad-4bf5-9de9-ab05e3d953b0" class=""><strong>Example_8 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bc755de4-3302-4268-a563-ed5b9a130128" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = &quot;aaa&quot;;
+		System.out.println(&quot;HashCode of &quot; + str + &quot; is : &quot; + str.hashCode());  
+  }
+}</code></pre><p id="5b3c4942-25b3-43a9-8ad8-823b093e40d9" class=""><strong>Output →</strong></p><p id="d73861f8-a268-4d7b-a9f3-4fad16731185" class="">HashCode of aaa is : 96321</p><p id="502eba55-419e-45b9-bd39-a1d0ecf68cf5" class=""><strong>Calculation →</strong></p><ul id="5ce58f1c-bf4d-4101-a36d-ae13947feb83" class="bulleted-list"><li style="list-style-type:disc">let n = string.length()</li></ul><ul id="a8eb6438-5197-49ac-af8a-e7a7423bab6a" class="bulleted-list"><li style="list-style-type:disc">hashcode = (string[0] * (31 power (n-1))) + (string[1] * (31 power (n-2))) + ………. + string[n-1];</li></ul></div></p><p id="b15e1681-fe48-4e1c-99e9-1f8f308d1aaa" class=""><strong>Example_9 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="41c407a3-5ac2-4c0e-8160-b2adc854e130" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;datta&quot;);
+
+	  System.out.println(&quot;Index of last occurence of character &#x27;a&#x27; is : &quot; + str.lastIndexOf(&#x27;a&#x27;));
+		System.out.println(&quot;Index of last occurence of character &#x27;z&#x27; is : &quot; + str.lastIndexOf(&#x27;z&#x27;));
+  }
+}</code></pre><p id="13978dc4-66b7-4d9c-a4e8-8eaf7e4220e9" class=""><strong>Output →</strong></p><p id="bb732626-bd13-4df7-aa78-2567ef9e9f6f" class="">Index of last occurence of character &#x27;a&#x27; is : 4</p><p id="aaec84f6-9a11-48fe-9319-4a548fe3e802" class="">Index of last occurence of character &#x27;z&#x27; is : -1</p></div></p><p id="fd6f9478-2b53-4a1f-ba63-b5c5b08538e6" class=""><strong>Example_10 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8f12bea3-e222-4110-9a5b-746a5b9dc5d3" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;NTR is the best actor in the world&quot;);
+
+	  System.out.println(&quot;Does the string &quot; + str + &quot; starts with &#x27;NTR&#x27; : &quot; + str.startsWith(&quot;NTR&quot;));
+		System.out.println(&quot;Does the string &quot; + str + &quot; starts with &#x27;NTR&#x27; (searching from index 4) : &quot; + str.startsWith(&quot;NTR&quot;, 4));
+  }
+}</code></pre><p id="f11805fb-e5b1-4064-8e85-7c3ebb70a2b1" class=""><strong>Output →</strong></p><p id="2ce53534-1252-4a25-a3da-fdeadae82b58" class="">Does the string NTR is the best actor in the world starts with &#x27;NTR&#x27; : true</p><p id="68385f39-d01d-43f9-b503-67356c173529" class="">Does the string NTR is the best actor in the world starts with &#x27;NTR&#x27; (searching from index 4) : false</p></div></p><p id="285d90c0-275f-4549-b417-a75b347383b8" class=""><strong>Example_11 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7f05e3e6-10a9-4717-8511-18e4515f8ed1" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;NTR is the best actor in the world&quot;);
+
+	  System.out.println(&quot;Does the string &quot; + str + &quot; starts with &#x27;NTR&#x27; : &quot; + str.startsWith(&quot;NTR&quot;));
+		System.out.println(&quot;Does the string &quot; + str + &quot; starts with &#x27;NTR&#x27; (searching from index 4) : &quot; + str.startsWith(&quot;NTR&quot;, 4));
+		System.out.println(&quot;Does the string &quot; + str + &quot; ends with &#x27;world&#x27; : &quot; + str.endsWith(&quot;world&quot;));
+  }
+}</code></pre><p id="96723475-4062-4bc9-b85f-c4391beb4bed" class=""><strong>Output →</strong></p><p id="4fd87ec8-f5d4-4138-a25b-a9d3f2ad6787" class="">Does the string NTR is the best actor in the world starts with &#x27;NTR&#x27; : true</p><p id="e8f20d99-8814-41f5-8d15-7527453604fb" class="">Does the string NTR is the best actor in the world starts with &#x27;NTR&#x27; (searching from index 4) : false</p><p id="a6f275af-a928-4cce-94aa-248e1644c986" class="">Does the string NTR is the best actor in the world ends with &#x27;world&#x27; : true</p></div></p><p id="cf35a9ba-abee-4ce6-9b64-f59f4cb411fe" class=""><strong>Example_12 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="02b56b0f-9023-4110-b85d-fc8579b93860" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;affle keefs doctor away&quot;);
+	  System.out.println(&quot;Changing the character &#x27;f&#x27; to &#x27;p&#x27; in &quot; + str + &quot; : &quot; + str.replace(&#x27;f&#x27;, &#x27;p&#x27;));
+		System.out.println(&quot;Changing the string &#x27;ff&#x27; to &#x27;pp&#x27; in &quot; + str + &quot; : &quot; + str.replace(&quot;ff&quot;, &quot;pp&quot;));
+
+		str = &quot;bb dd dd&quot;;
+		System.out.println(&quot;Changing the first occurence string &#x27;dd&#x27; to &#x27;aa&#x27; in &quot; + str + &quot; : &quot; + str.replaceFirst(&quot;dd&quot;, &quot;aa&quot;));
+  }
+}</code></pre><p id="9040ec1d-ae8d-4b07-a897-62da9536aada" class=""><strong>Output →</strong></p><p id="38ce1a8d-4e27-4325-adcb-3350d0f8876a" class="">Changing the string &#x27;f&#x27; to &#x27;p&#x27; in affle keefs doctor away : apple keeps doctor away</p><p id="50db4367-1786-402a-bb65-aeb4579783b8" class="">Changing the string &#x27;ff&#x27; to &#x27;pp&#x27; in bb dd dd : bb aa dd</p></div></p><p id="31fd5e27-b8aa-4155-b798-bb358b24b4ca" class=""><strong>Example_13 </strong>(InstanceMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="40060bd3-f804-410b-af5e-ad3ff80b6f45" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class InstanceMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = new String(&quot;NTR is the best actor in the world&quot;);
+		String arr[] = str.split(&quot; &quot;);
+		for(String string : arr)
+			System.out.print(string + &quot; , &quot;);
+		
+		str = &quot;abcd&quot;
+		str += &quot;cdef&quot;;
+		System.out.println(&quot;Concat the string &#x27;abcd&#x27; with &#x27;efgh&#x27; is : &quot; + str);
+  }
+}</code></pre><p id="3acdc7e9-4efe-45be-9d51-fc54408f5266" class=""><strong>Output →</strong></p><p id="29e132bf-3646-4e67-a494-e72feaf128cf" class="">Concat the string &#x27;abcd&#x27; with &#x27;efgh&#x27; is : abcdefgh</p></div></p><p id="e02d18e8-fdb2-4be2-90b4-cf9737b39060" class=""><span style="border-bottom:0.05em solid"><strong>Static methods </strong></span></p><table id="0933bf9a-2a82-442e-9ed1-884579d1a5c2" class="simple-table"><thead class="simple-table-header"><tr id="0884a9dd-ff07-4445-a106-fcbaca69496c"><th id="jj`_" class="simple-table-header-color simple-table-header" style="width:449.4949951171875px"><span style="border-bottom:0.05em solid"><strong>Method</strong></span></th><th id="sYOz" class="simple-table-header-color simple-table-header" style="width:600.4949951171875px"><span style="border-bottom:0.05em solid"><strong>Description</strong></span></th></tr></thead><tbody><tr id="d5e321ce-da65-4be3-a482-0e600ab00fa6"><td id="jj`_" class="" style="width:449.4949951171875px">format(String format, Object… args)</td><td id="sYOz" class="" style="width:600.4949951171875px">returns a formatted string using the specified format string and arguments</td></tr><tr id="17123985-11fe-460d-86f2-c2313ccfa212"><td id="jj`_" class="" style="width:449.4949951171875px">valueOf(char[] data)  </td><td id="sYOz" class="" style="width:600.4949951171875px">returns the string representation of the char array argument.</td></tr><tr id="e24557ea-3397-4574-839a-9f08c7e4bd9b"><td id="jj`_" class="" style="width:449.4949951171875px">valueOf(boolean b)  </td><td id="sYOz" class="" style="width:600.4949951171875px">returns the string representation of the boolean argument.</td></tr><tr id="2876d3a7-a992-4c0b-be76-136bb25a67c0"><td id="jj`_" class="" style="width:449.4949951171875px">valueOf(int i)  </td><td id="sYOz" class="" style="width:600.4949951171875px">returns the string representation of the integer argument.</td></tr></tbody></table><blockquote id="0c27b212-ab68-4e45-aa13-b6da5872e9b7" class=""><strong>Note </strong>: Similarly it works for double , long , etc …</blockquote><p id="e7d1b30a-2d7e-402a-910a-45c14fbef777" class=""><strong>Example_1</strong> (StaticMethods.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ae806b1-3fb3-47cc-a74e-a55af97d3c0e" class="code"><code class="language-Java">package com.strings;
+import java.util.*;
+
+public class StaticMethods
+{  
+	public static void main(String args[])
+	{  
+		String str = &quot;NTR&quot;;
+		String atr = String.format(&quot;My favourite hero is : %s&quot; , str);
+		
+		System.out.println(&quot;Character array to String : &quot; + String.valueOf(new char[]{&#x27;a&#x27;, &#x27;b&#x27;});
+  }
+}</code></pre><p id="2c79fa3b-41fd-430b-af59-869fc9862ef4" class=""><strong>Output →</strong></p><p id="99664139-1d87-4517-98c5-14be0ca4cccc" class="">My favourite hero is NTR</p><p id="e30b7d0b-a589-4af7-8e7e-43e0bda392fa" class="">Character array to String : ab</p></div></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

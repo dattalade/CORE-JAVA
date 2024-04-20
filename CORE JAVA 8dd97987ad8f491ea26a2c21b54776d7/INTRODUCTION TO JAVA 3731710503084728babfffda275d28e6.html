@@ -1,0 +1,712 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>INTRODUCTION TO JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="37317105-0308-4728-babf-ffda275d28e6" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">INTRODUCTION TO JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="7f3aacb9-52fc-4b07-87c9-8d3dcade0d02"/><p id="c9e4e390-157f-49be-83fb-ea695c03a3f2" class="">
+</p><h3 id="5c757d18-bc87-438e-8588-1de1388e741d" class=""><span style="border-bottom:0.05em solid"><strong>What is Java?</strong></span></h3><ul id="a49c11ff-09c0-4a32-89f2-3bca29d0d557" class="bulleted-list"><li style="list-style-type:disc">Java is a Programming language which is secured and object-oriented.</li></ul><ul id="bfe09f97-89ac-445c-81d8-a8c0a2173b64" class="bulleted-list"><li style="list-style-type:disc">To run a java program we need JDK (Java Development Kit)</li></ul><ul id="8e3f64e9-ac72-447f-ba47-e491fabaaf28" class="bulleted-list"><li style="list-style-type:disc">Under JDK we have two packages names JRE and JVM</li></ul><ul id="a420c0e9-1192-4d6f-8379-e1abd5819ec0" class="bulleted-list"><li style="list-style-type:disc">It is platform independent</li></ul><h3 id="cd121165-ba56-4f0d-aaac-30e5e8427d53" class=""><strong><span style="border-bottom:0.05em solid">History of Java </span></strong></h3><ul id="d71c73e2-90e4-453a-8860-bd50db31c8f2" class="bulleted-list"><li style="list-style-type:disc">Java is developed by Sun Micro Systems in the year 1995</li></ul><ul id="7b3b176a-1f57-4d5a-9e5a-69eabd8ae2a9" class="bulleted-list"><li style="list-style-type:disc">James Gosling is the one who invented java (Father of Java)</li></ul><ul id="0a62aa3a-73e5-488c-839a-8f93186469a8" class="block-color-default bulleted-list"><li style="list-style-type:disc">The first version of java is &#x27;jdk 1.0&#x27; in January 1996.</li></ul><ul id="4f7deedc-30de-4ed3-96d6-b69de1624298" class="bulleted-list"><li style="list-style-type:disc">The current version of java is &#x27;jdk 20&#x27; in March 2023.</li></ul><ul id="07a41e69-e2ea-4ff2-8f54-8b9d636c408b" class="bulleted-list"><li style="list-style-type:disc">We use &#x27;jdk 17&#x27;</li></ul><blockquote id="93333067-6e40-4c33-8531-ce190aeb24cf" class=""><strong>Note : Java files must be saved in &#x27;.java&#x27; extension</strong></blockquote><h3 id="60c900d7-77a9-464c-94cf-d5266edde91c" class=""><span style="border-bottom:0.05em solid"><strong>Feautres of Java</strong></span></h3><ul id="2ce1e734-fb77-49c0-a490-826406ca27c6" class="bulleted-list"><li style="list-style-type:disc"><strong>Platform Independence </strong>→ Java&#x27;s bytecode can be executed on any platform with an appropriate JVM</li></ul><ul id="bc07f24f-42b2-4998-a7d8-872d1143ebaa" class="bulleted-list"><li style="list-style-type:disc"><strong>Object Oriented</strong> → Java also follows object-oriented programming</li></ul><ul id="1d0ef7a7-72b9-4cac-8d72-4581b9d8edc5" class="bulleted-list"><li style="list-style-type:disc"><strong>Simple</strong> &amp;<strong> familiar</strong> → Java syntax is familiar to C &amp; C++ which makes comfortable to programmers</li></ul><ul id="03fc687e-8b46-49cf-94db-bf3fab77cf00" class="bulleted-list"><li style="list-style-type:disc"><strong>Robust</strong> → Java programs ensures they can handle unexpected errors without causing harm</li></ul><ul id="b7329c00-a1c3-41a7-a42b-ed3dbf9bd990" class="bulleted-list"><li style="list-style-type:disc"><strong>Secure</strong> → Java secures the data using access modifiers</li></ul><ul id="e0a78839-b9da-4f31-8ad8-5d91c3e263bf" class="bulleted-list"><li style="list-style-type:disc"><strong>MultiThreading</strong> → Java allows multiple tasks to run concurrently</li></ul><ul id="3345483a-79ad-421e-9df1-6d757374c5f6" class="bulleted-list"><li style="list-style-type:disc"><strong>Dynamic</strong> &amp;<strong> high performance</strong></li></ul><ul id="cd4a2e78-cbad-44ac-b792-8d3debc766a8" class="bulleted-list"><li style="list-style-type:disc"><strong>Portable</strong> → Java&#x27;s &#x27;write once, run anywhere&#x27; capability makes it highly portable</li></ul><h3 id="bd36fc7e-4976-49bf-8b5d-3d6d6b36be92" class=""><span style="border-bottom:0.05em solid"><strong>Applications of Java</strong></span></h3><ul id="24f9f438-9a7a-4466-b65b-d08e3a6bbea6" class="bulleted-list"><li style="list-style-type:disc">Web Applications</li></ul><ul id="419d1dff-bf94-4437-9f5d-3a25ba5c063f" class="bulleted-list"><li style="list-style-type:disc">Mobile Applications</li></ul><ul id="71a134c7-98af-4fd7-b522-31546a6b228c" class="bulleted-list"><li style="list-style-type:disc">Desktop Applications</li></ul><h3 id="edcacf28-e9e3-4069-9270-d512540048bb" class=""><span style="border-bottom:0.05em solid"><strong>Program Internal</strong></span></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cdcdf02c-19c3-4c85-ab2a-26e6a11a44f6" class="code"><code class="language-Mermaid">flowchart LR
+    subgraph BYTE_CODE
+        Simple.class
+    end
+    subgraph JAVA_CODE
+        Simple.java
+    end
+    Simple.java --&gt; A[Compiler]
+		A --&gt; Simple.class</code></pre><h3 id="0788c538-d08a-4bec-87f1-86b0ee6b0679" class=""><span style="border-bottom:0.05em solid"><strong>What happens at runtime ?</strong></span></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ccf5a8ee-dd49-456c-8daa-1fffd4a2614d" class="code"><code class="language-Mermaid">graph TD
+  Class_File --&gt; Class_Loader --&gt; ByteCode_Verified --&gt;Interpreter --&gt; Runtime --&gt; Hardware</code></pre><h3 id="1642d746-54d7-44e4-b0bb-c9cff5b94b4f" class=""><span style="border-bottom:0.05em solid"><strong>How to set path in Java?</strong></span></h3><ul id="27b695f2-9f51-4440-9757-176c7025cae6" class="bulleted-list"><li style="list-style-type:disc">C (Windows) → Program Files → Java → jdk 17 → bin → Ctrl+C (in search panel)</li></ul><p id="5b99810b-a534-4b7f-b85a-b5962a7372ad" class="">Step 1 → Click windows logo, search &#x27;Edit environment variables&#x27; and open it</p><p id="6a8693eb-4440-4629-af78-735c1654bb99" class="">Step 2 → Click environment variables</p><p id="8656ac2b-8bae-4209-af14-3c00976acce1" class="">Step 3 → Click on the new tab of user variables (Dialog box will be prompted)</p><p id="12332455-5da8-4e4a-866a-fcbba564e05e" class="">Step 4→ Variable name : path<div class="indented"><p id="07089f98-ef39-489b-8797-d073d1c90684" class="">            Variable value : Ctrl + V</p></div></p><p id="463618ec-55d2-4900-abf2-56edea4453b4" class="">Step 5 → Click ok</p><h3 id="fce2db10-12fd-4778-ba62-92c07f0e0c1c" class=""><span style="border-bottom:0.05em solid"><strong>JDK (Java Development Kit)</strong></span></h3><ul id="b45e9aa8-937c-4e9b-b5bc-8b747fc6e505" class="bulleted-list"><li style="list-style-type:disc">It is a software development environment which is used to develop Java applications.</li></ul><ul id="569d9223-40ee-4462-8dc7-bf52fe8796cd" class="bulleted-list"><li style="list-style-type:disc">JDK is the implementation of below platforms :<ol type="1" id="39f324e4-3a11-41d6-8b55-83f63ed98871" class="numbered-list" start="1"><li>Standard Edition Java Platform</li></ol><ol type="1" id="821d852e-9bd8-41ea-95bb-7cb084dab551" class="numbered-list" start="2"><li>Enterprise Edition Java Platform</li></ol><ol type="1" id="0c3b2640-5f3a-4d1b-860a-481de5b0515c" class="numbered-list" start="3"><li>Micro-Edition Java Platform</li></ol></li></ul><ul id="79dfee31-1015-4e35-b020-7a5595f9f6a9" class="bulleted-list"><li style="list-style-type:disc">JDK contains:<ol type="1" id="960784df-560e-4e3f-be3f-74961db49e87" class="numbered-list" start="1"><li>Java Runtime Environment (JRE)</li></ol><ol type="1" id="2b6389f1-af43-40cd-acc9-3654c010e562" class="numbered-list" start="2"><li>Interpreter / Loader (Java)</li></ol><ol type="1" id="98255dab-a4f7-470d-b21e-9ee58f28978e" class="numbered-list" start="3"><li>Compiler (javac)</li></ol></li></ul><h3 id="eeeddce2-411b-4443-a246-f8e74964e4ea" class=""><strong><span style="border-bottom:0.05em solid">JRE (Java Runtime Environment)</span></strong></h3><ul id="ee1d4106-d268-4321-b5a6-9c906e83e6b0" class="bulleted-list"><li style="list-style-type:disc">JRE is a software environment that is required for executing Java applications on any system regardless of operating system.</li></ul><ul id="b280f511-6658-4a48-986b-c9cbd183b726" class="bulleted-list"><li style="list-style-type:disc">It cannot be used for developing, it is only used for executing those developed applications.</li></ul><h3 id="81c998fd-903f-473e-813f-5b98a7d5488e" class=""><span style="border-bottom:0.05em solid"><strong>Diagram</strong></span></h3><figure id="a565f2d6-f5fa-4755-aafc-ada6a032e29b" class="image"><a href="INTRODUCTION%20TO%20JAVA%203731710503084728babfffda275d28e6/jdk_jre.png"><img style="width:463px" src="INTRODUCTION%20TO%20JAVA%203731710503084728babfffda275d28e6/jdk_jre.png"/></a></figure><h3 id="063c3f52-0025-4b78-af51-5edfdf46d6aa" class=""><span style="border-bottom:0.05em solid"><strong>Keywords in Java</strong></span></h3><ol type="1" id="90bd34aa-02e2-493f-b461-77670b5dff8b" class="numbered-list" start="1"><li>Data Types : byte, short, int, long, float, double, char, boolean</li></ol><ol type="1" id="9f969674-b783-4491-8b7d-30f054581e07" class="numbered-list" start="2"><li>Access Modifiers : private, protected, public, default</li></ol><ol type="1" id="ea928962-620a-49e5-9f97-1fd9e7ea830a" class="numbered-list" start="3"><li>Control Statement : if, else, switch, case, default, for, while, do, continue, break, goto</li></ol><ol type="1" id="57f80328-0f81-47e2-b942-46240c026b4b" class="numbered-list" start="4"><li>Object and Classes : class, interface, extends, implements, this, super, new</li></ol><ol type="1" id="04d7e627-652b-4222-9ae9-032fb188209d" class="numbered-list" start="5"><li>Modifiers : static, abstract, synchronized, volatile, native, transient, strictfp, final</li></ol><ol type="1" id="1f9bb699-3ce8-4920-ac0a-4e119a46aff5" class="numbered-list" start="6"><li>Exceptions : try, catch, finally, throw, throws</li></ol><ol type="1" id="8d0b2031-7789-463f-bd2c-2331cabe777c" class="numbered-list" start="7"><li>Package : package, import</li></ol><ol type="1" id="37f88098-ed4d-49f9-8bf3-7ea1d1948a55" class="numbered-list" start="8"><li>Miscellaneous keywords : return, const (*), instanceof, void, assert, default, enum</li></ol><h3 id="9c9b4192-9d22-4aac-a1a2-10aacc33328d" class=""><strong><span style="border-bottom:0.05em solid">Execute programs in eclipse</span></strong></h3><p id="9bac5c61-125c-4d19-8feb-badac2255ca2" class="">Step 1 → Click new     →   Create Java Project   →   Give a name to the Project (JavaPrograms)</p><p id="40f3f778-cbe7-4b80-83af-738bec5cf370" class="">Step 2 → Java Programs   →  Under src   →   Right click   →   New   →   Package   →   Give a name to a package (eg: com.programs)</p><p id="d82a45bc-4fcf-44a1-a7b9-23304023f149" class="">Step 3 → Under the package   →   Right click   → New  →  Class   →   Give a name with &#x27;.java&#x27; extension</p><p id="78b5d470-f372-43ab-b032-957828b88e52" class="">Step 4 → Write the programs under packages</p><h3 id="6419b49f-eefd-4b07-9e95-b4933a9b69fb" class=""><span style="border-bottom:0.05em solid"><strong>Skeleton of Program</strong></span></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9fe96ec-5082-47f7-a372-86cc6eb9ebed" class="code"><code class="language-Java">public class Main
+{
+	public static void main(String[] args)
+  {
+	   //Code
+  }
+}</code></pre><ul id="5440a351-b5f4-471b-b046-282e3094450c" class="bulleted-list"><li style="list-style-type:disc">&#x27;Main&#x27; is the class name, &#x27;class&#x27; and &#x27;public&#x27; are keywords</li></ul><ul id="f4c36814-8555-4fd4-83cf-acf0b7c1cbce" class="bulleted-list"><li style="list-style-type:disc">The code starts executing from &#x27;main()&#x27; method and file name must be &#x27;className.java&#x27; where className must consists &#x27;main()&#x27; method.</li></ul><h3 id="98d373b8-f4df-4354-8f48-239f318c97d3" class=""><span style="border-bottom:0.05em solid"><strong>First Program</strong></span></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="83054ce8-2d57-4b32-812c-5ae65ba21455" class="code"><code class="language-Java">import java.util.*;
+
+public class First
+{
+	public static void main(String[] args)
+  {
+	  System.out.println(&quot;Hello World&quot;);
+  }
+}</code></pre><p id="793336de-f660-4060-871e-3dbe688549b9" class=""><strong>Output →</strong><div class="indented"><p id="a800e07e-ed6a-40a8-b0b2-3a88e69c9813" class="">Hello World</p></div></p><ul id="2cf8caf1-8dce-420a-84ab-98de6f800c60" class="bulleted-list"><li style="list-style-type:disc">System.out.println() is an in-built method which prints the output in the screen where we should pass any type of parameter (String must be in <p id="218b29da-a992-4aa5-baa7-d3b0046821c2" class="">&quot; &quot; or &#x27; &#x27; )<br/>It prints the String and cursor goes to next line<br/></p></li></ul><ul id="04693f50-b5a1-40fb-8d4a-7113486190c5" class="bulleted-list"><li style="list-style-type:disc">The class System and method println is available in<strong> java.lang</strong> package which we have to import.<ul id="f25158c0-59a0-430c-89b0-af260d7fda5b" class="bulleted-list"><li style="list-style-type:circle">Package → It is collection of Classes &amp; Interfaces which contains methods.</li></ul></li></ul><ul id="f71cc3b0-66b1-408d-b1bf-0da6cd6a0491" class="bulleted-list"><li style="list-style-type:disc">Java has default import <strong>java.lang </strong>of package.</li></ul><ul id="95f33c4c-30a9-469f-a079-bbcb6ddc675c" class="bulleted-list"><li style="list-style-type:disc">System.out.print(&quot;Hello &quot;);<br/>System.out.println(&quot;World&quot;);	<br/><p id="438da681-8dc7-4039-b5e9-0ff339956fcd" class=""><strong> Output →</strong><div class="indented"><p id="abe182e6-bde9-4d85-8730-0a0901ee76d5" class=""> Hello World</p></div></p></li></ul><ul id="695731f0-007e-4a2d-9846-d27f1baf84d1" class="bulleted-list"><li style="list-style-type:disc">System.out.println(5);	<p id="30f44b43-a592-44db-a73e-57d097816fa8" class=""><strong>Output →</strong><div class="indented"><p id="55b43bfa-4120-4928-976b-f186dde90018" class=""> 5</p></div></p></li></ul><ul id="143d8ccb-df7c-43db-a0b5-55ae2ebf71f5" class="bulleted-list"><li style="list-style-type:disc">System.out.println(abc);	<p id="f3f17c45-3301-4973-b399-ea2c5adfe877" class=""><strong>Output →</strong><div class="indented"><p id="316763aa-8d84-43b6-bb5c-22162a1683a1" class=""><mark class="highlight-red">error : cannot find symbol</mark></p><p id="0b958f06-6176-4e81-87d3-05f3b603914c" class="">symbol : abc</p><p id="3f87e7ed-60a1-4ddb-9e4d-fe15cd6c4af6" class="">location : First</p></div></p></li></ul><h3 id="b5156154-e240-401b-a10b-8be36b6c8971" class=""><span style="border-bottom:0.05em solid"><strong>Comments in Java</strong></span></h3><ul id="bec48ad3-b332-4664-870f-adfd490d1f14" class="bulleted-list"><li style="list-style-type:disc">There are two types of comments in Java :<ol type="1" id="685630be-8888-4ad6-8664-f24022f45883" class="numbered-list" start="1"><li>Single-Line Comment</li></ol><ol type="1" id="28c3338e-5786-498a-a071-af46a7555ee7" class="numbered-list" start="2"><li>Multi-Line Comment</li></ol></li></ul><p id="96193552-b489-43a4-9f8a-ececfc06c0f6" class=""><strong>Example</strong> →</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7566cbea-06e4-45db-b926-af63d1f1f6ec" class="code"><code class="language-Java">public class Main
+{
+	public static void main(String[] args)
+	{
+		// This is a Single Line Comment
+
+		/*
+			This is Multi Line Comment
+			We can write a paragraph here
+		*/
+	}
+}</code></pre><ul id="bcd8a671-4768-4113-ae4c-a36726b78667" class="bulleted-list"><li style="list-style-type:disc">The line which is written after &#x27;//&#x27; is not considered as code of a program</li></ul><ul id="6d8532e2-664c-4e1d-ad9e-ee48c8157343" class="bulleted-list"><li style="list-style-type:disc">The lines which are written in between &#x27;/*<em>&#x27; </em>and<em> &#x27;*</em>/&#x27; are not considered as code of a program</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

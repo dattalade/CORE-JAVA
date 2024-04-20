@@ -1,0 +1,875 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>OPERATORS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="07aa0d02-5451-42cc-9d32-98a2e544a6cb" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">OPERATORS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="041ff632-3d5f-407b-93e5-f64816d93847"/><p id="a5577a01-7057-4b5d-a5aa-23d072c40120" class="">
+</p><h3 id="791bc456-d997-4d66-b8ce-910772e7f3b5" class=""><span style="border-bottom:0.05em solid"><strong>Operators in Java</strong></span></h3><p id="8fe2a4a6-8566-47df-96a9-37e2765c8288" class="">There are eight operators :</p><ol type="1" id="9f97675d-b715-4a5b-b310-35fb4508988f" class="numbered-list" start="1"><li>Unary Operators</li></ol><ol type="1" id="eab17811-30c8-4ec3-9c3f-b432a4abc7a0" class="numbered-list" start="2"><li>Arithmetic Operators</li></ol><ol type="1" id="00980e5c-f7c3-4c2f-8052-ecc144a0a212" class="numbered-list" start="3"><li>Bitwise Operators</li></ol><ol type="1" id="ed23d0b1-4a2c-4a69-8a89-e55630dbac7e" class="numbered-list" start="4"><li>Relational Operators</li></ol><ol type="1" id="cda9aea3-b33d-4264-a312-0b61d63e1af9" class="numbered-list" start="5"><li>Logical Operators</li></ol><ol type="1" id="e805e2a5-f012-4d87-a780-316bad104d04" class="numbered-list" start="6"><li>Ternary Operators</li></ol><ol type="1" id="ca81039d-d538-49f5-9448-27befbe66195" class="numbered-list" start="7"><li>Assignment Operators<p id="255ae38d-cff2-40b4-a64b-e6d2d69f5959" class=""><span style="border-bottom:0.05em solid"><strong>Unary Operators</strong></span></p><ul id="dd39f106-cabf-4389-a06e-9ba9d55ecd35" class="bulleted-list"><li style="list-style-type:disc">To perform any operations in unary, we need only one operand</li></ul><ul id="d1e03c78-dc6f-4abe-8252-47613176eff3" class="bulleted-list"><li style="list-style-type:disc">Types of Unary Operators are → <ol type="1" id="042e17bb-1bc2-4b30-8ae6-d070c6792bd7" class="numbered-list" start="1"><li>Increment</li></ol><ol type="1" id="e15b9061-b503-4b34-a39d-bcccabad5372" class="numbered-list" start="2"><li>Decrement</li></ol><ol type="1" id="52300fcd-cebc-407d-b3d6-78432c7fffa2" class="numbered-list" start="3"><li>Not</li></ol><p id="2f0eed5e-83cb-4d0f-8b97-fc8d1b12dce8" class=""><span style="border-bottom:0.05em solid"><strong> Increment </strong></span><span style="border-bottom:0.05em solid">(++)</span></p><ul id="dd5b907a-8ad7-4560-9392-6b5e969d6c4e" class="bulleted-list"><li style="list-style-type:circle">The value of a variable will be increased by 1</li></ul><ul id="51d725b7-a084-4100-aaf4-c120279625f5" class="bulleted-list"><li style="list-style-type:circle">There are two types of Increment :<ol type="1" id="65cba23d-e1f5-4bf5-97cb-9696036bbecd" class="numbered-list" start="1"><li>Post-Increment (First it will assign and then it will be incremented)</li></ol><ol type="1" id="610acfdd-49cd-4776-8c24-de0a23e664a1" class="numbered-list" start="2"><li>Pre-Increment (First it will increments and then assigns)</li></ol><p id="a5734800-a502-4d7a-aac0-d73478580a6b" class=""><strong>Example_1 </strong>(PostIncrement.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e4b847c2-537f-49f8-be16-a4e139a7c88e" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class PostIncrement
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		x++;	// Post Increment
+		System.out.print(x + &quot; &quot;);		// x = 11
+		System.out.print(x++ + &quot; &quot;);	// x = 11
+		System.out.println(x + &quot; &quot;);		// x = 12
+
+		int y = x++;
+		System.out.print(y + &quot; &quot;);		// y = 12
+		System.out.println(x);		// x = 13
+	}
+}</code></pre><p id="6b9a7334-77b6-4149-96b5-6e9ca664737d" class=""><strong>Output →</strong></p><p id="9b2d5386-a8f7-44a1-82c2-2ffb436f7cd5" class="">11 11 12</p><p id="d73c6d6d-0348-4428-994a-09f96e9d51df" class="">12 13</p></div></p><p id="3f8eda30-759a-438b-95b7-6d0a3845b5fd" class=""><strong>Example_2 </strong>(PreIncrement.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="de4ef968-fc5e-4cc1-a1bd-07394f635b49" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class PreIncrement
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		++x;	// Pre Increment
+		System.out.println(x)		// x = 11
+		System.out.println(++x)		// x = 12
+		System.out.println(x)		// x = 12
+	}
+}</code></pre><p id="fa93bfa1-5b3c-41e3-9830-30c8e1062837" class=""><strong>Output →</strong></p><p id="8dff832c-963f-442d-b7a5-1a94c4e1b16f" class="">11 12 12</p></div></p></li></ul><p id="a8166bab-f3c4-4016-afaf-d88ef4289f76" class=""><strong><span style="border-bottom:0.05em solid">Decrement </span></strong><span style="border-bottom:0.05em solid">(—)</span></p><ul id="a5e698d3-e2e4-4bd1-9cc5-c2ed466cbd55" class="bulleted-list"><li style="list-style-type:circle">The value of a variable will be decreased by 1</li></ul><ul id="98d31e0d-b4be-4fe8-bbff-48d9de7ecc50" class="bulleted-list"><li style="list-style-type:circle">There are two types of Decrement :<ol type="1" id="fed06515-b9fe-4eb8-ad25-fe9ae58c92fe" class="numbered-list" start="1"><li>Post-Decrement (First it will assign and then it will be Decremented)</li></ol><ol type="1" id="15538085-d15e-457b-a92b-afe79b5ae378" class="numbered-list" start="2"><li>Pre-Decrement (First it will Decrements and then assigns)</li></ol><p id="6bc5529b-716b-4a78-a452-bbfc1880c942" class=""><strong>Example_1 </strong>(PostDecrement.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d08ae87d-91bf-43bb-922c-2bc7f4851d70" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class PostDecrement
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		x--;	// Post Decrement
+		System.out.println(x)		// x = 9
+		System.out.println(x--)	// x = 9
+		System.out.println(x)		// x = 8
+
+		int y = x--;
+		System.out.println(y)		// y = 8
+		System.out.println(x)		// x = 7	
+	}
+}</code></pre><p id="d34b1fd3-f866-4440-b1ba-ce5ec5ba19ed" class=""><strong>Output →</strong></p><p id="2384c7f4-7591-461a-82af-29fb1146a8dd" class="">9 9 8</p><p id="4f979884-bcc4-4ec6-8b19-81d0ba607c80" class="">8 7</p></div></p><p id="a8984ac2-340c-4b46-89d6-66aafda9a314" class=""><strong>Example_2 </strong>(PreDecrement.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d1ae7c3a-8368-47f5-99a8-beec36821c9b" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class PreDecrement
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		--x;	// Pre Decrement
+		System.out.println(x)		// x = 9
+		System.out.println(--x)	// x = 8
+		System.out.println(x)		// x = 8
+	}
+}</code></pre><p id="7c1dda07-1fd4-43de-aa09-b50ffcc173ed" class=""><strong>Output →</strong></p><p id="c10258fc-43b8-4f56-b46e-649040c8cf8b" class="">9 8 8</p></div></p></li></ul><p id="740635e0-978b-41d5-a11b-981afb796da2" class=""><strong><span style="border-bottom:0.05em solid">Not</span></strong><span style="border-bottom:0.05em solid"> (!)</span></p><ul id="537ee143-ec84-4250-87ac-8a6d83cebd16" class="bulleted-list"><li style="list-style-type:circle">It will give an alternative answer</li></ul><p id="ac22440d-d091-4f3f-b268-fc07cc1ec3fd" class=""><strong>Example_1 </strong>(Not.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="513a62de-3e98-4d67-9b21-bfe3de212b06" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class Not
+{
+	public static void main(String[] args)
+	{
+		boolean x = true;
+		x = !x	// x = false
+		System.out.println(x);
+	}
+}</code></pre><p id="6319c82a-8d83-4d97-8621-73eb034a4a9b" class=""><strong>Output →</strong></p><p id="b9c5e4f5-3e67-46d5-80a5-86a6f05b0b8a" class="">false</p></div></p><p id="612087b6-36c4-4c99-a92f-9d81980df325" class=""><strong>Example_2 </strong>(PreDecrement.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96a7933f-e095-46a8-b046-a55b00f8173c" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class PreDecrement
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		--x;	// Pre Decrement
+		System.out.println(x)		// x = 9
+		System.out.println(--x)	// x = 8
+		System.out.println(x)		// x = 8
+	}
+}</code></pre><p id="e1b02285-01df-4607-8196-85e2a9d59e9e" class=""><strong>Output →</strong></p><p id="065ee855-bfa7-45a2-abb6-9cbf27a034d0" class="">9 8 8</p></div></p></li></ul><p id="cf59b8d1-9b31-4ec5-904f-94925e3f0733" class=""><span style="border-bottom:0.05em solid"><strong>Arithmetic Operators</strong></span></p><ul id="52468aa2-68ff-4029-8450-bb9dccd85034" class="bulleted-list"><li style="list-style-type:disc">To perform any operations in arithmetic, we need atleast two operands</li></ul><ul id="291397bd-e986-4331-b40b-526ab67bdd9f" class="bulleted-list"><li style="list-style-type:disc">It is used to perform normal mathematical operations</li></ul><ul id="c99428c2-8e16-4456-8078-969909b5bf21" class="bulleted-list"><li style="list-style-type:disc">Types of Arithmetic Operators are → <ol type="1" id="7ca02390-6176-404f-887f-3e6697b71f8c" class="numbered-list" start="1"><li>Addition (+)</li></ol><ol type="1" id="dfb4b9e9-1848-4121-a7cf-9ad17fcafe10" class="numbered-list" start="2"><li>Subtraction (-)</li></ol><ol type="1" id="3cd940cd-9f2b-4595-ba6f-57d6afecad64" class="numbered-list" start="3"><li>Multiplication (*)</li></ol><ol type="1" id="8fef1217-e7d9-42e5-ba77-168e278aef77" class="numbered-list" start="4"><li>Division (/)</li></ol><ol type="1" id="182a7c49-1e0d-4468-ad1d-5e0948df4342" class="numbered-list" start="5"><li>Modulus or Remainder (%)</li></ol><p id="37bdc69d-74e3-47cc-abac-b49fe0c24269" class=""><span style="border-bottom:0.05em solid"><strong> </strong></span><strong>Example_1 </strong>(Arithmetic.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e2e6840f-5307-43e0-a1ea-9bb4d3bda36f" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class Arithmetic
+{
+	public static void main(String[] args)
+	{
+		int a = 21;
+		int b = 10;
+
+		System.out.println(&quot;Addition of &quot; + a + &quot; and &quot; + b + &quot; is &quot; + a+b);		// 31
+		System.out.println(&quot;Subtraction of &quot; + a + &quot; and &quot; + b + &quot; is &quot; + a-b);		// 11
+		System.out.println(&quot;Multiplication of &quot; + a + &quot; and &quot; + b + &quot; is &quot; + a*b);		// 210
+		System.out.println(&quot;Division of &quot; + a + &quot; and &quot; + b + &quot; is &quot; + a/b);		// 2
+		System.out.println(&quot;Remainder of &quot; + a + &quot; and &quot; + b + &quot; is &quot; + a%b);		// 1
+	}
+}</code></pre><p id="0889d2d2-76a2-4e6f-bb69-47000efafb19" class=""><strong>Output →</strong></p><p id="cfea68c7-0721-4c69-b0ff-9db852bdc742" class="">Addition of 21 and 10 is 31</p><p id="2ebb3295-e0ec-4801-be09-b34cdd03fb72" class="">Subtraction of 21 and 10 is 11</p><p id="fc5cd37b-00bc-477b-b87d-2844b42c7471" class="">Multiplication of 21 and 10 is 210</p><p id="c1dd99c7-f14e-4375-a0d3-b98c65f7ed69" class="">Division of 21 and 10 is 2</p><p id="1fccdb7c-b39b-4bf9-926c-f637c95dbc52" class="">Remainder of 21 and 10 is 1</p></div></p></li></ul><p id="9eb64d80-031a-4f62-aaea-8f4f15c4b9a2" class=""><span style="border-bottom:0.05em solid"><strong>Bitwise Operators</strong></span></p><ul id="736bf810-673a-4650-a819-55f97112c1b4" class="bulleted-list"><li style="list-style-type:disc">It is used to manipulate the bits</li></ul><ul id="a248c50d-6390-4dda-8bae-e22aa09aab58" class="bulleted-list"><li style="list-style-type:disc">Types of Bitwise Operators are →<ol type="1" id="60f9b731-b1be-431a-8ff5-4bee28b878aa" class="numbered-list" start="1"><li>Shifting</li></ol><ol type="1" id="c2f431b7-812a-4bde-bb95-d6507f247c2a" class="numbered-list" start="2"><li>Logical</li></ol><p id="79e12d90-5f6d-4806-a269-fa44f0234bf7" class=""><span style="border-bottom:0.05em solid"><strong>Shifting </strong></span></p><ul id="622426fd-c613-4a22-a62e-83241d778b78" class="bulleted-list"><li style="list-style-type:circle">There are two types of Shifting :<ol type="1" id="670f6e06-7726-476d-bd37-f970dc04c010" class="numbered-list" start="1"><li>Left Shift (&lt;&lt;) → a &lt;&lt; b → a * (2 power b)</li></ol><ol type="1" id="3e9f68a6-f1d3-48dd-bb06-e2f350504bc8" class="numbered-list" start="2"><li>Right Shift (&gt;&gt;) → a &gt;&gt; b → a / (2 power b)</li></ol><p id="ac0d1172-6eaa-49ed-a825-c12162e7da72" class=""><strong>Example_1</strong> (Shifting.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d11cae75-e1a5-4a8f-bd05-f4f6d6a75d04" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class Shifting
+{
+	public static void main(String[] args)
+	{
+		System.out.println(&quot;Left Shift of 10 and 3&quot; + &quot; is&quot; + 10 &lt;&lt; 3);	// 80	(10 * (8))
+		System.out.println(&quot;Right Shift of 10 and 2&quot; + &quot; is&quot; + 10 &gt;&gt; 2);	// 2	(10 / (4))
+	}
+}</code></pre><p id="e87cc622-94ba-4944-abcd-329626d4d44e" class=""><strong>Output →</strong></p><p id="bf5481bb-89d1-4050-880e-73872722984d" class="">Left Shift of 10 and 3 is 80</p><p id="d32304f6-b872-4a41-b81b-45363fd56dc4" class="">Left Shift of 10 and 2 is 2</p></div></p></li></ul><p id="e6a49f0e-c83f-45b5-9cb1-645e703abc57" class=""><span style="border-bottom:0.05em solid"><strong>Logical</strong></span></p><ul id="448cf6f3-3df5-42ac-88f1-04bd05961d10" class="bulleted-list"><li style="list-style-type:circle">There are five types of Logical operators :<ol type="1" id="9bf1b379-4b12-4a35-9865-23227f260bd8" class="numbered-list" start="1"><li>and (&amp;)</li></ol><ol type="1" id="868d66d8-fb4d-4d00-bfdb-1c92096f8ad6" class="numbered-list" start="2"><li>or (|)</li></ol><ol type="1" id="4776251b-f06e-4a1a-befc-529175acbcd4" class="numbered-list" start="3"><li>xor (^)</li></ol><ol type="1" id="e7702b6d-f808-4771-8089-aa4f58d7634b" class="numbered-list" start="4"><li>not (~)</li></ol><p id="daad5dc2-64c4-4ffa-9691-844819db854a" class=""><strong>Example_1</strong> (LogicalOperator.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f2c2c67-4111-43b5-8932-3d02d2783f98" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class LogicalOperator
+{
+	public static void main(String[] args)
+	{
+		int a = 42;
+		int b = 15;
+		System.out.println(a &amp; b)		// 10	(00101010 &amp; 00001111)
+		System.out.println(a | b)		// 47	(00101010 | 00001111)
+		System.out.println(a ^ b)		// 37	(00101010 ^ 00001111)
+	}
+}</code></pre><p id="19b2335e-2117-4008-b7b7-fee2b68a4ef8" class=""><strong>Output →</strong></p><p id="96654a71-523d-445e-b219-259c532950e1" class="">10</p><p id="bdac0bd7-b82b-47c0-8f47-ab96d33f8a31" class="">47</p><p id="5f062fa4-d410-4ff1-9e80-2b86096782d1" class="">37</p></div></p></li></ul></li></ul><p id="004f40f7-0199-4e32-9019-2e3e2979edc3" class=""><span style="border-bottom:0.05em solid"><strong>Relational Operators</strong></span></p><ul id="c9d1c468-5883-4113-89ba-6f2d8f9a5745" class="bulleted-list"><li style="list-style-type:disc">It checks the given single condition is true or not</li></ul><ul id="cd5aecae-1421-43f6-87f7-6d659b4dd68f" class="bulleted-list"><li style="list-style-type:disc">Types of Relational Operators are →<ol type="1" id="719c977c-714a-4e2b-b938-d68d0bed6535" class="numbered-list" start="1"><li>Greater than (&gt;)</li></ol><ol type="1" id="789671f7-c09d-4533-8382-8b0ad46e4bee" class="numbered-list" start="2"><li>Less than (&lt;)</li></ol><ol type="1" id="e4911ab7-6568-414d-8fe6-399f54ea202c" class="numbered-list" start="3"><li>Greater than or equals to (&gt;=)</li></ol><ol type="1" id="35adfa3c-f275-49c5-a66d-23b8c62df7c0" class="numbered-list" start="4"><li>Less than or equals to (&lt;=)</li></ol><ol type="1" id="bf8e3c68-ffe5-487d-acb6-7fdab52888d4" class="numbered-list" start="5"><li>Instance (instanceof)		// Will learn later in OOP&#x27;s Concepts</li></ol><ol type="1" id="592ed5c1-28bc-4451-8bfc-3d430409eac2" class="numbered-list" start="6"><li>Equals (==)</li></ol><ol type="1" id="d621158b-9f46-47e4-a3f6-5f5b31cabc6d" class="numbered-list" start="7"><li>Not equals (!=)</li></ol><p id="187b93c1-61c1-4135-b343-2117390e569d" class=""><strong>Example_1</strong> (RelationalOperator.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="359b9d8b-aefe-4361-8e1e-20eeb2026223" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class RelationalOperator
+{
+	public static void main(String[] args)
+	{
+		int x = 5;
+    int y = 3;
+    System.out.print(x &gt; y + &quot; &quot;);
+		System.out.print(x &lt; y + &quot; &quot;);
+		y = 5;
+		System.out.print(x &gt;= y + &quot; &quot;);
+		System.out.print(x &lt;= y + &quot; &quot;);
+		System.out.print(x == y + &quot; &quot;);
+		System.out.print(x != y);
+	}
+}</code></pre><p id="83971562-8949-4630-912b-e65b81a19b3c" class=""><strong>Output →</strong></p><p id="8b69a50b-013c-4353-a99a-c3ec4ed35eb6" class="">true false true true true false</p></div></p></li></ul><p id="eb1c39b9-30d3-4d87-837a-bf4f45c48309" class=""><span style="border-bottom:0.05em solid"><strong>Logical Operators</strong></span></p><ul id="e8f900c2-3d6b-4742-9089-a8211a90e48a" class="bulleted-list"><li style="list-style-type:disc">It checks the given multiple condition are true or not</li></ul><ul id="74f515be-783d-418c-8f5e-fce3e2c1efab" class="bulleted-list"><li style="list-style-type:disc">Types of Logical Operators are →<ol type="1" id="9a8547d6-f5b8-460e-af3d-6f16bc3585af" class="numbered-list" start="1"><li>Logical And (&amp;&amp;) : It returns true when all the given conditions are true, returns false when one of the given condition fails</li></ol><ol type="1" id="b161cf40-4482-456d-8a0b-1d894c00c290" class="numbered-list" start="2"><li>Logical Or (||) : It returns true if one in all given conditions becomes true, returns false when every condition fails</li></ol><p id="48fae8e1-df3b-49ab-a94e-d134f2544441" class=""><strong>Example_1</strong> (LogicalOperator.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="490885d7-d9b2-40b1-8cc8-db94be9c2e1b" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class LogicalOperator
+{
+	public static void main(String[] args)
+	{
+		int a=10;  
+		int b=5;  
+		int c=20;  
+
+		System.out.print(a&lt;b &amp;&amp; a&lt;c + &quot; &quot;);	//false &amp;&amp; true = false
+		System.out.println(a&gt;b &amp;&amp; b&lt;c);	// true &amp;&amp; true = true
+
+		System.out.print(a&lt;b || a&lt;c + &quot; &quot;);	//false || true = true
+		System.out.println(a==b || b&gt;c);	// false || false = false
+	}
+}</code></pre><p id="66686a47-a168-404d-80d9-3d9d932934e5" class=""><strong>Output →</strong></p><p id="fc1ce362-ec48-41d8-99a7-49ada9f010b2" class="">false true</p></div></p></li></ul><p id="ea43ee4f-fe86-4a14-b061-a3f552333787" class=""><span style="border-bottom:0.05em solid"><strong>Ternary Operator</strong></span></p><ul id="2b901f33-b321-4918-b920-c82f45717de7" class="bulleted-list"><li style="list-style-type:disc">The variable stores a value, based on the condition given in ternary operator</li></ul><p id="b4c5c33f-277c-4a4a-b06c-ac087c89e90d" class=""><strong>Syntax → </strong>dataType var_name = condition?value_x:value_y;</p><p id="fe304749-e4be-4d89-997b-7089456ef48b" class=""><strong>Example_1</strong> (Ternary.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1e989a0b-6102-4153-8bea-2a3e423d7b97" class="code"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">package com.operators;
+import java.util.*;
+
+public class Ternary
+{
+	public static void main(String[] args)
+	{
+		char a = 5&gt;3?&#x27;y&#x27;:&#x27;n&#x27;;
+		System.out.println(a);	// false || false = false
+	}
+}
+</code></pre><p id="857781eb-2188-40c5-8361-e34ec84fb77c" class=""><strong>Output →</strong></p><p id="d6447e43-cd10-40c0-9b56-8bb5bbc8ed85" class="">y</p></div></p><p id="e47c18ae-e1e3-41a2-9251-d6e451c487e8" class=""><span style="border-bottom:0.05em solid"><strong>Assignment Operators</strong></span></p><ul id="5b121b97-1e56-47df-96f0-dc91901d1335" class="bulleted-list"><li style="list-style-type:disc">To use this operator the variable must be defined before and must have a previous value</li></ul><ul id="dccb4d9b-3a7d-496c-ab9c-83b62116bec0" class="bulleted-list"><li style="list-style-type:disc">It will operate value with existing value of the variable</li></ul><ul id="3db03482-fb58-4d29-be26-79bdd28552a0" class="bulleted-list"><li style="list-style-type:disc">These operators are also called as &#x27;Compound Assignments’</li></ul><ul id="ea260812-6bef-48c2-99ac-521f1bf38993" class="bulleted-list"><li style="list-style-type:disc">Types of Assignment Operators are →<ol type="1" id="ec74ce79-1482-477c-93e9-02e35eddadef" class="numbered-list" start="1"><li>Addition Assignment (+=)</li></ol><ol type="1" id="0e2ac4d2-6ee8-4c60-8c23-eefbc3ffa9c9" class="numbered-list" start="2"><li>Subtraction Assignment (-=)</li></ol><ol type="1" id="f7f97ad9-2c88-4aa1-9d90-6294601ed3ca" class="numbered-list" start="3"><li>Multiplication Assignment (*=)</li></ol><ol type="1" id="285c5243-01e2-4214-88eb-b67914c8106d" class="numbered-list" start="4"><li>Division Assignment (/=)</li></ol><ol type="1" id="cb2db858-368e-4e1c-a8c9-10ea9816c85b" class="numbered-list" start="5"><li>Modulus Assignment (%=)</li></ol><ol type="1" id="43812788-7d83-4888-aac0-fd69dd88c917" class="numbered-list" start="6"><li>Equals Assignment (=)</li></ol><blockquote id="cbdf0641-059e-4701-ac46-2437e476916b" class=""><strong>Note</strong> : These are only few operators , these can be used for bitwise operators too</blockquote></li></ul><p id="850e7448-e7b9-47f3-abc4-4beece817b2b" class=""><strong>Syntax → </strong>dataType var_name = value_x;<div class="indented"><p id="34488fdb-0b9b-44bc-a620-6c27ab1dea26" class="">               var_name (Assignment Operator) value_y;</p><p id="6062ba10-1ffb-46b1-bc39-f0a083646620" class=""><strong>Example_1</strong> (Assignment.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7bb7971b-ec7d-4d70-84d8-e78f015719ef" class="code"><code class="language-Java">package com.operators;
+import java.util.*;
+
+public class Assignment
+{
+	public static void main(String[] args)
+	{
+		int a = 10;
+
+		a += 20;
+		System.out.print(a + &quot; &quot;)		// a = 30 (a += 20 -&gt; a = a+20 -&gt; a = 10+20 -&gt; a = 30)
+
+		a -= 20;
+		System.out.print(a + &quot; &quot;)		// a = 10 (a -= 20 -&gt; a = a-20 -&gt; a = 30-20 -&gt; a = 10)
+
+		a *= 20;
+		System.out.print(a + &quot; &quot;)		// a = 200 (a *= 20 -&gt; a = a*20 -&gt; a = 10*20 -&gt; a = 200)
+
+		a /= 10;
+		System.out.print(a + &quot; &quot;)		// a = 20 (a /= 10 -&gt; a = a/10 -&gt; a = 200/10 -&gt; a = 20)
+
+		a %= 2;
+		System.out.println(a)		// a = 0 (a %= 2 -&gt; a = a%2 -&gt; a = 20%2 -&gt; a = 0)
+
+		int p, q, r;
+		p = q = r = 100;
+		System.out.println(p + &quot; &quot; + q+r)
+	}
+}</code></pre><p id="e456ee08-caff-4130-b176-d39ae355dd0a" class=""><strong>Output →</strong></p><p id="9c00e5e0-3671-423c-99fd-facd57d52817" class="">30 10 200 20 0</p><p id="9c24f387-ea74-4776-bca8-b24add8ae7f0" class="">100 200</p></div></p></div></p><p id="76beab41-fdf9-4c7d-aeb0-8275dc7a70bd" class="">
+</p></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

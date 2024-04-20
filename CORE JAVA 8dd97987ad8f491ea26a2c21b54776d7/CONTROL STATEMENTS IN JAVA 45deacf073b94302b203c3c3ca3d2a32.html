@@ -1,0 +1,1022 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CONTROL STATEMENTS IN JAVA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="45deacf0-73b9-4302-b203-c3c3ca3d2a32" class="page serif"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><h1 class="page-title">CONTROL STATEMENTS IN JAVA</h1><p class="page-description"></p></header><div class="page-body"><hr id="c4ac79aa-9ef1-41e9-9acf-21b0dd197aa7"/><h3 id="4c847bb1-a99a-47b1-806a-a2114808cadb" class=""><span style="border-bottom:0.05em solid"><strong>Control Statements</strong></span></h3><ul id="14fd1986-ea3c-47a7-a51e-b50b7e1f9886" class="bulleted-list"><li style="list-style-type:disc">Java runs a code line by line, if we use control statements we can execute a code without following a rule &#x27;line by line&#x27;</li></ul><ul id="5d57e74a-ce38-4a59-9a03-b6260b4288a0" class="bulleted-list"><li style="list-style-type:disc">In simpler words, Java uses Control Ststements to cause or disturb the flow of Execution</li></ul><ul id="6ce0be6f-ad70-4686-b0d7-6c161ee50777" class="bulleted-list"><li style="list-style-type:disc">There are three types of Control Statements<ol type="1" id="00db6eaf-870d-4c87-9261-9d4763330c5e" class="numbered-list" start="1"><li>Decision-Making Statements</li></ol><ol type="1" id="8696f31e-f288-4f8f-bc30-4b23daf376db" class="numbered-list" start="2"><li>Iterative Statements</li></ol><ol type="1" id="dc0baec9-4cbf-43ce-b628-d48a82529efa" class="numbered-list" start="3"><li>Jump Statements<p id="5c765974-0184-426a-9b03-d1833885fbce" class=""><span style="border-bottom:0.05em solid"><strong>Decision Making Statements</strong></span></p><p id="3db64035-27db-480c-907d-b7e43f28c03f" class="">Types of Decision Making Statements are :</p><ol type="1" id="aefb5098-0258-4c61-a595-9ce3b0a66e32" class="numbered-list" start="1"><li>Simple-if Statement</li></ol><ol type="1" id="fa140dda-4c72-4690-ae93-690bb6cca4d0" class="numbered-list" start="2"><li>if-else Statement</li></ol><ol type="1" id="4888f1ce-3f79-470d-8fc8-171332da1994" class="numbered-list" start="3"><li>else-if ladder</li></ol><ol type="1" id="802cc8e1-0b12-42b0-a539-6c378de7fb9d" class="numbered-list" start="4"><li>Nested if Statement</li></ol><ol type="1" id="bf7cc976-071a-43e1-84c7-061553d4cbbd" class="numbered-list" start="5"><li>Switch Statement<p id="20d1eefd-359a-4309-b00c-db4598c723b0" class=""><span style="border-bottom:0.05em solid"><strong>Simple-if</strong></span></p><ul id="d0248eac-f708-428c-8341-86fb2854dae7" class="bulleted-list"><li style="list-style-type:disc">If the given condition / conditions are true, then program will execute that &#x27;if&#x27; block of code.</li></ul><p id="3c55f4f5-f503-4ffa-a52e-11ea03243cb7" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0ccbaf83-f409-4582-abcd-696b1bfb9466" class="code"><code class="language-Java">if(condition (or) conditions)
+{
+	//code
+}</code></pre></div></p><p id="d99e40be-7648-4c9a-a4c7-73972919cf90" class=""><strong>Example_1</strong> (SimpleIf.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c1981576-ef23-4691-a0bd-2394d87a8979" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class SimpleIf
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &lt; b)
+		{
+				System.out.println(&quot;Big Number&quot;);
+		}
+	}
+}</code></pre><p id="0934bf8f-c8de-477b-ba4c-50c21a479f14" class=""><strong>Output →</strong></p><p id="259c1474-b518-44b2-acf4-5c841cf226e4" class="">Big Number</p></div></p><p id="06e30fd1-2598-4807-9719-dadb600e6d59" class=""><strong>Example_2</strong> (SimpleIf.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b20feee0-eb0b-40b0-bfff-152c57e6890e" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class SimpleIf
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &gt; b)
+		{
+				System.out.println(&quot;Big Number&quot;);
+		}
+	}
+}</code></pre><p id="4f7a7c80-f18e-4c9a-82d3-044a2ce3396f" class=""><strong>Output →</strong></p><p id="fdb97756-07b4-4392-a124-62a0847f4fb6" class="">(does not print anything)</p></div></p><p id="2470fda5-5224-456e-ad11-f4c8c94f7a88" class=""><span style="border-bottom:0.05em solid"><strong>if-else</strong></span></p><ul id="3ac28038-63a5-4fe8-86f2-93870b2e744c" class="bulleted-list"><li style="list-style-type:disc">If the given condition / conditions are true, then program will execute &#x27;if&#x27; block of code.</li></ul><ul id="b84e7eb2-7fcb-4e86-af9e-e3e7b8ab5158" class="bulleted-list"><li style="list-style-type:disc">If the given condition fails, then program will execute &#x27;else&#x27; block of code.</li></ul><p id="b8bd40aa-f4d3-4789-a0c1-0078c3f320fe" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9f6cbeed-e344-40ff-9cc8-c84f6b56452f" class="code"><code class="language-Java">if(condition (or) conditions)
+{
+	//code
+}
+else
+{
+	//code
+}</code></pre></div></p><p id="c1d0d28d-ef9b-493a-85f3-2b5fd9b06003" class=""><strong>Example_1</strong> (IfElse.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="30f5663a-153e-48b7-bd4a-2dae5ca99752" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class IfElse
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &lt; b)
+		{
+			System.out.println(&quot;Big Number&quot;);
+		}
+		else
+		{
+			System.out.println(&quot;Small Number&quot;);
+		}
+	}
+}</code></pre><p id="3d2837ce-6a74-487e-ac7a-e56b1aa8367d" class=""><strong>Output →</strong></p><p id="c569e5d7-efbc-4e73-9143-92a9ec71f935" class="">Big Number</p></div></p><p id="05b35ced-9dd9-42fa-bcf9-459c1763e65a" class=""><strong>Example_2</strong> (IfElse.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e2ed61bf-f3bc-461c-a801-2144b739db2c" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class IfElse
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &lt; b)
+		{
+			System.out.println(&quot;Big Number&quot;);
+		}
+		else
+		{
+			System.out.println(&quot;Small Number&quot;);
+		}
+	}
+}</code></pre><p id="63e213c9-8520-43e6-aa4d-84bf43c16c2b" class=""><strong>Output →</strong></p><p id="bbece5d8-7e63-457b-b48a-0e58a6735b46" class="">Small Number</p></div></p><p id="2b5ec48f-cbe8-4a11-9fe0-0caff91c9665" class=""><span style="border-bottom:0.05em solid"><strong>else-if Ladder</strong></span></p><ul id="1ae8d531-abb2-4475-9b11-a7170e4333ab" class="bulleted-list"><li style="list-style-type:disc">If the given condition / conditions are passed in &#x27;if&#x27; block, then program will execute that &#x27;if&#x27; block of code</li></ul><ul id="71be67fe-7fdb-4a8c-b725-690ce6cb9030" class="bulleted-list"><li style="list-style-type:disc">If the condition is failed , it goes to next &#x27;else if&#x27; code</li></ul><ul id="a95ca351-fd6c-472a-b75e-d46582ca045b" class="bulleted-list"><li style="list-style-type:disc">If any of the block condition passes then it stops executing other blocks (till else block)</li></ul><p id="1432802e-529d-45fe-a029-7026a8fa5b74" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1c3732ba-fbfd-42b4-a644-4037996f211c" class="code"><code class="language-Java">if(condition (or) conditions)
+{
+	//code
+}
+else if(condition / conditions)
+{
+	//code
+}
+else if(condition / conditions)
+{
+	//code
+}
+else if(condition / conditions)
+{
+	//code
+}
+....................
+else
+{
+	//code
+}</code></pre></div></p><p id="40303f48-d9a5-4f89-9e8a-869737088811" class=""><strong>Example_1</strong> (Ladder.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6dc53754-a69a-415a-93e3-ec195206333a" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class Ladder
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &gt; b)
+		{
+			System.out.println(&quot;Big Number&quot;);
+		}
+		else if(b%a == 0 &amp;&amp; a%b == 10)
+		{
+			System.out.println(&quot;Remainder Number&quot;);
+		}
+		else
+		{
+			System.out.println(&quot;No Number&quot;);
+		}
+	}
+}</code></pre><p id="fcf43963-bae4-4412-951b-81a530350066" class=""><strong>Output →</strong></p><p id="12175e9f-4086-4d54-992c-3a8fe623e56a" class="">Remainder Number</p></div></p><p id="b8a87a7f-89c1-48ad-a974-a3d512109e5c" class=""><span style="border-bottom:0.05em solid"><strong>Nested If</strong></span></p><ul id="f12e47f4-52d9-49a2-bc54-e732763f99fd" class="bulleted-list"><li style="list-style-type:disc">If the given condition / conditions are true, then program will execute &#x27;if&#x27; block of code.</li></ul><ul id="dd95946e-5aa5-4540-a875-9f42fea360d0" class="bulleted-list"><li style="list-style-type:disc">Then it checks the condition inside the &#x27;if&#x27; block , going on till last &#x27;if&#x27; block of code.</li></ul><p id="323f8555-eae0-4251-b59a-99dc334187af" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a66d06f8-52ed-4f64-9329-2a070e362d7e" class="code"><code class="language-Java">if(condition (or) conditions)
+{
+	if(condition (or) conditions)
+	{
+		if(condition (or) conditions)
+		{
+			..................
+			//code
+		}
+	}
+}</code></pre></div></p><p id="f8291d64-f678-4800-a7da-fe9fe19f6802" class=""><strong>Example_1</strong> (Nested.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bb5d7c1a-4b53-448e-92c2-7ec194896add" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class IfElse
+{
+	public static void main(String[] args)
+	{
+		int a = 10, b =20;
+		if(a &lt; b)
+		{
+			System.out.println(&quot;First if passed&quot;);
+			if(a-b == -10)
+			{
+				System.out.println(&quot;Second if passed&quot;);
+				if(b%a == 1)
+				{
+					System.out.println(&quot;All if&#x27;s passed&quot;);
+				}
+			}
+		}
+	}
+}</code></pre><p id="78f43c14-dafd-4aff-96d5-ea05f71d571b" class=""><strong>Output →</strong></p><p id="fc8dcd8a-ce70-4228-88e8-a5dc1c8a65c0" class="">Second if passed</p></div></p><p id="a351e86c-44ca-48ce-b594-c07222f0295b" class=""><span style="border-bottom:0.05em solid"><strong>Switch Statements</strong></span></p><p id="110943fc-e602-4495-92af-94ff917d006c" class=""><strong>Syntax →</strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="73cfc4b4-7660-4f28-97b1-3d404548a0e7" class="code"><code class="language-Java">switch(value)
+{
+	case val_a: // code
+							break;
+	case val_b: // code
+					    break;
+	case val_c: // code
+					    break;
+						------
+	default : //code
+}</code></pre></div></p><p id="421c0851-125d-431f-99bb-b1adcd693aca" class=""><strong>Example_1</strong> (Switch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9a948704-719c-415f-acdf-2e7609bdb912" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class Switch
+{
+	public static void main(String[] args)
+	{
+		int a = 3;
+		switch(a)
+		{
+			case 1: System.out.println(&quot;Sunday&quot;);
+							break;
+			case 2: System.out.println(&quot;Monday&quot;);
+							break;
+			case 3: System.out.println(&quot;Tuesday&quot;);
+							break;
+			case 4: System.out.println(&quot;Wednesday&quot;);
+							break;
+			case 5: System.out.println(&quot;Thursday&quot;);
+							break;
+			case 6: System.out.println(&quot;Friday&quot;);
+							break;
+			case 7: System.out.println(&quot;Saturday&quot;);
+							break;
+			default : System.out.println(&quot;No Day&quot;);						
+		}
+	}
+}</code></pre><p id="cec392ae-858f-4f6a-94c8-0aa12aeef17d" class=""><strong>Output →</strong></p><p id="9c1890fd-2833-4343-a745-3d0355cb22b0" class="">Tuesday</p></div></p><p id="c11fe95e-8050-42d2-bb84-0379177419ed" class=""><strong>Example_2</strong> (Switch.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="04c8cc26-badf-4cd9-a1e0-af37d8049947" class="code"><code class="language-Java">package com.decision;
+import java.util.*;
+
+public class Switch
+{
+	public static void main(String[] args)
+	{
+		int a = 3;
+		switch(a)
+		{
+			case 1: System.out.println(&quot;Sunday&quot;);
+							break;
+			case 2: System.out.println(&quot;Monday&quot;);
+							break;
+			case 3: System.out.println(&quot;Tuesday&quot;);
+							
+			case 4: System.out.println(&quot;Wednesday&quot;);
+							
+			case 5: System.out.println(&quot;Thursday&quot;);
+							break;
+			case 6: System.out.println(&quot;Friday&quot;);
+							break;
+			case 7: System.out.println(&quot;Saturday&quot;);
+							break;
+			default : System.out.println(&quot;No Day&quot;);						
+		}
+	}
+}</code></pre><p id="78e71933-3601-45d9-9ac9-2eeaba3f8ff3" class=""><strong>Output →</strong></p><p id="7b93872c-376c-4daf-8f7f-8b4716b134af" class="">Tuesday<br/>Wednesday<br/>Thursday<br/></p></div></p><blockquote id="51cfac87-6d74-4170-a74c-b10196756d18" class=""><strong>Note</strong> : If break keyword is not used in every case, then if any case passes it executes every case until break keyword arrives.</blockquote></li></ol><p id="42932db6-0fa8-4f14-b408-bd8da3350fdc" class=""><span style="border-bottom:0.05em solid"><strong>Iterative Statements</strong></span></p><ul id="3bad3d55-a84b-4648-823d-93b77f86807e" class="bulleted-list"><li style="list-style-type:disc">To iterate a block of code multiple times or repeatedly, we use loops called Iterative Statements.</li></ul><ul id="7ec476fd-c070-4b03-b4d1-a1e64145b908" class="bulleted-list"><li style="list-style-type:disc">The block of iteration code iterates continously based on given condition when it meets given requirements.</li></ul><ul id="2271bbc4-26cd-4d57-aa67-42f7bb7754ef" class="bulleted-list"><li style="list-style-type:disc">We can also code Decision making statements inside Iterative Statements.</li></ul><ul id="3ca1f542-a60a-4b93-b806-d8dc06fbce15" class="bulleted-list"><li style="list-style-type:disc">There are four types of loops :<ol type="1" id="7f73277b-9179-4e05-8830-0a1bfb53ea92" class="numbered-list" start="1"><li>for-loop</li></ol><ol type="1" id="033006bc-b865-48fd-a56d-5e79bd2201b3" class="numbered-list" start="2"><li>while-loop</li></ol><ol type="1" id="99ce2176-59aa-4967-882e-30767889a178" class="numbered-list" start="3"><li>do-while-loop</li></ol><ol type="1" id="3fa091a5-98b9-4ee7-918c-c2ad3e4fed3e" class="numbered-list" start="4"><li>for-each-loop	(We will discuss this topic in Arrays)<p id="78fc2817-4b1c-4d07-a7fb-81040d8c7e9c" class=""><span style="border-bottom:0.05em solid"><strong>for-loop</strong></span></p><ul id="b29f0b06-33c3-49a5-847f-4c17f8f75189" class="bulleted-list"><li style="list-style-type:disc">If the given condition / conditions are true, then program will execute that &#x27;if&#x27; block of code.</li></ul><p id="850c6a7f-3e8b-4304-bd52-8fcbb578e43b" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef70ea5f-2bf6-4bf8-8bda-9455ff0c877c" class="code"><code class="language-Java">for(initialization;condition (or) conditions;updation)
+{
+	//code
+}</code></pre></div></p><ul id="73b0e692-b4f8-46fb-ac4d-a58a1f3dab45" class="bulleted-list"><li style="list-style-type:disc">Initialization : We have to declare a variable (with some datatype) with value</li></ul><ul id="fcc0b2dd-46f8-4203-a2c8-355d6d638d32" class="bulleted-list"><li style="list-style-type:disc">Condition : If the given condition fails, the loop stops iterating</li></ul><ul id="3a3eebb0-dbed-44d9-a1f5-3e64e417a22f" class="bulleted-list"><li style="list-style-type:disc">Updation : We update a variable (either initialization variable or any other variable)</li></ul><p id="96d4b1e6-9514-4872-9d65-ba8c510113f1" class=""><strong>Example_1</strong> (ForLoop.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ad43298a-2fb9-4bf0-8820-8367c311251e" class="code"><code class="language-Java">package com.iterative;
+import java.util.*;
+
+public class ForLoop
+{
+	public static void main(String[] args)
+	{
+		for(int i=1;i&lt;=5;i++)
+		{
+			System.out.print(i + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="5748911c-4525-433f-bba1-ac5e1b4dacac" class=""><strong>Output →</strong></p><p id="db11ea4d-027f-4a93-be7e-12c7751c3a8a" class="">1 2 3 4 5</p></div></p><p id="58182aa1-9142-4435-a313-2794436aabbf" class=""><strong>Example_2</strong> (ForLoop.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="17f4659b-0e93-45b2-ada1-eb6507e343d2" class="code"><code class="language-Java">package com.iterative;
+import java.util.*;
+
+public class ForLoop
+{
+	public static void main(String[] args)
+	{
+		for(int i=1;i&lt;=10;i++)
+		{
+			if(i%2 == 0)
+			{
+				System.out.print(i + &quot; &quot;);
+			}
+		}
+	}
+}</code></pre><p id="ece5a116-6f76-47bf-92bb-b52209d1ac1b" class=""><strong>Output →</strong></p><p id="3fe992d1-9641-44a9-861a-296531f4399f" class="">2 4 6 8 10</p></div></p><p id="44d01df3-bcae-443d-98ca-65d8f6f0184f" class=""><span style="border-bottom:0.05em solid"><strong>While Loop</strong></span></p><ul id="8b8b2685-3f62-4c78-a705-ea6db8dd7ac1" class="bulleted-list"><li style="list-style-type:disc">The disadvantage of <strong>for-loop</strong> is we have to know how many iterations we need</li></ul><ul id="260f52d6-264f-4d36-9341-393de82b6fd9" class="bulleted-list"><li style="list-style-type:disc">When iterations are not fixed, it is recommended to use while loop.</li></ul><p id="ef712371-419b-4986-b3b7-6f2b1a726419" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d0ae4a89-cf4e-4a26-8db4-f3e929042478" class="code"><code class="language-Java">initialization;
+while(condition)
+{
+	// code
+	updation;
+}</code></pre></div></p><p id="ef0205f0-6814-4a9f-bcbe-d9b281ae8e9e" class=""><strong>Example_1</strong> (While.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ce20672-67bd-4f48-ae93-603c5b8a947a" class="code"><code class="language-Java">package com.iterative;
+import java.util.*;
+
+public class IfElse
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		while(n&gt;=0)
+		{
+			if(n%2 == 1)
+				n--;
+			else
+				n = n/2;
+			System.out.print(n + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="216ecef2-1569-4b07-ba6d-9a8b1742565c" class=""><strong>Output →</strong></p><p id="f57c524f-3b5d-44be-9377-59f3c1b17b79" class="">4 2 1 0</p></div></p><p id="fadaa20b-54fc-45d0-87d1-1c9657ccc7cc" class=""><span style="border-bottom:0.05em solid"><strong>Do While Loop</strong></span></p><ul id="2a8c729f-a056-4903-a831-ae8fcf819c63" class="bulleted-list"><li style="list-style-type:disc">When iterations are not fixed but the loop must execute atleast once, it is recommended to use while loop.</li></ul><p id="b672c68e-9535-4af7-8979-234d964b139e" class=""><strong>Syntax → </strong><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff468aec-5a03-48ac-8780-9054cf75124a" class="code"><code class="language-Java">initialization;
+
+do
+{
+	//code
+	updation;
+}while(condition (or) conditions);</code></pre></div></p><p id="31294e7d-7881-4423-b860-5d0cdf69145f" class=""><strong>Example_1</strong> (DoWhile.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f5dccb5b-704c-4ee2-a6f9-b7c87f959aeb" class="code"><code class="language-Java">package com.iterative;
+import java.util.*;
+
+public class DoWhile
+{
+	public static void main(String[] args)
+	{
+		int n = 1;
+		do
+		{
+			if(n%2 == 1)
+				n = n/2;
+			else
+				n--;
+			System.out.println(n + &quot; &quot;);
+		}while(n!=1);
+	}
+}</code></pre><p id="94c94936-1683-4fdd-963b-3ba013ffbed7" class=""><strong>Output →</strong></p><p id="69d5d1e8-cedc-4e9c-9f95-ad7e4e8afc13" class="">0</p></div></p></li></ol></li></ul><blockquote id="c87e8608-0cf0-4e4c-a956-fffe70510f4b" class=""><strong>Note</strong> : As we done with Nested if , we can use nested loops</blockquote><p id="da1daf66-bd13-4ade-8169-835138d08421" class=""><strong>Example</strong> (NestedLoops.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ccc09f7-05a3-4942-adf3-98b91391e3fe" class="code"><code class="language-Java">package com.iterative;
+import java.util.*;
+
+public class Break
+{
+	public static void main(String[] args)
+	{
+		for(int i=1;i&lt;=5;i++)
+		{
+			int j = 1;
+			while(j&lt;=5)
+			{
+				System.out.print(i+j + &quot; &quot;);
+				j++;
+			}
+			System.out.println();
+		}
+	}
+}</code></pre><p id="bacd4384-43fd-4654-9db0-ba764c5e5284" class=""><strong>Output →</strong></p><p id="38692761-1d3a-4693-8dba-62ab5b6685d5" class="">2 3 4 5 6</p><p id="74a208b5-8754-4903-9ff0-eb9b90095801" class="">3 4 5 6 7</p><p id="5d1b5df8-b337-4fd6-80c4-5afd399f9503" class="">4 5 6 7 8</p><p id="835ae5d0-40b7-49ed-8da1-d6ef09d41782" class="">5 6 7 8 9</p><p id="8ccdc617-303f-4230-98d4-872741debee6" class="">6 7 8 9 10</p></div></p><p id="36d6095a-a9f1-47aa-b8c4-c3e768ec5bce" class=""><span style="border-bottom:0.05em solid"><strong>Jump Statements</strong></span></p><ul id="1c1b4206-a7fa-4644-8509-b9539022a22d" class="bulleted-list"><li style="list-style-type:disc">To iterate a block of code repeatedly we use loops, but to disturb the flow of loop we use Jump Statements</li></ul><ul id="00ac1a59-516c-4bca-b0a8-b1dcc0008f42" class="bulleted-list"><li style="list-style-type:disc">There are three types of loops :<ol type="1" id="5b3ffa5e-bf22-42b9-bd3f-da74bf153b39" class="numbered-list" start="1"><li>break</li></ol><ol type="1" id="5a895664-729b-4f90-8729-48cf5478f140" class="numbered-list" start="2"><li>continue</li></ol><ol type="1" id="1efd46d2-1a15-4ec4-ac73-a044cb38d725" class="numbered-list" start="3"><li>return	(will discuss in methods concept)<p id="46969705-ce92-4825-ace8-83a8ec8b2e5a" class=""><strong><span style="border-bottom:0.05em solid">break</span></strong></p><ul id="7a3e27ee-3af5-4366-8306-7bdc54522d6d" class="bulleted-list"><li style="list-style-type:disc">If you want to stop upcoming iterations of the loop based on a condition , we use <strong>break </strong>keyword<strong>.</strong></li></ul><p id="a22af001-faae-41fa-b32a-778d73ba4093" class=""><strong>Example_1</strong> (Break.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f1a84810-acb5-465c-9aec-401eb5d0a33c" class="code"><code class="language-Java">package com.jumps;
+import java.util.*;
+
+public class Break
+{
+	public static void main(String[] args)
+	{
+		for(int i=1;i&lt;=5;i++)
+		{
+			if(i%4 == 0)
+			{
+				break;
+			}
+			Sysem.out.print(i + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="bac386cb-a252-487a-a4cb-7022c6a78dd4" class=""><strong>Output →</strong></p><p id="d486744b-601b-4fc9-9ca3-128fe15c4c67" class="">1 2 3</p></div></p><p id="713d6313-dd18-4545-b488-d234a5554189" class=""><strong><span style="border-bottom:0.05em solid">continue</span></strong></p><ul id="83e4e03c-5da1-4037-9fd9-8226f1e80263" class="bulleted-list"><li style="list-style-type:disc">If you want to skip the current iteration based on condition, we use<strong> continue</strong> keyword.<strong>Syntax → </strong></li></ul><p id="8d571817-ba68-4321-bc03-1c400bd502bc" class=""><strong>Example_1</strong> (Continue.java) →<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9ff1d762-285a-4af2-9ca6-2b2420d2c187" class="code"><code class="language-Java">package com.jumps;
+import java.util.*;
+
+public class Continue
+{
+	public static void main(String[] args)
+	{
+		for(int i=1;i&lt;=5;i++)
+		{
+			if(i == 3)
+			{
+				continue;
+			}
+			Sysem.out.print(i + &quot; &quot;);
+		}
+	}
+}</code></pre><p id="37668495-0672-4515-a5f3-c1c3b6aa4bf6" class=""><strong>Output →</strong></p><p id="628fe7b1-de4f-4cb8-a0ba-2e9fc5473575" class="">1 2 4 5</p></div></p></li></ol></li></ul><p id="d1733602-fe10-4e46-9f21-1fe44c98e9d2" class="">
+</p><p id="9e68e2d9-f0ad-436a-9cc9-baa18d486059" class="">
+</p><p id="d282f103-927a-45b2-9448-1bd4ca11cc78" class="">
+</p><p id="1ddfe4a2-e65b-4e6c-b65b-abfd2fb058b1" class="">
+</p><p id="e891f3cb-a3a7-460c-96cf-0aa07dfc5a7e" class="">
+</p><p id="de8aa884-12bb-4a29-aa03-29a7d5e481b1" class="">
+</p><p id="aadff457-0b58-42a8-b389-ab52814bf0fb" class="">
+</p><p id="bccd8e39-70cf-46bb-a7b9-68c40bf416cf" class="">
+</p><p id="e42040bd-b409-4fe8-af2a-5bb8b399e4e1" class="">
+</p><p id="2cd2a57c-6278-4f23-9a05-aee77569c0df" class="">
+</p><p id="c31ead73-1545-4609-b787-01eee6fa9abb" class="">
+</p><p id="fc394ced-8ca5-4829-b415-1d82508ccaf1" class="">
+</p><p id="9d1813ec-9a05-4d18-b905-6a391686baf6" class="">
+</p><p id="acced04a-3b4f-4849-8e44-2de252979359" class="">
+</p></li></ol></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
